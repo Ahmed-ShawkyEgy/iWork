@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://php.net/manual/en/function.sqlsrv-fetch-array.php -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class=" js flexbox flexboxlegacy datauri"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>PHP: sqlsrv_fetch_array - Manual </title>
+
+ <link rel="shortcut icon" href="http://php.net/favicon.ico">
+ <link rel="search" type="application/opensearchdescription+xml" href="http://php.net/phpnetimprovedsearch.src" title="Add PHP.net search">
+ <link rel="alternate" type="application/atom+xml" href="http://php.net/releases/feed.php" title="PHP Release feed">
+ <link rel="alternate" type="application/atom+xml" href="http://php.net/feed.atom" title="PHP: Hypertext Preprocessor">
+
+ <link rel="canonical" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php">
+ <link rel="shorturl" href="http://php.net/sqlsrv-fetch-array">
+ <link rel="alternate" href="http://php.net/sqlsrv-fetch-array" hreflang="x-default">
+
+ <link rel="contents" href="http://php.net/manual/en/index.php">
+ <link rel="index" href="http://php.net/manual/en/ref.sqlsrv.php">
+ <link rel="prev" href="http://php.net/manual/en/function.sqlsrv-execute.php">
+ <link rel="next" href="http://php.net/manual/en/function.sqlsrv-fetch-object.php">
+
+ <link rel="alternate" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php" hreflang="en">
+ <link rel="alternate" href="http://php.net/manual/pt_BR/function.sqlsrv-fetch-array.php" hreflang="pt_BR">
+ <link rel="alternate" href="http://php.net/manual/zh/function.sqlsrv-fetch-array.php" hreflang="zh">
+ <link rel="alternate" href="http://php.net/manual/fr/function.sqlsrv-fetch-array.php" hreflang="fr">
+ <link rel="alternate" href="http://php.net/manual/de/function.sqlsrv-fetch-array.php" hreflang="de">
+ <link rel="alternate" href="http://php.net/manual/ja/function.sqlsrv-fetch-array.php" hreflang="ja">
+ <link rel="alternate" href="http://php.net/manual/ro/function.sqlsrv-fetch-array.php" hreflang="ro">
+ <link rel="alternate" href="http://php.net/manual/ru/function.sqlsrv-fetch-array.php" hreflang="ru">
+ <link rel="alternate" href="http://php.net/manual/es/function.sqlsrv-fetch-array.php" hreflang="es">
+ <link rel="alternate" href="http://php.net/manual/tr/function.sqlsrv-fetch-array.php" hreflang="tr">
+
+<link rel="stylesheet" type="text/css" href="./PHP_ sqlsrv_fetch_array - Manual_files/cached.php" media="screen">
+<link rel="stylesheet" type="text/css" href="./PHP_ sqlsrv_fetch_array - Manual_files/cached(1).php" media="screen">
+<link rel="stylesheet" type="text/css" href="./PHP_ sqlsrv_fetch_array - Manual_files/cached(2).php" media="screen">
+<link rel="stylesheet" type="text/css" href="./PHP_ sqlsrv_fetch_array - Manual_files/cached(3).php" media="screen">
+
+ <!--[if lte IE 7]>
+ <link rel="stylesheet" type="text/css" href="http://php.net/styles/workarounds.ie7.css" media="screen">
+ <![endif]-->
+
+ <!--[if lte IE 8]>
+ <script type="text/javascript">
+  window.brokenIE = true;
+ </script>
+ <![endif]-->
+
+ <!--[if lte IE 9]>
+ <link rel="stylesheet" type="text/css" href="http://php.net/styles/workarounds.ie9.css" media="screen">
+ <![endif]-->
+
+ <!--[if IE]>
+ <script type="text/javascript" src="http://php.net/js/ext/html5.js"></script>
+ <![endif]-->
+
+ <!--<base href="http://php.net/manual/en/function.sqlsrv-fetch-array.php">--><base href=".">
+
+</head>
+<body class="docs " style="">
+
+<nav id="head-nav" class="navbar navbar-fixed-top">
+  <div class="navbar-inner clearfix">
+    <a href="http://php.net/" class="brand"><img src="./PHP_ sqlsrv_fetch_array - Manual_files/php-logo.svg" width="48" height="24" alt="php"></a>
+    <div id="mainmenu-toggle-overlay"></div>
+    <input type="checkbox" id="mainmenu-toggle">
+    <ul class="nav">
+      <li class=""><a href="http://php.net/downloads">Downloads</a></li>
+      <li class="active"><a href="http://php.net/docs.php">Documentation</a></li>
+      <li class=""><a href="http://php.net/get-involved">Get Involved</a></li>
+      <li class=""><a href="http://php.net/support">Help</a></li>
+    </ul>
+    <form class="navbar-search" id="topsearch" action="http://php.net/search.php">
+      <input type="hidden" name="show" value="quickref">
+      <span class="twitter-typeahead" style="position: relative; display: inline-block;"><input class="tt-hint search-query" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input type="search" name="pattern" class="search-query tt-query" placeholder="Search" accesskey="s" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><input type="submit" style="visibility: hidden; position: fixed"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: &quot;Fira Sans&quot;, &quot;Source Sans Pro&quot;, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
+    </form>
+  </div>
+  <div id="flash-message"></div>
+</nav>
+<div class="headsup"><a href="http://php.net/index.php#id2017-11-30-1">PHP 7.2.0 Released</a></div>
+<nav id="trick"><div><dl>
+<dt><a href="http://php.net/manual/en/getting-started.php">Getting Started</a></dt>
+	<dd><a href="http://php.net/manual/en/introduction.php">Introduction</a></dd>
+	<dd><a href="http://php.net/manual/en/tutorial.php">A simple tutorial</a></dd>
+<dt><a href="http://php.net/manual/en/langref.php">Language Reference</a></dt>
+	<dd><a href="http://php.net/manual/en/language.basic-syntax.php">Basic syntax</a></dd>
+	<dd><a href="http://php.net/manual/en/language.types.php">Types</a></dd>
+	<dd><a href="http://php.net/manual/en/language.variables.php">Variables</a></dd>
+	<dd><a href="http://php.net/manual/en/language.constants.php">Constants</a></dd>
+	<dd><a href="http://php.net/manual/en/language.expressions.php">Expressions</a></dd>
+	<dd><a href="http://php.net/manual/en/language.operators.php">Operators</a></dd>
+	<dd><a href="http://php.net/manual/en/language.control-structures.php">Control Structures</a></dd>
+	<dd><a href="http://php.net/manual/en/language.functions.php">Functions</a></dd>
+	<dd><a href="http://php.net/manual/en/language.oop5.php">Classes and Objects</a></dd>
+	<dd><a href="http://php.net/manual/en/language.namespaces.php">Namespaces</a></dd>
+	<dd><a href="http://php.net/manual/en/language.errors.php">Errors</a></dd>
+	<dd><a href="http://php.net/manual/en/language.exceptions.php">Exceptions</a></dd>
+	<dd><a href="http://php.net/manual/en/language.generators.php">Generators</a></dd>
+	<dd><a href="http://php.net/manual/en/language.references.php">References Explained</a></dd>
+	<dd><a href="http://php.net/manual/en/reserved.variables.php">Predefined Variables</a></dd>
+	<dd><a href="http://php.net/manual/en/reserved.exceptions.php">Predefined Exceptions</a></dd>
+	<dd><a href="http://php.net/manual/en/reserved.interfaces.php">Predefined Interfaces and Classes</a></dd>
+	<dd><a href="http://php.net/manual/en/context.php">Context options and parameters</a></dd>
+	<dd><a href="http://php.net/manual/en/wrappers.php">Supported Protocols and Wrappers</a></dd>
+</dl>
+<dl>
+<dt><a href="http://php.net/manual/en/security.php">Security</a></dt>
+	<dd><a href="http://php.net/manual/en/security.intro.php">Introduction</a></dd>
+	<dd><a href="http://php.net/manual/en/security.general.php">General considerations</a></dd>
+	<dd><a href="http://php.net/manual/en/security.cgi-bin.php">Installed as CGI binary</a></dd>
+	<dd><a href="http://php.net/manual/en/security.apache.php">Installed as an Apache module</a></dd>
+	<dd><a href="http://php.net/manual/en/security.sessions.php">Session Security</a></dd>
+	<dd><a href="http://php.net/manual/en/security.filesystem.php">Filesystem Security</a></dd>
+	<dd><a href="http://php.net/manual/en/security.database.php">Database Security</a></dd>
+	<dd><a href="http://php.net/manual/en/security.errors.php">Error Reporting</a></dd>
+	<dd><a href="http://php.net/manual/en/security.globals.php">Using Register Globals</a></dd>
+	<dd><a href="http://php.net/manual/en/security.variables.php">User Submitted Data</a></dd>
+	<dd><a href="http://php.net/manual/en/security.magicquotes.php">Magic Quotes</a></dd>
+	<dd><a href="http://php.net/manual/en/security.hiding.php">Hiding PHP</a></dd>
+	<dd><a href="http://php.net/manual/en/security.current.php">Keeping Current</a></dd>
+<dt><a href="http://php.net/manual/en/features.php">Features</a></dt>
+	<dd><a href="http://php.net/manual/en/features.http-auth.php">HTTP authentication with PHP</a></dd>
+	<dd><a href="http://php.net/manual/en/features.cookies.php">Cookies</a></dd>
+	<dd><a href="http://php.net/manual/en/features.sessions.php">Sessions</a></dd>
+	<dd><a href="http://php.net/manual/en/features.xforms.php">Dealing with XForms</a></dd>
+	<dd><a href="http://php.net/manual/en/features.file-upload.php">Handling file uploads</a></dd>
+	<dd><a href="http://php.net/manual/en/features.remote-files.php">Using remote files</a></dd>
+	<dd><a href="http://php.net/manual/en/features.connection-handling.php">Connection handling</a></dd>
+	<dd><a href="http://php.net/manual/en/features.persistent-connections.php">Persistent Database Connections</a></dd>
+	<dd><a href="http://php.net/manual/en/features.safe-mode.php">Safe Mode</a></dd>
+	<dd><a href="http://php.net/manual/en/features.commandline.php">Command line usage</a></dd>
+	<dd><a href="http://php.net/manual/en/features.gc.php">Garbage Collection</a></dd>
+	<dd><a href="http://php.net/manual/en/features.dtrace.php">DTrace Dynamic Tracing</a></dd>
+</dl>
+<dl>
+<dt><a href="http://php.net/manual/en/funcref.php">Function Reference</a></dt>
+	<dd><a href="http://php.net/manual/en/refs.basic.php.php">Affecting PHP's Behaviour</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.utilspec.audio.php">Audio Formats Manipulation</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.remote.auth.php">Authentication Services</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.utilspec.cmdline.php">Command Line Specific Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.compression.php">Compression and Archive Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.creditcard.php">Credit Card Processing</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.crypto.php">Cryptography Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.database.php">Database Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.calendar.php">Date and Time Related Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.fileprocess.file.php">File System Related Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.international.php">Human Language and Character Encoding Support</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.utilspec.image.php">Image Processing and Generation</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.remote.mail.php">Mail Related Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.math.php">Mathematical Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.utilspec.nontext.php">Non-Text MIME Output</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.fileprocess.process.php">Process Control Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.basic.other.php">Other Basic Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.remote.other.php">Other Services</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.search.php">Search Engine Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.utilspec.server.php">Server Specific Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.basic.session.php">Session Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.basic.text.php">Text Processing</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.basic.vartype.php">Variable and Type Related Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.webservice.php">Web Services</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.utilspec.windows.php">Windows Only Extensions</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.xml.php">XML Manipulation</a></dd>
+	<dd><a href="http://php.net/manual/en/refs.ui.php">GUI Extensions</a></dd>
+</dl>
+<dl>
+<dt>Keyboard Shortcuts</dt><dt>?</dt>
+<dd>This help</dd>
+<dt>j</dt>
+<dd>Next menu item</dd>
+<dt>k</dt>
+<dd>Previous menu item</dd>
+<dt>g p</dt>
+<dd>Previous man page</dd>
+<dt>g n</dt>
+<dd>Next man page</dd>
+<dt>G</dt>
+<dd>Scroll to bottom</dd>
+<dt>g g</dt>
+<dd>Scroll to top</dd>
+<dt>g h</dt>
+<dd>Goto homepage</dd>
+<dt>g s</dt>
+<dd>Goto search<br>(current page)</dd>
+<dt>/</dt>
+<dd>Focus search box</dd>
+</dl></div></nav>
+<div id="goto">
+    <div class="search">
+         <div class="text"></div>
+         <div class="results"><ul></ul></div>
+   </div>
+</div>
+
+  <div id="breadcrumbs" class="clearfix">
+    <div id="breadcrumbs-inner">
+          <div class="next">
+        <a href="http://php.net/manual/en/function.sqlsrv-fetch-object.php">
+          sqlsrv_fetch_object »
+        </a>
+      </div>
+              <div class="prev">
+        <a href="http://php.net/manual/en/function.sqlsrv-execute.php">
+          « sqlsrv_execute        </a>
+      </div>
+          <ul>
+            <li><a href="http://php.net/manual/en/index.php">PHP Manual</a></li>      <li><a href="http://php.net/manual/en/funcref.php">Function Reference</a></li>      <li><a href="http://php.net/manual/en/refs.database.php">Database Extensions</a></li>      <li><a href="http://php.net/manual/en/refs.database.vendors.php">Vendor Specific Database Extensions</a></li>      <li><a href="http://php.net/manual/en/book.sqlsrv.php">SQLSRV</a></li>      <li><a href="http://php.net/manual/en/ref.sqlsrv.php">SQLSRV Functions</a></li>      </ul>
+    </div>
+  </div>
+
+
+
+
+<div id="layout" class="clearfix">
+  <section id="layout-content">
+  <div class="page-tools">
+    <div class="change-language">
+      <form action="http://php.net/manual/change.php" method="get" id="changelang" name="changelang">
+        <fieldset>
+          <label for="changelang-langs">Change language:</label>
+          <select onchange="document.changelang.submit()" name="page" id="changelang-langs">
+            <option value="en/function.sqlsrv-fetch-array.php" selected="selected">English</option>
+            <option value="pt_BR/function.sqlsrv-fetch-array.php">Brazilian Portuguese</option>
+            <option value="zh/function.sqlsrv-fetch-array.php">Chinese (Simplified)</option>
+            <option value="fr/function.sqlsrv-fetch-array.php">French</option>
+            <option value="de/function.sqlsrv-fetch-array.php">German</option>
+            <option value="ja/function.sqlsrv-fetch-array.php">Japanese</option>
+            <option value="ro/function.sqlsrv-fetch-array.php">Romanian</option>
+            <option value="ru/function.sqlsrv-fetch-array.php">Russian</option>
+            <option value="es/function.sqlsrv-fetch-array.php">Spanish</option>
+            <option value="tr/function.sqlsrv-fetch-array.php">Turkish</option>
+            <option value="help-translate.php">Other</option>
+          </select>
+        </fieldset>
+      </form>
+    </div>
+    <div class="edit-bug">
+      <a href="https://edit.php.net/?project=PHP&amp;perm=en/function.sqlsrv-fetch-array.php">Edit</a>
+      <a href="https://bugs.php.net/report.php?bug_type=Documentation+problem&amp;manpage=function.sqlsrv-fetch-array">Report a Bug</a>
+    </div>
+  </div><div id="function.sqlsrv-fetch-array" class="refentry">
+ <div class="refnamediv">
+  <h1 class="refname">sqlsrv_fetch_array</h1>
+  <p class="verinfo">(No version information available, might only be in Git)</p><p class="refpurpose"><span class="refname">sqlsrv_fetch_array</span> — <span class="dc-title">Returns a row as an array</span></p>
+
+ </div>
+ <div class="refsect1 description" id="refsect1-function.sqlsrv-fetch-array-description">
+  <h3 class="title">Description<a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#refsect1-function.sqlsrv-fetch-array-description"> ¶</a></h3>
+  <div class="methodsynopsis dc-description">
+   <span class="type">array</span> <span class="methodname"><strong>sqlsrv_fetch_array</strong></span>
+    ( <span class="methodparam"><span class="type">resource</span> <code class="parameter">$stmt</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$fetchType</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$row</code></span>
+   [, <span class="methodparam"><span class="type">int</span> <code class="parameter">$offset</code></span>
+  ]]] )</div>
+
+  <p class="para rdfs-comment">
+   Returns the next available row of data as an associative array, a numeric 
+   array, or both (the default).
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 parameters" id="refsect1-function.sqlsrv-fetch-array-parameters">
+  <h3 class="title">Parameters<a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#refsect1-function.sqlsrv-fetch-array-parameters"> ¶</a></h3>
+  <dl>
+
+    
+     <dt>
+<code class="parameter">stmt</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A statement resource returned by sqlsrv_query or sqlsrv_prepare.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">fetchType</code></dt>
+
+     <dd>
+
+      <p class="para">
+       A predefined constant specifying the type of array to return. Possible 
+       values are <strong><code>SQLSRV_FETCH_ASSOC</code></strong>, 
+       <strong><code>SQLSRV_FETCH_NUMERIC</code></strong>, and 
+       <strong><code>SQLSRV_FETCH_BOTH</code></strong> (the default).
+      </p>
+      <p class="para">
+      A fetch type of SQLSRV_FETCH_ASSOC should not be used when consuming a 
+      result set with multiple columns of the same name.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">row</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Specifies the row to access in a result set that uses a scrollable cursor. 
+       Possible values are <strong><code>SQLSRV_SCROLL_NEXT</code></strong>, 
+       <strong><code>SQLSRV_SCROLL_PRIOR</code></strong>, <strong><code>SQLSRV_SCROLL_FIRST</code></strong>, 
+       <strong><code>SQLSRV_SCROLL_LAST</code></strong>, <strong><code>SQLSRV_SCROLL_ABSOLUTE</code></strong> and, 
+       <strong><code>SQLSRV_SCROLL_RELATIVE</code></strong> (the default). When this parameter 
+       is specified, the <code class="parameter">fetchType</code> must be explicitly defined.
+      </p>
+     </dd>
+
+    
+    
+     <dt>
+<code class="parameter">offset</code></dt>
+
+     <dd>
+
+      <p class="para">
+       Specifies the row to be accessed if the row parameter is set to
+       <strong><code>SQLSRV_SCROLL_ABSOLUTE</code></strong> or
+       <strong><code>SQLSRV_SCROLL_RELATIVE</code></strong>. Note that the first row in
+       a result set has index 0.
+      </p>
+     </dd>
+
+    
+   </dl>
+
+  
+ </div>
+
+ 
+ <div class="refsect1 returnvalues" id="refsect1-function.sqlsrv-fetch-array-returnvalues">
+  <h3 class="title">Return Values<a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#refsect1-function.sqlsrv-fetch-array-returnvalues"> ¶</a></h3>
+  <p class="para">
+   Returns an array on success, <strong><code>NULL</code></strong> if there are no more rows to return, and 
+   <strong><code>FALSE</code></strong> if an error occurs.
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 examples" id="refsect1-function.sqlsrv-fetch-array-examples">
+  <h3 class="title">Examples<a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#refsect1-function.sqlsrv-fetch-array-examples"> ¶</a></h3>
+  <div class="example" id="example-2452">
+    <p><strong>Example #1 Retrieving an associative array.</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$serverName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"serverName\instanceName"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$connectionInfo&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #DD0000">"Database"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"dbName"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UID"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PWD"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_connect</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$serverName</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$connectionInfo&nbsp;</span><span style="color: #007700">);<br>if(&nbsp;</span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>}<br><br></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;FirstName,&nbsp;LastName&nbsp;FROM&nbsp;SomeTable"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_query</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">);<br>if(&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;);<br>}<br><br>while(&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_fetch_array</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SQLSRV_FETCH_ASSOC</span><span style="color: #007700">)&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'LastName'</span><span style="color: #007700">].</span><span style="color: #DD0000">",&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'FirstName'</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">sqlsrv_free_stmt</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  
+  <div class="example" id="example-2453">
+    <p><strong>Example #2 Retrieving a numeric array.</strong></p>
+    <div class="example-contents">
+<div class="phpcode"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br>$serverName&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"serverName\instanceName"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$connectionInfo&nbsp;</span><span style="color: #007700">=&nbsp;array(&nbsp;</span><span style="color: #DD0000">"Database"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"dbName"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"UID"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"username"</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"PWD"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">"password"</span><span style="color: #007700">);<br></span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_connect</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$serverName</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$connectionInfo&nbsp;</span><span style="color: #007700">);<br>if(&nbsp;</span><span style="color: #0000BB">$conn&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false&nbsp;</span><span style="color: #007700">)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">));<br>}<br><br></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;FirstName,&nbsp;LastName&nbsp;FROM&nbsp;SomeTable"</span><span style="color: #007700">;<br></span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_query</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$conn</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">);<br>if(&nbsp;</span><span style="color: #0000BB">$stmt&nbsp;</span><span style="color: #007700">===&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;die(&nbsp;</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">sqlsrv_errors</span><span style="color: #007700">(),&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">)&nbsp;);<br>}<br><br>while(&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sqlsrv_fetch_array</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">SQLSRV_FETCH_NUMERIC</span><span style="color: #007700">)&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">].</span><span style="color: #DD0000">",&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">].</span><span style="color: #DD0000">"&lt;br&nbsp;/&gt;"</span><span style="color: #007700">;<br>}<br><br></span><span style="color: #0000BB">sqlsrv_free_stmt</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$stmt</span><span style="color: #007700">);<br></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+    </div>
+
+   </div>
+  
+ </div>
+
+
+ <div class="refsect1 notes" id="refsect1-function.sqlsrv-fetch-array-notes">
+  <h3 class="title">Notes<a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#refsect1-function.sqlsrv-fetch-array-notes"> ¶</a></h3>
+  <p class="para">
+   Not specifying the <code class="parameter">fetchType</code> or explicity using the 
+   <strong><code>SQLSRV_FETCH_TYPE</code></strong> constant in the examples above will 
+   return an array that has both associative and numeric keys. 
+  </p>
+  <p class="para">
+   If more than one column is returned with the same name, the last column will 
+   take precedence. To avoid field name collisions, use aliases. 
+  </p>
+  <p class="para">
+  If a column with no name is returned, the associative key for the array element 
+  will be an empty string ("").
+  </p>
+ </div>
+
+ 
+ <div class="refsect1 seealso" id="refsect1-function.sqlsrv-fetch-array-seealso">
+  <h3 class="title">See Also<a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#refsect1-function.sqlsrv-fetch-array-seealso"> ¶</a></h3>
+  <ul class="simplelist">
+    <li class="member"><span class="function"><a href="http://php.net/manual/en/function.sqlsrv-connect.php" class="function" rel="rdfs-seeAlso">sqlsrv_connect()</a> - Opens a connection to a Microsoft SQL Server database</span></li>
+    <li class="member"><span class="function"><a href="http://php.net/manual/en/function.sqlsrv-query.php" class="function" rel="rdfs-seeAlso">sqlsrv_query()</a> - Prepares and executes a query.</span></li>
+    <li class="member"><span class="function"><a href="http://php.net/manual/en/function.sqlsrv-errors.php" class="function" rel="rdfs-seeAlso">sqlsrv_errors()</a> - Returns error and warning information about the last SQLSRV operation performed</span></li>
+    <li class="member"><span class="function"><a href="http://php.net/manual/en/function.sqlsrv-fetch.php" class="function" rel="rdfs-seeAlso">sqlsrv_fetch()</a> - Makes the next row in a result set available for reading</span></li>
+   </ul>
+  
+ </div>
+
+</div>
+<section id="usernotes">
+ <div class="head">
+  <span class="action"><a href="http://php.net/manual/add-note.php?sect=function.sqlsrv-fetch-array&amp;redirect=http://php.net/manual/en/function.sqlsrv-fetch-array.php"><img src="./PHP_ sqlsrv_fetch_array - Manual_files/notes-add@2x.png" alt="add a note" width="12" height="12"> <small>add a note</small></a></span>
+  <h3 class="title">User Contributed Notes <span class="count">3 notes</span></h3>
+ </div><div id="allnotes">
+  <div class="note" id="121503">  <div class="votes">
+    <div id="Vu121503">
+    <a href="http://php.net/manual/vote-note.php?id=121503&amp;page=function.sqlsrv-fetch-array&amp;vote=up" title="Vote up!" class="usernotes-voteu">up</a>
+    </div>
+    <div id="Vd121503">
+    <a href="http://php.net/manual/vote-note.php?id=121503&amp;page=function.sqlsrv-fetch-array&amp;vote=down" title="Vote down!" class="usernotes-voted">down</a>
+    </div>
+    <div class="tally" id="V121503" title="50% like this...">
+    0
+    </div>
+  </div>
+  <a href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#121503" class="name">
+  <strong class="user"><em>dlyasaitov184 at yandex dot ru</em></strong></a><a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#121503"> ¶</a><div class="date" title="2017-08-10 09:55"><strong>3 months ago</strong></div>
+  <div class="text" id="Hcom121503">
+<div class="phpcode"><code><span class="html">
+When I try to&nbsp; use SQLSRV_FETCH_BOTH for SQL-statement&nbsp;&nbsp; about "select ... from [viewName]" result set contained superfluous fields( duplicates and other fields from joined tables).&nbsp; Other types of fetchType work correctly.</span>
+</code></div>
+  </div>
+ </div>
+  <div class="note" id="114770">  <div class="votes">
+    <div id="Vu114770">
+    <a href="http://php.net/manual/vote-note.php?id=114770&amp;page=function.sqlsrv-fetch-array&amp;vote=up" title="Vote up!" class="usernotes-voteu">up</a>
+    </div>
+    <div id="Vd114770">
+    <a href="http://php.net/manual/vote-note.php?id=114770&amp;page=function.sqlsrv-fetch-array&amp;vote=down" title="Vote down!" class="usernotes-voted">down</a>
+    </div>
+    <div class="tally" id="V114770" title="40% like this...">
+    -4
+    </div>
+  </div>
+  <a href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#114770" class="name">
+  <strong class="user"><em>Anonymous</em></strong></a><a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#114770"> ¶</a><div class="date" title="2014-04-03 07:15"><strong>3 years ago</strong></div>
+  <div class="text" id="Hcom114770" style="opacity: 0.45;">
+<div class="phpcode"><code><span class="html">
+Note that while the docs say to avoid SQLSRV_FETCH_ASSOC when dealing with result sets where multiple fields have the same name, there are cases when this is perfectly valid to do.<br><br>Consider the following query:<br><br>SELECT * FROM a INNER JOIN b ON a.id = b.id<br><br>For any row, if you fetch NUMERIC you'll get a field for both a.id and b.id, which probably isn't very useful.<br><br>If you fetch ASSOC, you'll get one field for "id", and given that it's always the same in both tables (because your query insists it is so), you're not at risk of losing anything.<br><br>If you're generating output based on an unknown number of fields, the ASSOC behavior might be preferred.</span>
+</code></div>
+  </div>
+ </div>
+  <div class="note" id="116366">  <div class="votes">
+    <div id="Vu116366">
+    <a href="http://php.net/manual/vote-note.php?id=116366&amp;page=function.sqlsrv-fetch-array&amp;vote=up" title="Vote up!" class="usernotes-voteu">up</a>
+    </div>
+    <div id="Vd116366">
+    <a href="http://php.net/manual/vote-note.php?id=116366&amp;page=function.sqlsrv-fetch-array&amp;vote=down" title="Vote down!" class="usernotes-voted">down</a>
+    </div>
+    <div class="tally" id="V116366" title="35% like this...">
+    -13
+    </div>
+  </div>
+  <a href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#116366" class="name">
+  <strong class="user"><em>S</em></strong></a><a class="genanchor" href="http://php.net/manual/en/function.sqlsrv-fetch-array.php#116366"> ¶</a><div class="date" title="2014-12-19 11:35"><strong>2 years ago</strong></div>
+  <div class="text" id="Hcom116366" style="opacity: 0.35;">
+<div class="phpcode"><code><span class="html">
+Note that using a foreach loop on an array built by sqlsrv_fetch_array without specifying either SQLSRV_FETCH_NUMERIC or SQLSRV_FETCH_ASSOC will go through both the associative and numeric keys in the array. This can be a problem if you're trying to write to a CSV file for example; you'll end up with double data.</span>
+</code></div>
+  </div>
+ </div></div>
+
+ <div class="foot"><a href="http://php.net/manual/add-note.php?sect=function.sqlsrv-fetch-array&amp;redirect=http://php.net/manual/en/function.sqlsrv-fetch-array.php"><img src="./PHP_ sqlsrv_fetch_array - Manual_files/notes-add@2x.png" alt="add a note" width="12" height="12"> <small>add a note</small></a></div>
+</section>    </section><!-- layout-content -->
+        <aside class="layout-menu">
+    
+        <ul class="parent-menu-list">
+                                    <li>
+                <a href="http://php.net/manual/en/ref.sqlsrv.php">SQLSRV Functions</a>
+    
+                                    <ul class="child-menu-list">
+    
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-begin-transaction.php" title="sqlsrv_​begin_​transaction">sqlsrv_​begin_​transaction</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-cancel.php" title="sqlsrv_​cancel">sqlsrv_​cancel</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-client-info.php" title="sqlsrv_​client_​info">sqlsrv_​client_​info</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-close.php" title="sqlsrv_​close">sqlsrv_​close</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-commit.php" title="sqlsrv_​commit">sqlsrv_​commit</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-configure.php" title="sqlsrv_​configure">sqlsrv_​configure</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-connect.php" title="sqlsrv_​connect">sqlsrv_​connect</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-errors.php" title="sqlsrv_​errors">sqlsrv_​errors</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-execute.php" title="sqlsrv_​execute">sqlsrv_​execute</a>
+                        </li>
+                          
+                        <li class="current">
+                            <a href="http://php.net/manual/en/function.sqlsrv-fetch-array.php" title="sqlsrv_​fetch_​array">sqlsrv_​fetch_​array</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-fetch-object.php" title="sqlsrv_​fetch_​object">sqlsrv_​fetch_​object</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-fetch.php" title="sqlsrv_​fetch">sqlsrv_​fetch</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-field-metadata.php" title="sqlsrv_​field_​metadata">sqlsrv_​field_​metadata</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-free-stmt.php" title="sqlsrv_​free_​stmt">sqlsrv_​free_​stmt</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-get-config.php" title="sqlsrv_​get_​config">sqlsrv_​get_​config</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-get-field.php" title="sqlsrv_​get_​field">sqlsrv_​get_​field</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-has-rows.php" title="sqlsrv_​has_​rows">sqlsrv_​has_​rows</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-next-result.php" title="sqlsrv_​next_​result">sqlsrv_​next_​result</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-num-fields.php" title="sqlsrv_​num_​fields">sqlsrv_​num_​fields</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-num-rows.php" title="sqlsrv_​num_​rows">sqlsrv_​num_​rows</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-prepare.php" title="sqlsrv_​prepare">sqlsrv_​prepare</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-query.php" title="sqlsrv_​query">sqlsrv_​query</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-rollback.php" title="sqlsrv_​rollback">sqlsrv_​rollback</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-rows-affected.php" title="sqlsrv_​rows_​affected">sqlsrv_​rows_​affected</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-send-stream-data.php" title="sqlsrv_​send_​stream_​data">sqlsrv_​send_​stream_​data</a>
+                        </li>
+                          
+                        <li class="">
+                            <a href="http://php.net/manual/en/function.sqlsrv-server-info.php" title="sqlsrv_​server_​info">sqlsrv_​server_​info</a>
+                        </li>
+                            
+                    </ul>
+                    
+            </li>
+                        
+                    </ul>
+    </aside>
+
+
+  </div><!-- layout -->
+         
+  <footer>
+    <div class="container footer-content">
+      <div class="row-fluid">
+      <ul class="footmenu">
+        <li><a href="http://php.net/copyright.php">Copyright © 2001-2017 The PHP Group</a></li>
+        <li><a href="http://php.net/my.php">My PHP.net</a></li>
+        <li><a href="http://php.net/contact.php">Contact</a></li>
+        <li><a href="http://php.net/sites.php">Other PHP.net sites</a></li>
+        <li><a href="http://php.net/mirrors.php">Mirror sites</a></li>
+        <li><a href="http://php.net/privacy.php">Privacy policy</a></li>
+      </ul>
+      </div>
+    </div>
+  </footer>
+
+    
+ <!-- External and third party libraries. -->
+ <script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/cached(4).php"></script>
+<script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/cached(5).php"></script>
+<script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/cached(6).php"></script>
+<script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/cached(7).php"></script>
+<script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/cached(8).php"></script>
+<script type="text/javascript" src="./PHP_ sqlsrv_fetch_array - Manual_files/cached(9).php"></script>
+
+<a id="toTop" href="javascript:;" style="display: inline;"><span id="toTopHover"></span><img width="40" height="40" alt="To Top" src="./PHP_ sqlsrv_fetch_array - Manual_files/to-top@2x.png"></a>
+
+
+
+
+</body></html>
