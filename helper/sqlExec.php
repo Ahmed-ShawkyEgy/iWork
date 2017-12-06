@@ -1,6 +1,6 @@
 <?php
 
-require("../connection/databaseConnection.php");
+require($_SERVER['DOCUMENT_ROOT']."/connection/databaseConnection.php");
 
 sqlsrv_configure("WarningsReturnAsErrors", 0);
 
