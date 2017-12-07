@@ -17,7 +17,7 @@
 
     <ul>
         <li><a href="/./Database-Project/php/Staff-Member-Controller/check-in.php">Check In</a></li>
-        <li><a>Check Out</a></li>
+        <li><a href="/./Database-Project/php/Staff-Member-Controller/check-out.php">Check Out</a></li>
         <li><a>Attendance Records</a></li>
         <li><a>Apply for request</a></li>
         <li><a>Email</a></li>
