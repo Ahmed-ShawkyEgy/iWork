@@ -72,6 +72,109 @@ end catch
 end
 
 
+go
+alter proc Apply_Request
+@username varchar(255),@start_date datetime,@end_date datetime,@type varchar(255)=null,@destination varchar(255)=null,@purpose varchar(255)= null,
+@usernameReplacement varchar(255) , @out int output
+as
+set @out = 0
+declare @annual_leave int
+declare @durationtmp int=Cast(@end_date-@start_date as int)
+declare @ReplacementDepartment varchar(255), @ReplacementCompany varchar(255)
+select @ReplacementDepartment=department, @ReplacementCompany=company
+from Staff_Members
+where @usernameReplacement=username
+declare @duration int=0
+declare @dateIncrementor datetime = @start_date
+
+declare @offday varchar(255), @annual_leaves varchar(255)
+		select @offday=day_off, @annual_leaves=annual_leaves
+		from Staff_Members
+		where @username=username
+while (@durationtmp>0)
+			begin
+			if(DATENAME(weekday, @dateIncrementor)<>'Friday' and DATENAME(weekday, @dateIncrementor) <> @offday)
+				begin
+				set @duration=@duration+1
+			end
+				set @durationtmp=@durationtmp-1
+				set @dateIncrementor=DATEADD(day, 1, @dateIncrementor)
+		end
+
+declare @usernameDepartment varchar(255), @usernameCompany varchar(255)
+select @usernameDepartment=department, @usernameCompany=company
+from Staff_Members
+where @username=username
+
+if not EXISTS(select * from Requests where  hr_response<>'Rejected' and manager_response<>'Rejected' and applicant = @username and (
+(@start_date>=Requests.start_date and @end_date<=Requests.end_date)or
+(@start_date>=Requests.start_date and @end_date>=Requests.end_date and @start_date<=Requests.end_date)or
+@start_date<=Requests.start_date and @end_date<=Requests.end_date and @end_date>=Requests.start_date)or(
+@start_date<=Requests.start_date and @end_date>=Requests.end_date and @start_date>=Requests.end_date and @start_date<=Requests.end_date))
+begin
+if not EXISTS(select * from Requests where applicant = @usernameReplacement and (
+(@start_date>=Requests.start_date and @end_date<=Requests.end_date)or
+(@start_date>=Requests.start_date and @end_date>=Requests.end_date and @start_date<=Requests.end_date)or
+@start_date<=Requests.start_date and @end_date<=Requests.end_date and @end_date>=Requests.start_date)or(
+@start_date<=Requests.start_date and @end_date>=Requests.end_date and @start_date>=Requests.end_date and @start_date<=Requests.end_date))
+begin
+if exists (select * from Requests where  hr_response<>'Rejected' and manager_response<>'Rejected' and applicant = @username)
+begin
+delete from Requests where (hr_response='Rejected' or manager_response='Rejected') and applicant = @username
+end
+select @annual_leave = annual_leaves 
+from Staff_Members
+where username = @username
+if((dbo.Type_Idenitifer(@username)=dbo.Type_Idenitifer(@usernameReplacement))and(@ReplacementDepartment=@usernameDepartment)and (@ReplacementCompany=@usernameCompany))
+begin
+if(@annual_leave>0 and @annual_leave>=@duration)
+	begin
+	set @out = 1
+	insert into Requests (start_date,applicant,end_date,request_date)
+	values(@start_date, @username,@end_date, CURRENT_TIMESTAMP)
+	if(dbo.Type_Idenitifer(@username)='manager')
+		begin
+		Update Requests
+		set manager_response='Accepted', manager=@username, hr_response='Accepted'
+		where applicant=@username
+		end
+	if (@type =  'sick_leave' or @type =  'accidential_leave' or  @type =  'annual_leave')
+		begin
+			insert into Leave_Requests values(@start_date, @username, @type)
+		end
+	else 
+		if(@purpose is not null and @destination is not null)
+			begin
+			insert into Business_Trip_Requests values(@start_date, @username, @destination,@purpose)
+			end
+	if(dbo.Type_Idenitifer(@usernameReplacement)='manager')
+	begin
+	insert into Managers_apply_replace_Requests values(@start_date,@username,@username,@usernameReplacement)
+	end
+	if(dbo.Type_Idenitifer(@usernameReplacement)='regular_employee')
+	begin
+	insert into Requests_apply_replace_Regular_Employees values(@start_date,@username,@username,@usernameReplacement)
+	end
+	if(dbo.Type_Idenitifer(@usernameReplacement)='hr_employee')
+	begin
+	insert into HR_Employees_apply_replace_Requests values(@start_date,@username,@username,@usernameReplacement)
+	end
+	end
+	end
+	end
+	end
+
+
+
+
+go
+alter proc View_All_Status_Requests
+@username varchar(255)
+as
+select *
+from Requests
+where @username=applicant 
+
 -- Below is Morgan's code
 
 
