@@ -1,5 +1,5 @@
 <?php
-
+// Check in for today
 require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
 session_start();
 
