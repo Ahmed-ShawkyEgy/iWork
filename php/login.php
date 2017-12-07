@@ -9,7 +9,7 @@ if(empty($result)){
   echo "FUCK YOU!!!!!! Fuck OFFF!!";
 }else{
   $_SESSION['userid'] = $_POST['username'];
-  $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0][0];
+  $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0];
   header("Location: /Database-Project/layout/mainlayout.html");
   exit();
 }
