@@ -175,6 +175,19 @@ select *
 from Requests
 where @username=applicant 
 
+
+go
+alter proc Delete_Status_Requests
+@username varchar(255),@request_date datetime , @out int output
+as
+if exists (select * from Requests where @username=applicant and (hr_response ='Pending' or manager_response ='Pending') and @request_date=start_date)
+set @out = 1
+else
+set @out = 0
+Delete from Requests
+where @username=applicant and (hr_response ='Pending' or manager_response ='Pending') and @request_date=start_date
+
+
 -- Below is Morgan's code
 
 
