@@ -188,7 +188,7 @@ Delete from Requests
 where @username=applicant and (hr_response ='Pending' or manager_response ='Pending') and @request_date=start_date
 
 
--- Below is Morgan's code
+-- ------------------------------------------------------------------------- Below is Morgan's code
 
 
 go
