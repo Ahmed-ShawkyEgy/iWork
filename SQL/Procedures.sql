@@ -188,6 +188,69 @@ Delete from Requests
 where @username=applicant and (hr_response ='Pending' or manager_response ='Pending') and @request_date=start_date
 
 
+
+
+ go
+ create proc View_Attendance_Between_Certain_Period_Staff
+  @SMusername varchar(255), @start_date datetime, @end_date datetime
+ as
+ if exists(select * from Staff_Members h where h.username=@SMusername)
+begin
+declare @HRcompany varchar(255), @HRdepartment varchar(255)
+select @HRcompany=s.company, @HRdepartment=s.department
+from jobs j inner join Staff_Members s 
+on j.department= s.department and j.company = s.company
+where s.username=@SMusername 
+if EXISTS(select * from Attendance_Records a inner join Staff_Members s
+on a.staff = s.username 
+where a.staff = @SMusername and s.department=@HRdepartment and s.company=@HRcompany and 
+(@start_date<=a.date and @end_date>=a.date))
+begin
+	declare @time table
+(
+	date datetime,
+    missing_hours time,
+	duration time
+)
+insert into @time
+select a.date,dbo.time_Diff(j.working_hours,dbo.time_Diff(a.end_time , a.start_time)),dbo.time_Diff(a.end_time , a.start_time)
+from Users u inner join Staff_Members s on u.username=s.username
+inner join Attendance_Records a on a.staff = s.username and u.username=a.staff
+inner join Staff_Members uj on uj.username = a.staff and uj.username =u.username and uj.username = s.username
+inner join Jobs j on uj.job = j.title and u.username= uj.username and s.company=j.company and s.department=j.department 
+where s.username = @SMusername
+
+select  a.*, t.missing_hours, t.duration
+from Attendance_Records a inner join @time t 
+on a.date=t.date
+inner join Staff_Members s
+on s.username=a.staff
+where staff = @SMusername and s.department=@HRdepartment and s.company=@HRcompany and (@start_date<=a.date and @end_date>=a.date)
+	end
+	end
+
+
+
+
+go
+alter proc Send_Email
+@username varchar(255),@recipient varchar(255),@subject varchar(255),@body varchar(255),@out int output
+as
+set @out = 0
+declare @usernameCompany varchar(255)
+select @usernameCompany = company
+from Staff_Members
+where @username = username
+if exists(select * from Staff_Members where company = @usernameCompany and username = @recipient)
+begin
+set @out = 1
+insert into Emails (subject,date,body) values(@subject,cast(CURRENT_TIMESTAMP as date),@body)
+insert into Staff_send_Email_Staff
+select IDENT_CURRENT('dbo.Emails') , @recipient ,@username
+end
+
+
+
 -- ------------------------------------------------------------------------- Below is Morgan's code
 
 
@@ -548,7 +611,7 @@ end
 end
 
 
---6 Delete any job application I applied for as long as it is still in the review process.
+-- 6 Delete any job application I applied for as long as it is still in the review process.
 go 
 alter proc Delete_My_Applied_Job
 @username varchar(255),@title varchar(255), @departement varchar(255), @company varchar(255)
