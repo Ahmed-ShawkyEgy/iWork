@@ -10,7 +10,7 @@ if(empty($result)){
 }else{
   $_SESSION['userid'] = $_POST['username'];
   $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0];
-  header("Location: /Database-Project/layout/mainlayout.html");
+  header("Location: /Database-Project/layout/profile.php");
   exit();
 }
 

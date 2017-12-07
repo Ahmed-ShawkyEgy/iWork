@@ -9,52 +9,55 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
 <!-- Add icon library -->
-<link rel="stylesheet" href="../style/Mainpage.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="Mainpage.css"/>
+  <link rel="stylesheet" href="../style/Profile.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 </head>
 
 <body>
+
+  <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
+  <div >
 <div id="Main" class="container-fluid">
 
   <div id="RowStarter" class="row">
-    <div id="navigation" class="col-xs-12">
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-          <div id="ShortcutLinks">
-            <a href="#" class="navbar-brand">iWork</a>
-            </div>
-        </div>
-      </nav>
-    </div>
+    <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
     <div id="MainStartingImgBlock">
     <div id="MainStartingImg" class="BigImg">
       <div class="BigImg-wrapper" layout="row" layout-align="center center">
-        <div layout="column">
-          <h1 class="md-display-2"><underlineImg>iWork</underlineImg></h1>
-          </div>
-        </br>
         <div id="FontAwesomeIconsTopImg">
-        <a href="accesslayout.html">  <button  type="button" class="btn btn-default">Login</button></a>
-        <a href="Register.html">  <button href="Register.html" type="button" class="btn btn-default">Register</button></a>
-        </br></br></br></br>
-      <form action="/Database-Project/php/MainPage.php" method="post">
-        <input  style="width: 400px;"  type="text" placeholder="Enter Company name or Type or address" name ="searchText" required>
-        <select name="searchOption">
-           <option value="Name">Name</option>
-           <option value="Type">Type</option>
-           <option value="Address">Address</option>
-       </select>
-       <input class="btn btn-primary "type="submit" name="searchButton"  value = "Search">
-     </form>
-     <button class=" btn btn-danger" type="submit">View All Companies</button>
-      </br>
-        <a href="https://www.facebook.com/" class="fa fa-facebook" title="Facebook"></a>
-        <a href="https://twitter.com/" class="fa fa-twitter" title="Twitter"></a>
-         <a href="https://mail.google.com/" class="fa fa-envelope" title="Email"></a>
+          <div  class="col-xs-12">
+            <div id='topButtons'>
+            <a href='#'>
+          <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+          </a>
+          <a href='#'>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+        </a>
+        <a href='#'>
+      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+      </a>
+          </div>
+          </div>
+          </br></br></br>
+  <img class="smaller-image thick-green-border" style="padding:20px"src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. ">
+
+  </br>  </br>
+  <div id='bottomButtons'>
+        <div  class="col-xs-12">
+          <a href='#'>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+      </a>
+      <a href='#'>
+    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+    </a>
+    <a href='#'>
+  <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+  </a>
+  </div>
+      </div>
           </div>
         </div>
         </div>
@@ -76,5 +79,6 @@
       </footer>
     </div>
   </div>
+</div>
 </div>
 </body>

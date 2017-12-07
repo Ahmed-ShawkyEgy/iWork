@@ -26,15 +26,7 @@
 <div id="Main" class="container-fluid">
 
   <div id="RowStarter" class="row">
-    <div id="navigation" class="col-xs-12">
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-          <div id="ShortcutLinks">
-            <a href="#" class="navbar-brand">iWork</a>
-            </div>
-        </div>
-      </nav>
-    </div>
+      <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
     <div id="MainStartingImgBlock">
     <div id="MainStartingImg" class="BigImg">
       <div class="BigImg-wrapper" layout="row" layout-align="center center">
