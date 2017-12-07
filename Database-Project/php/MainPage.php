@@ -5,16 +5,16 @@ session_start();
 $searchQuery =  post('searchText');
 $searchOption = $_POST['searchOption'];
 if($searchOption == "Name")
-   $result = sqlExec("Exec search @name=$searchQuery");
+   $_SESSION['result'] = sqlExec("Exec search @name=$searchQuery");
 else if($searchOption == "Type")
-   $result = sqlExec("Exec search @type=$searchQuery");
+    $_SESSION['result'] = sqlExec("Exec search @type=$searchQuery");
 else if($searchOption == "Address")
-   $result = sqlExec("Exec search @address=$searchQuery");
+   $_SESSION['result'] = sqlExec("Exec search @address=$searchQuery");
 
-if(empty($result))
+if(empty( $_SESSION['result']))
  echo "I LOVE YOU <3";
 else
- printTable($result);
+ printTable( $_SESSION['result']);
  //print_r($result);
 
 ?>
