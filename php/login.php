@@ -7,7 +7,9 @@ $password = $_POST['password'];
 
 $result = sqlExec("Exec login_user @username= $username , @password = $password");
 if(empty($result)){
-  echo "FUCK YOU!!!!!! Fuck OFFF!!";
+  $_SESSION['error'] = "Wrong combination of username and password";
+  header("Location: /Database-Project/layout/appology.php");
+  exit();
 }else{
   $_SESSION['userid'] = $_POST['username'];
   $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0];

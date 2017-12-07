@@ -13,15 +13,23 @@ $last_name = $_POST['lastName'];
 
 //$result = sqlExec("Exec login_user @username= $username , @password = $password");
 
+if ( preg_match('/\s/',$username) ) {
+  $_SESSION['error'] = "No spaces are allowed";
+  header("Location: /Database-Project/layout/appology.php");
+  exit();
+}
+
 $result = sqlExec("Exec Register_User @username= '".$username."', @password= '".$password."',@personal_email= '".$personal_email."', @birth_date= '".$birth_date."',@years_of_experince= '".$years_of_experince."',@first_name= '".$first_name."',@middle_name= '".$middle_name."',@last_name= '".$last_name."'");
 
-echo '2';
+//echo '2';
 
 
  if(empty($result)){
-   echo "FUCK YOU!!!!!! Fuck OFFF!!";
+   $_SESSION['error'] = "This username already exits";
+   header("Location: /Database-Project/layout/appology.php");
+   exit();
  }else{
-   header("Location: /Database-Project/layout/Mainpage.html");
+   header("Location: /Database-Project/layout/Mainpage.php");
    exit();
  }
 

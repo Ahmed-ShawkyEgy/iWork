@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  
+
 </head>
 
 <body>
@@ -24,7 +24,7 @@
       if(empty( $_SESSION['result']))
        echo "I LOVE YOU <3";
       else
-       printTable( $_SESSION['result']);
+       printTableLinks( $_SESSION['result']);
        //print_r($result);
 
       ?>

@@ -26,6 +26,26 @@ for($row = 0; $row < count($array);$row++){
   print("</br>");
  }
 }
+
+
+function printTableLinks($array){
+
+print("</br>");
+print("</br>");
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+    if($key=='name'){
+      echo $key." : &nbsp;&nbsp;&nbsp;";
+      echo $value;
+      print("</br>");print("</br>");
+    }
+
+  }
+
+ }
+}
+
+
 /* ------------- Error Handling Functions --------------*/
 function DisplayErrors()
 {
