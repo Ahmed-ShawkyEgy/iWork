@@ -1,4 +1,5 @@
 <?php
+if(session_status() == PHP_SESSION_NONE)
 session_start();
 //echo $_SESSION['userid'].""."1";
 if($_SESSION['userid'] == null){

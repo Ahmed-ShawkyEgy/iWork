@@ -1,5 +1,6 @@
 <?php
 require("../helper/sqlExec.php");
+if(session_status() == PHP_SESSION_NONE)
 if($_SESSION['userid'] == null)
   session_start();
 echo '<div id="navigation" class="col-xs-12">

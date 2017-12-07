@@ -23,20 +23,13 @@
   <div id="Main" class="container-fluid">
 
     <div id="RowStarter" class="row">
-      <div id="navigation" class="col-xs-12">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            <div id="ShortcutLinks">
-              <a href="Mainpage.html" class="navbar-brand">iWork</a>
-              </div>
-          </div>
-        </nav>
-      </div>
+      <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
       <div id="MainStartingImgBlock">
       <div id="MainStartingImg" class="BigImg">
         <div class="BigImg-wrapper" layout="row" layout-align="center center">
           <div layout="column">
             <h1 class="md-display-2"><?php
+            if(session_status() == PHP_SESSION_NONE)
             session_start();
             if($_SESSION['error'] === null)
                 $_SESSION['error'] = "Undefined Error";
