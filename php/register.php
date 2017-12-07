@@ -1,5 +1,6 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+if(session_status() == PHP_SESSION_NONE)
 session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];

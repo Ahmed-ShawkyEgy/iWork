@@ -1,5 +1,6 @@
 <?php
 require("../helper/sqlExec.php");
+if(session_status() == PHP_SESSION_NONE)
 session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -10,7 +11,7 @@ if(empty($result)){
 }else{
   $_SESSION['userid'] = $_POST['username'];
   $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0];
-  header("Location: /Database-Project/layout/mainlayout.html");
+  header("Location: /Database-Project/layout/profile.php");
   exit();
 }
 

@@ -1,9 +1,9 @@
 -- Below is Shawky's code
 
-go 
+go
 alter procedure Check_In
 @username varchar(255),
-@out int  output 
+@out int  output
 as
 declare @staff varchar(255)
 select @staff=s.username
@@ -14,7 +14,7 @@ select @dayoff=s.day_off
 from Users u inner join Staff_Members s on u.username=s.username
 where s.username=@username
 if exists (select * from Attendance_Records where date = CONVERT (date, CURRENT_TIMESTAMP) and staff = @username and start_time = CONVERT(VARCHAR(5), GETDATE(), 108)+':00'+' ' + RIGHT(CONVERT(VARCHAR(30), GETDATE(), 9),2))
-begin 
+begin
 set @out = 0;
 return;
 end
@@ -23,7 +23,7 @@ begin
 
 begin try
 insert  into Attendance_Records (date, staff,start_time) values (CONVERT (date, CURRENT_TIMESTAMP),@username,CONVERT(VARCHAR(5), GETDATE(), 108)+':00'+' ' + RIGHT(CONVERT(VARCHAR(30), GETDATE(), 9),2))
-set @out = 1 end try 
+set @out = 1 end try
 begin catch
 set @out = 0;
  end catch
@@ -58,7 +58,7 @@ set @out = 2;
 return
 end
 if not exists (select * from Attendance_Records where staff = @username and date = CONVERT (date, CURRENT_TIMESTAMP))
-begin 
+begin
 set @out = 0;
 return;
 end
@@ -122,7 +122,7 @@ if exists (select * from Requests where  hr_response<>'Rejected' and manager_res
 begin
 delete from Requests where (hr_response='Rejected' or manager_response='Rejected') and applicant = @username
 end
-select @annual_leave = annual_leaves 
+select @annual_leave = annual_leaves
 from Staff_Members
 where username = @username
 if((dbo.Type_Idenitifer(@username)=dbo.Type_Idenitifer(@usernameReplacement))and(@ReplacementDepartment=@usernameDepartment)and (@ReplacementCompany=@usernameCompany))
@@ -142,7 +142,7 @@ if(@annual_leave>0 and @annual_leave>=@duration)
 		begin
 			insert into Leave_Requests values(@start_date, @username, @type)
 		end
-	else 
+	else
 		if(@purpose is not null and @destination is not null)
 			begin
 			insert into Business_Trip_Requests values(@start_date, @username, @destination,@purpose)
@@ -173,7 +173,7 @@ alter proc View_All_Status_Requests
 as
 select *
 from Requests
-where @username=applicant 
+where @username=applicant
 
 
 go
@@ -255,26 +255,26 @@ end
 
 
 go
-alter procedure search 
+alter procedure search
 @name  varchar(255)=null, @address varchar(255)=null, @type  varchar(255)=null as
-SELECT * 
+SELECT *
 FROM Companies c
 WHERE c.name  = @name or c.address=@address or c.type=@type ;
 
 
 
 go
-alter proc View_All_Companies as 
-select c1.*,c2.phone 
-from Companies c1 inner join Companies_Phones c2 
-on c2.company=c1.email 
+alter proc View_All_Companies as
+select c1.*,c2.phone
+from Companies c1 inner join Companies_Phones c2
+on c2.company=c1.email
 
 
 
 go
-create proc View_All_Companies_Type as 
-select c1.*,c2.phone 
-from Companies c1 inner join Companies_Phones c2 
+create proc View_All_Companies_Type as
+select c1.*,c2.phone
+from Companies c1 inner join Companies_Phones c2
 on c2.company=c1.email
 order by c1.type
 
@@ -282,28 +282,28 @@ order by c1.type
 
 
 go
-alter procedure departments_of_company @name varchar(255) as 
+alter procedure departments_of_company @name varchar(255) as
 select c.*,d.code, d.name
-from Companies c inner join Departments d 
+from Companies c inner join Departments d
 on d.company=c.email
 where c.name=@name;
 
 
 go
-alter procedure vacant_job 
-@name_departement varchar(255), @name_company varchar(255) 
+alter procedure vacant_job
+@name_departement varchar(255), @name_company varchar(255)
 as
 select c.name, d.code, j.title
-from Companies c inner join Departments d 
+from Companies c inner join Departments d
 on d.company=c.email
 inner join Jobs j
 on j.department= d.code and j.company=c.email
 where c.name=@name_company and d.code=@name_departement and j.no_of_vacanies>0
 
 
-go 
+go
 alter procedure Register_User
-@username varchar(255), @password varchar(255),@personal_email varchar(255),@birth_date datetime, 
+@username varchar(255), @password varchar(255),@personal_email varchar(255),@birth_date datetime,
 @years_of_experince int, @first_name varchar(255), @middle_name varchar(255) , @last_name varchar(255)
 as
 if exists (select * from Users where @username=username)
@@ -325,19 +325,19 @@ end
 
 
 
-go 
-alter procedure Insert_Previous_Job 
+go
+alter procedure Insert_Previous_Job
 @username varchar(255), @previousJobs varchar(255)
  as
  insert into Users_Jobs values(@username,@previousJobs)
- 
+
 
 go
-alter procedure search_job 
+alter procedure search_job
 @shortDescription varchar(255)=null, @title varchar(255)=null
 as
 select c.name, d.code, j.title
-from Companies c inner join Departments d 
+from Companies c inner join Departments d
 on d.company=c.email
 inner join Jobs j
 on j.department= d.code and j.company=c.email
@@ -346,10 +346,10 @@ where j.no_of_vacanies>0 and (j.title like ('%'+@title+'%') or j.short_descripti
 
 
 go
-alter procedure companies_by_average_salary_order 
+alter procedure companies_by_average_salary_order
 as
 select c.name,avg(j.salary)
-from Companies c inner join Departments d 
+from Companies c inner join Departments d
 on d.company=c.email
 inner join Jobs j
 on j.department= d.code and j.company=c.email
@@ -358,8 +358,8 @@ order by avg(j.salary);
 
 
 
-go 
-alter function Type_Idenitifer 
+go
+alter function Type_Idenitifer
 (@username varchar(255))
 returns varchar(255)
 as
@@ -380,7 +380,7 @@ IF EXISTS (SELECT  u.username, m.username FROM Users u , Managers m WHERE u.user
     BEGIN
        return 'hr_employee'
     END
-	
+
 	return null
 end
 
@@ -400,7 +400,7 @@ select * from @temp
 
 
 
-go 
+go
 alter procedure login_user
 @username varchar(255), @password varchar(255)
 as
@@ -428,6 +428,7 @@ IF not EXISTS (SELECT  u.username, u.password FROM Users u WHERE u.username = @u
     BEGIN
 	raiserror('You are not registered',8,16)
 	END
+<<<<<<< HEAD
 
 
 
@@ -1501,3 +1502,5 @@ set  status='Closed'
 where @MHRusername=manager and company=@MHRcompany and @project_name=project and @taskName=Tasks.name and status='Fixed'
 end
 end
+=======
+>>>>>>> a0c3ca6d0a86df176fd6da9b7cc5f2264c258f2e
