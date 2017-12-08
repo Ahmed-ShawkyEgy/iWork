@@ -1,10 +1,10 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+    if ($_SESSION['userid'] == null) {
+        session_start();
+    }
 }
-
 echo '<div id="navigation" class="col-xs-12">
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
