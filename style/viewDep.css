@@ -17,11 +17,11 @@ body {
 }
 
 .BigImg .BigImg-wrapper {
-  text-align: center;
+  text-align: left;
 }
 
 .BigImg {
-  background-image: url("https://jvtea44x1mh3gctjp1q2nymo-wpengine.netdna-ssl.com/wp-content/uploads/2015/12/eMarketing-Egypt-to-release-first-study-on-internet-users%E2%80%99-engagement-with-online-advertising.jpg");
+  background-image: url("http://i.imgur.com/b0InxJ4.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -32,28 +32,14 @@ body {
   background-color: rgba(0, 0, 0, 0.38);
 }
 .BigImg .BigImg-wrapper h1 {
-  font-weight: 300;
+  font-weight: 200;
   color: white;
-  letter-spacing: .25em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   text-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
   position: relative;
   z-index: 1;
-}
 
-.fa {
-  padding: 20px;
-  font-size: 30px !important;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-/* Add a hover effect if you want */
-.fa:hover {
-  opacity: 0.7;
 }
 
 
@@ -80,4 +66,7 @@ footer {
 #FooterText {
   display: inline;
   font-size: 14px;
+}
+#stretch{
+  margin-bottom:  100px;
 }

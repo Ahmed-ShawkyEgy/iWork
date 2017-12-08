@@ -29,7 +29,12 @@ $result = sqlExec("Exec Register_User @username= '".$username."', @password= '".
    header("Location: /Database-Project/layout/appology.php");
    exit();
  }else{
+   /*
    header("Location: /Database-Project/layout/Mainpage.php");
+   exit();*/
+   $_SESSION['userid'] = $_POST['username'];
+   $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0];
+   header("Location: /Database-Project/php/MainUserInterface.php");
    exit();
  }
 

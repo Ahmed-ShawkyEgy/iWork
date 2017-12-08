@@ -7,7 +7,7 @@ if($_SESSION['userid'] == null){
    header("Location: /Database-Project/layout/accesslayout.php");
     exit();
 }else{
-  echo $_SESSION['userid'].""."else";
+  //echo $_SESSION['userid'].""."else";
 }
 
  ?>

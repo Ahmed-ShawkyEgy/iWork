@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("https://jvtea44x1mh3gctjp1q2nymo-wpengine.netdna-ssl.com/wp-content/uploads/2015/12/eMarketing-Egypt-to-release-first-study-on-internet-users%E2%80%99-engagement-with-online-advertising.jpg");
+  background-image: url("https://images.adsttc.com/media/images/5643/057f/e58e/ce94/e500/00d5/large_jpg/Edinburgh.jpg?1447232885");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -39,21 +39,7 @@ body {
   text-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
   position: relative;
   z-index: 1;
-}
 
-.fa {
-  padding: 20px;
-  font-size: 30px !important;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-/* Add a hover effect if you want */
-.fa:hover {
-  opacity: 0.7;
 }
 
 
@@ -80,4 +66,7 @@ footer {
 #FooterText {
   display: inline;
   font-size: 14px;
+}
+#stretch{
+  margin-bottom:  100px;
 }

@@ -365,3 +365,71 @@ IF not EXISTS (SELECT  u.username, u.password FROM Users u WHERE u.username = @u
     BEGIN
 	raiserror('You are not registered',8,16)
 	END
+
+
+
+  go
+  alter proc View_All_Companies_Type as
+  select c1.*
+  from Companies c1
+  order by c1.type
+
+
+  go
+alter procedure departments_of_company @name varchar(255) as -- procedure view departments in the company
+select c.*,d.code, d.name as 'Dep'
+from Companies c inner join Departments d
+on d.company=c.email
+where c.name=@name;
+
+go
+alter procedure vacant_job -- procedure takes 2 inputs department name and comapany name and view records of vacancies jobs in that department which exists in that company
+@name_departement varchar(255), @name_company varchar(255)
+as
+select c.name, d.code,d.name as 'Dep', j.title
+from Companies c inner join Departments d
+on d.company=c.email
+inner join Jobs j
+on j.department= d.code and j.company=c.email
+where c.name=@name_company and d.code=@name_departement and j.no_of_vacanies>0
+
+
+go
+alter proc Apply_Job
+@username varchar(255), @title varchar(255), @company varchar(255), @department varchar(255)
+as
+--
+if exists  (select j.job_Seekers from Job_Seeker_apply_Jobs j
+where j.company=@company and j.department=@department and j.job=@title and j.job_Seekers=@username and (j.hr_response <> 'Pending' or j.manager_response ='Pending'))
+begin
+declare @table1 table(tmp int)
+select * from @table1
+end
+--
+if not exists  (select j.job_Seekers from Job_Seeker_apply_Jobs j
+where j.company=@company and j.department=@department and j.job=@title and j.job_Seekers=@username)
+begin
+insert into Job_Seeker_apply_Jobs (job, department, company,job_Seekers)
+select j.title, j.department,j.company,u.username
+from Jobs j, Users u inner join Job_Seekers k
+on  u.username=k.username
+where j.title=@title and j.company=@company and j.department=@department and u.username=@username
+and k.username=@username and u.years_of_experinece>=j.min_experience and j.no_of_vacanies>0
+declare @table2 table(tmp int)
+insert into @table2 values(1)
+select * from @table2
+end
+if exists  (select j.job_Seekers from Job_Seeker_apply_Jobs j
+where j.company=@company and j.department=@department and j.job=@title and j.job_Seekers=@username and (j.hr_response = 'Rejected' or j.manager_response ='Rejected'))
+begin
+delete from Job_Seeker_apply_Jobs  where company=@company and department=@department and job=@title and job_Seekers=@username
+insert into Job_Seeker_apply_Jobs (job, department, company,job_Seekers)
+select j.title, j.department,j.company,u.username
+from Jobs j, Users u inner join Job_Seekers k
+on  u.username=k.username
+where j.title=@title and j.company=@company and j.department=@department and u.username=@username
+and k.username=@username and u.years_of_experinece>=j.min_experience and j.no_of_vacanies>0
+declare @table3 table(tmp int)
+insert into @table3 values(2)
+select * from @table3
+end

@@ -7,11 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css">
 <!-- Add icon library -->
-<link rel="stylesheet" href="../style/Mainpage.css"/>
+<link rel="stylesheet" href="/Database-Project/style/Mainpage.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="Mainpage.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -30,9 +28,10 @@
           </div>
         </br>
         <div id="FontAwesomeIconsTopImg">
-        <a href="accesslayout.php">  <button  type="button" class="btn btn-default">Login</button></a>
-        <a href="Register.php">  <button href="Register.php" type="button" class="btn btn-default">Register</button></a>
-        </br></br></br></br>
+        <!--put new command here-->
+        <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/loginAndRegister.php"); ?>
+        </br></br>
+
       <form action="/Database-Project/php/MainPage.php" method="post">
         <input  style="width: 400px;"  type="text" placeholder="Enter Company name or Type or address" name ="searchText" required>
         <select name="searchOption">
@@ -42,10 +41,31 @@
        </select>
        <input class="btn btn-primary "type="submit" name="searchButton"  value = "Search">
      </form>
-     <button class=" btn btn-danger" type="submit">View All Companies</button>
+     <form action="/Database-Project/php/viewDeps.php" method="post">
+       <input  style="width: 250px;"  type="text" placeholder="Enter Company name" name ="searchTextComp" required>
+       <input  style="width: 250px;"  type="text" placeholder="Enter Department name" name ="searchTextDep" required>
+      <input class="btn btn-primary "type="submit" name="searchButtonDep"  value = "Search">
+    </form>
+    <!---->
+
+    <form action="/Database-Project/php/viewJobs.php" method="post">
+      <input  style="width: 450px;"  type="text" placeholder="Enter keywords for a job title or its short description" name ="searchTextJobs" required>
+      <select name="searchOptionJobs">
+         <option value="Title">Title</option>
+         <option value="Description">Description</option>
+     </select>
+     <input class="btn btn-primary "type="submit" name="searchButtonJobs"  value = "Search">
+    </form>
+
+
+
+    <!---->
+     <a href="/./Database-Project/php/catogrizeByType.php"><button class=" btn btn-danger" type="submit">View All Companies ordered by type</button></a>
+     <a href="/./Database-Project/php/catogrizeByAverage.php"><button class=" btn btn-danger" type="submit">View All Companies ordered by highest average salary</button></a>
+
       </br>
-        <a href="https://www.facebook.com/" class="fa fa-facebook" title="Facebook"></a>
-        <a href="https://twitter.com/" class="fa fa-twitter" title="Twitter"></a>
+        <a href="https://www.facebook.com/IWork-Teamxiii-268027713724527/" class="fa fa-facebook" title="Facebook"></a>
+        <a href="https://www.twitter.com/" class="fa fa-twitter" title="Twitter"></a>
          <a href="https://mail.google.com/" class="fa fa-envelope" title="Email"></a>
           </div>
         </div>

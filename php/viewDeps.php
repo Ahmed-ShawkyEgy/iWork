@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/custom.css">
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../style/SearchResult.css"/>
+  <link rel="stylesheet" href="../style/viewDep.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -32,21 +32,17 @@
             require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
             if(session_status() == PHP_SESSION_NONE)
             session_start();
-            $searchQuery =  post('searchText');
-            $searchOption = $_POST['searchOption'];
-            if($searchOption == "Name")
-               $_SESSION['result'] = sqlExec("Exec search @name=$searchQuery");
-            else if($searchOption == "Type")
-                $_SESSION['result'] = sqlExec("Exec search @type=$searchQuery");
-            else if($searchOption == "Address")
-               $_SESSION['result'] = sqlExec("Exec search @address=$searchQuery");
+            $searchQueryComp =  post('searchTextComp');
+            $searchQueryDep =  post('searchTextDep');
+
+           $_SESSION['result'] = sqlExec("Exec vacant_job @name_company=$searchQueryComp,@name_departement=$searchQueryDep");
 
             if(empty( $_SESSION['result'])){
             $_SESSION['error'] = "There is nothing that matches your search";
             header("Location: /Database-Project/layout/appology.php");
             exit();
           }else
-             printTableLinks( $_SESSION['result']);
+             printTableWithCarryonDep( $_SESSION['result']);
              //print_r($result);
 
             ?></h1>
