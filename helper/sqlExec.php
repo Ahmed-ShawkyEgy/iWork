@@ -10,10 +10,6 @@ function post($name) {
 
 function printTable($array){
 
-  /*while (current($array[0])) {
-      echo key($array[0])."&nbsp;&nbsp;&nbsp;";
-      next($array[0]);
-}*/
 print("</br>");
 print("</br>");
 for($row = 0; $row < count($array);$row++){
@@ -35,8 +31,10 @@ print("</br>");
 for($row = 0; $row < count($array);$row++){
   foreach ($array[$row] as $key => $value){
     if($key=='name'){
-      echo $key." : &nbsp;&nbsp;&nbsp;";
-      echo $value;
+    //  echo $key." : &nbsp;&nbsp;&nbsp;";
+      echo "<form action='/Database-Project/php/viewDetails.php' method='post'>";
+      echo $key.":"."<input type='submit' style='background: rgba(54, 25, 25, 0);' name= 'selectedCompany' value= '".$value."'>";
+      echo "</form>";
       print("</br>");print("</br>");
     }
 
@@ -45,6 +43,60 @@ for($row = 0; $row < count($array);$row++){
  }
 }
 
+
+
+
+function printTableWithCarryon($array){;
+$tmpArray=array(count($array)*2);
+$index=0;
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+      if($key!='Dep' && $key!='code'&& $row == 0){
+      echo $key." : &nbsp;&nbsp;&nbsp;";
+      echo $value;
+      print("</br>");
+    }
+    else{
+      if($key=='Dep' || $key=='code'){
+      $tmpArray[$index]=$key." : &nbsp;&nbsp;&nbsp;". $value;
+      $index++;
+    }
+    }
+  }
+
+}
+ for($row = 0; $row < count($tmpArray);$row++){
+   echo $tmpArray[$row];
+   print("</br>");
+ }
+}
+
+
+
+function printTableWithCarryonDep($array){;
+$tmpArray=array(count($array)*2);
+$index=0;
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+      if($key!='title' && $row == 0){
+      echo $key." : &nbsp;&nbsp;&nbsp;";
+      echo $value;
+      print("</br>");
+    }
+    else{
+      if($key=='title'){
+      $tmpArray[$index]=$key." : &nbsp;&nbsp;&nbsp;". $value;
+      $index++;
+    }
+    }
+  }
+
+}
+ for($row = 0; $row < count($tmpArray);$row++){
+   echo $tmpArray[$row];
+   print("</br>");
+ }
+}
 
 /* ------------- Error Handling Functions --------------*/
 function DisplayErrors()

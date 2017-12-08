@@ -7,7 +7,7 @@ if(!array_key_exists ('userid',$_SESSION)){
    header("Location: /Database-Project/layout/accesslayout.php");
     exit();
 }else{
-  echo $_SESSION['userid'].""."else";
+  //echo $_SESSION['userid'].""."else";
 }
 
  ?>
