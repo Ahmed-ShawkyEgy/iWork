@@ -24,7 +24,7 @@
         <div id="Main" class="container-fluid">
 
             <div id="RowStarter" class="row">
-                <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
+<?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
                 <div id="MainStartingImgBlock">
                     <div id="MainStartingImg" class="BigImg">
                         <div class="BigImg-wrapper" layout="row" layout-align="center center">

@@ -23,22 +23,11 @@
 
     <?php     
 // Staff Member view his/her requests
-// TODO create front end form
-// TODO create front end display
+// TODO create front-end display
 require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
 if(session_status() == PHP_SESSION_NONE)
-session_start();
-
-    
-// TODO remove this line
-$_SESSION['userid'] = "Trissy";
-// TODO add Session auth ie if($session == null) etc
-//if($_SESSION==null or $_SESSION['type']!='staff member')
-//{
-//   header("Location: /layout/Appology/user-appology.html");
-//   exit();
-//}
+    session_start();
 
 ?>
 

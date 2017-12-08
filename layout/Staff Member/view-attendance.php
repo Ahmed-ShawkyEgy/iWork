@@ -19,9 +19,9 @@
 </head>
 
 <body>
-    <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
     <div id="RowStarter" class="row">
-        <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
+        <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
 
 
 
@@ -30,14 +30,14 @@
             <form class="form-horizontal" style="margin-top:50px;" action="/./Database-Project/php/Staff-Member-Controller/view-attendance.php" method="post">
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Start-date:</label>
+                    <label class="control-label col-sm-2" for="start_date">Start-date:</label>
                     <div class="col-sm-10">
                         <input type="date" class="form-control" placeholder="Start date" name="start_date" required="true">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="pwd">End-date:</label>
+                    <label class="control-label col-sm-2" for="end_date">End-date:</label>
                     <div class="col-sm-10">
                         <input type="date" class="form-control" placeholder="End Date" name="end_date" required="true">
                     </div>
