@@ -9,6 +9,8 @@ $start_date = $_POST['start_date'];
 $end_date = $_POST['end_date'];
 // TODO add Session auth ie if($session == null) etc
 
+echo $start_date ."<br>".$end_date;
+
 $result = (array)sqlExec("exec View_Attendance_Between_Certain_Period_Staff @SMusername = '".$_SESSION['userid']."' ,
 @start_date = '".$start_date."' , @end_date = '".$end_date."'");
 
