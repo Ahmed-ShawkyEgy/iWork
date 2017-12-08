@@ -17,11 +17,19 @@
 
     <ul>
         <li><a href="/./Database-Project/php/Staff-Member-Controller/check-in.php">Check In</a></li>
+
         <li><a href="/./Database-Project/php/Staff-Member-Controller/check-out.php">Check Out</a></li>
-        <li><a>Attendance Records</a></li>
-        <li><a>Apply for request</a></li>
-        <li><a href="/./Database-Project/php/Staff-Member-Controller/view-request.php">View requests</a></li>
-        <li><a>Email</a></li>
+
+        <li><a href="view-attendance.php">Attendance Records</a></li>
+
+        <li><a href="request.php">Apply for request</a></li>
+
+        <li><a href="view-requests.php">View requests</a></li>
+
+        <li><a href="send-email.html">Send Email</a></li>
+
+        <li><a>Inbox</a></li>
+
     </ul>
 
 
