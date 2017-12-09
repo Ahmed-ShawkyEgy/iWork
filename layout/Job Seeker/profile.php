@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/custom.css">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/Database-Project/style/Profile.css"/>
+  <link rel="stylesheet" href="/Database-Project/style/Profile.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -33,11 +33,11 @@
             <a href='/Database-Project/layout/Job Seeker/applyJobRedirection.php'>
           <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Apply for a Job</button>
           </a>
-          <a href='#'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+          <a href='/Database-Project/php/Job-Seeker-Controller/viewJobsStatus.php'>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Applications</button>
         </a>
-        <a href='#'>
-      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+        <a href='/Database-Project/layout/Job Seeker/deleteJobApplicationRedirectin.php'>
+      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Delete Application</button>
       </a>
           </div>
           </div>
@@ -47,8 +47,8 @@
   </br>  </br>
   <div id='bottomButtons'>
         <div  class="col-xs-12">
-          <a href='#'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+          <a href='/Database-Project/layout/Job Seeker/chooseJobRedirection.php'>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Select Job</button>
       </a>
       <a href='#'>
     <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>

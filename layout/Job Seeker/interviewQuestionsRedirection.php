@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/Database-Project/style/applyJobRedirection.css"/>
+  <link rel="stylesheet" href="/Database-Project/style/interviewQuestionsRedirection.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <script src="jquery-3.2.1.min.js"></script>
@@ -33,25 +33,38 @@
 
   <a href="#"><img class="smaller-image thick-green-border" src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. "></a>
   </br>  </br>
-  <form action="/Database-Project/php/Job-Seeker-Controller/applyJob.php" method="post">
-          <input  style="width: 400px;"  type="text" name="title" placeholder="Job Title" required>
-        </br>
-          <input  style="width: 400px;"  type="email" name="company" placeholder="Company email" required>
-          </br>
-          <input  style="width: 400px;"  type="text" name="department" placeholder="Department code" required>
-            </br>
-    </br>  </br>
-        <div  class="col-xs-12">
-        <input class="btn btn-primary "type="submit" name="login" style="width: 400px;" value = "Submit">
-        </form>
-      </div>
-          </div>
-        </div>
-        </div>
-       </div>
-       </div>
-    </div>
-    <div id="footer" >
+  <h1><?php
+  require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+  if(session_status() == PHP_SESSION_NONE)
+  session_start();
+
+
+
+  $username = $_SESSION['userid'];
+  $title =  $_SESSION['title'];
+  $company =  $_SESSION['company'];
+  $department =  $_SESSION['department'];
+
+  //exec View_Questions @username='HhMorgan',@title='HR_Employee - HR of the Head of HIMSELF',@departement=0,  @company='DellNoMain@hQp.com'
+
+  $result = sqlExec("Exec View_Questions @username= '".$username."' , @title = '".$title."',  @company= '".$company."', @departement= '".$department."'");
+
+  if(empty($result)){
+    $_SESSION['accept'] = "You have successfully applied for the job <br> please wait for the response";
+    header("Location: /Database-Project/layout/acceptance.php");
+    exit();
+  }else{
+  printTableQuestions($result);
+  }
+
+  ?></h1>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
       <footer class="col-md-12">
         <div id="LinksInPageShortcuts">
             <ul id="ulLinkList">

@@ -44,6 +44,94 @@ for($row = 0; $row < count($array);$row++){
 }
 
 
+function printTableQuestions($array){
+
+print("</br>");
+print("</br>");
+$_SESSION['modelAnswer'] = array(count($array));
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+    if($key=='question'){
+    //  echo $key." : &nbsp;&nbsp;&nbsp;";
+      echo "<form action='/Database-Project/php/Job-Seeker-Controller/interviewQuestions.php' method='post'>";
+      echo $value." &nbsp;&nbsp"."<input type='radio' name='Option".$row."' value='1' style='transform: scale(3);' > True <input type='radio' name='Option".$row."' value='0' style='transform: scale(3);' > False<br>";
+      //echo ("'Option".$row."'");
+      print("</br>");print("</br>");
+    }
+    else{
+      $_SESSION['modelAnswer'][$row]=$value;
+      //echo $_SESSION['modelAnswer'][$row];
+    }
+
+  }
+
+ }
+   echo "<input class='btn btn-primary' type='submit' name='searchButtonDep'  value = 'Submit' style='height:60px;width:200px;font-size:30px'></form>";
+}
+
+
+
+
+function printTableApplication($array){
+
+print("</br>");
+print("</br>");
+$row = 0;
+while( $row < count($array)){
+  foreach ($array[$row] as $key => $value){
+    echo "<form action='/Database-Project/php/Job-Seeker-Controller/deleteJobApplication.php' method='post'>";
+    echo $key." : &nbsp;&nbsp;&nbsp;";
+    //".$key." disabled
+    echo "<input type='text' name='".$key."' value='".$value."'  style='background-color: rgba(255,0,0,0);border:none;width:25em' readonly >";
+    if($key=='company'){
+      print("</br>");
+      echo " &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+      echo "<input class='btn btn-danger' type='submit' name='DelButton'  value = 'Delete' style='height:60px;width:200px;font-size:30px'>";
+      echo "</form>";
+      $row++;
+      break;
+    }
+    print("</br>");
+
+  }
+
+  print("</br>");print("</br>");
+
+ }
+
+}
+
+
+
+
+function printTableApplicationAccepted($array){
+
+print("</br>");
+print("</br>");
+$row = 0;
+while( $row < count($array)){
+  foreach ($array[$row] as $key => $value){
+    echo "<form action='/Database-Project/php/Job-Seeker-Controller/chooseJob.php' method='post'>";
+    echo $key." : &nbsp;&nbsp;&nbsp;";
+    //".$key." disabled
+    echo "<input type='text' name='".$key."' value='".$value."'  style='background-color: rgba(255,0,0,0);border:none;width:25em' readonly >";
+    if($key=='company'){
+      print("</br>");
+      echo " &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+      echo "<input class='btn btn-danger' type='submit' name='SelectButton'  value = 'Select' style='height:60px;width:200px;font-size:30px'>";
+      echo "</form>";
+      $row++;
+      break;
+    }
+    print("</br>");
+
+  }
+
+  print("</br>");print("</br>");
+
+ }
+
+}
 
 
 function printTableWithCarryon($array){;

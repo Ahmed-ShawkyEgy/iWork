@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/custom.css">
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../style/SearchResult.css">
+  <link rel="stylesheet" href="/Database-Project/style/enterChooseJobsSelected.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -26,30 +26,33 @@
       <div id="MainStartingImgBlock">
       <div id="MainStartingImg" class="BigImg">
         <div class="BigImg-wrapper" layout="row" layout-align="center center">
-          <div layout="column">
-            <h1 class="md-display-2"><?php
+          <div layout="column" >
 
-            require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-            if(session_status() == PHP_SESSION_NONE)
-            session_start();
-            $searchQuery =  post('searchText');
-            $searchOption = $_POST['searchOption'];
-            if($searchOption == "Name")
-               $_SESSION['result'] = sqlExec("Exec search @name=$searchQuery");
-            else if($searchOption == "Type")
-                $_SESSION['result'] = sqlExec("Exec search @type=$searchQuery");
-            else if($searchOption == "Address")
-               $_SESSION['result'] = sqlExec("Exec search @address=$searchQuery");
+              <a href="#"><img class="smaller-image thick-green-border" src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. "></a>
+              </br>  </br>
+            <h1 class="md-display-2"></h1>
+            <form action="/Database-Project/php/Job-Seeker-Controller/enterChooseJobsSelected.php" method="post">
 
-            if(empty( $_SESSION['result'])){
-            $_SESSION['error'] = "There is nothing that matches your search";
-            header("Location: /Database-Project/layout/appology.php");
-            exit();
-          }else
-             printTableLinks( $_SESSION['result']);
-             //print_r($result);
-
-            ?></h1>
+              <select name="searchOption">
+                 <option value="dayoff">Dayoff</option>
+                 <option value="Saturday">Saturday</option>
+                 <option value="Sunday">Sunday</option>
+                 <option value="Monday">Monday</option>
+                 <option value="Tuesday">Tuesday</option>
+                 <option value="Wednesday">Wednesday</option>
+                 <option value="Thursday">Thursday</option>
+             </select>
+             <?php
+             require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+             if(session_status() == PHP_SESSION_NONE)
+              session_start();
+             if (strpos($_SESSION['title'], 'Manager') !== false){
+               print ('Hello');
+               echo "<input  style='width: 400px;'  type='text' placeholder='Enter Type' name ='ManagerType' required>";
+             }
+             ?>
+             <input class="btn btn-primary "type="submit" name="searchButton"  value = "Submit">
+           </form>
             </div>
               <div id='stretch'></div>
           </div>

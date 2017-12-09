@@ -18,6 +18,4 @@ if(empty($result)){
   exit();
 }
 
-//
-
 ?>

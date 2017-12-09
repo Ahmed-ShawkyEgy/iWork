@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/custom.css">
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../style/SearchResult.css">
+  <link rel="stylesheet" href="/Database-Project/style/viewJobsStatus.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -27,29 +27,22 @@
       <div id="MainStartingImg" class="BigImg">
         <div class="BigImg-wrapper" layout="row" layout-align="center center">
           <div layout="column">
-            <h1 class="md-display-2"><?php
+            <h1 class="md-display-2">
+              <?php
+              //View_Jobs_Status
+              require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+              if(session_status() == PHP_SESSION_NONE)
+              session_start();
+              $username = $_SESSION['userid'];
+              $_SESSION['result'] = sqlExec("Exec View_Jobs_Status @username=$username");
 
-            require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-            if(session_status() == PHP_SESSION_NONE)
-            session_start();
-            $searchQuery =  post('searchText');
-            $searchOption = $_POST['searchOption'];
-            if($searchOption == "Name")
-               $_SESSION['result'] = sqlExec("Exec search @name=$searchQuery");
-            else if($searchOption == "Type")
-                $_SESSION['result'] = sqlExec("Exec search @type=$searchQuery");
-            else if($searchOption == "Address")
-               $_SESSION['result'] = sqlExec("Exec search @address=$searchQuery");
-
-            if(empty( $_SESSION['result'])){
-            $_SESSION['error'] = "There is nothing that matches your search";
-            header("Location: /Database-Project/layout/appology.php");
-            exit();
-          }else
-             printTableLinks( $_SESSION['result']);
-             //print_r($result);
-
-            ?></h1>
+              if(empty( $_SESSION['result'])){
+              $_SESSION['error'] = "There is nothing that matches your search";
+              header("Location: /Database-Project/layout/appology.php");
+              exit();
+              }else
+              printTable( $_SESSION['result']);
+              ?></h1>
             </div>
               <div id='stretch'></div>
           </div>
