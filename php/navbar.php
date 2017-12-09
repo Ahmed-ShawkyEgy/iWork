@@ -1,13 +1,7 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-<<<<<<< HEAD
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-=======
-
-if(session_status() == PHP_SESSION_NONE){
-  session_start();
->>>>>>> 308392d3a3fe1b4c7300f95d2b4bb3a51f386b21
 }
 echo '<div id="navigation" class="col-xs-12">
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -15,7 +9,7 @@ echo '<div id="navigation" class="col-xs-12">
       <div id="ShortcutLinks">
         <a href="/Database-Project/layout/MainPage.php" class="navbar-brand">iWork</a>
           <a href="/Database-Project/php/MainUserInterface.php" class="navbar-brand">Profile</a>';
-if (array_key_exists('userid',$_SESSION) ) {
+if (array_key_exists('userid', $_SESSION)) {
     echo '<a href="/Database-Project/php/logout.php" class="navbar-brand">Logout</a>';
 }
 echo   "</div>
