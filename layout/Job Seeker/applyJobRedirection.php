@@ -31,7 +31,7 @@
       <div class="BigImg-wrapper" layout="row" layout-align="center center">
         <div id="FontAwesomeIconsTopImg">
 
-  <a href="#"><img class="smaller-image thick-green-border" src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. "></a>
+  <a href="#"><img class="smaller-image thick-green-border" width="400" height="400" src="https://www.wehaveanyspace.com/sites/default/files/office_space_for_rent_hong_kong_des_voeux_road_3.jpg" alt="A cute orange cat lying on its back. "></a>
   </br>  </br>
   <form action="/Database-Project/php/Job-Seeker-Controller/applyJob.php" method="post">
           <input  style="width: 400px;"  type="text" name="title" placeholder="Job Title" required>

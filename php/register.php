@@ -33,8 +33,9 @@ $result = sqlExec("Exec Register_User @username= '".$username."', @password= '".
    header("Location: /Database-Project/layout/Mainpage.php");
    exit();*/
    $_SESSION['userid'] = $_POST['username'];
-   $_SESSION['position'] = sqlExec("Exec Find_Type @username= $username")[0];
-   header("Location: /Database-Project/php/MainUserInterface.php");
+   $_SESSION['position'] = (array)sqlExec("Exec Find_Type @username= $username");
+   $_SESSION['position'] = json_decode(json_encode(  $_SESSION['position']), true)[0]['tmp'];
+   header("Location: /Database-Project/layout/Job Seeker/profile.php");
    exit();
  }
 

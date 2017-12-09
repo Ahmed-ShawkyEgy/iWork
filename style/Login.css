@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("http://www.printawallpaper.com/upload/designs/coffee_at_work_detail.jpg");
+  background-image: url("/Database-Project/images/coffee_at_work_detail.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

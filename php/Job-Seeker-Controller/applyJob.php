@@ -15,13 +15,18 @@ $result = sqlExec("Exec Apply_Job @username= '".$username."' , @title = '".$titl
 
 
  if(empty($result)){
-   $_SESSION['error'] = "You cannot apply for the same job more than once <br> please wait for the response";
+   $_SESSION['error'] = "You cannot either apply for the same job more than once <br> Or apply for a none existant job <br> please wait for the response";
    header("Location: /Database-Project/layout/appology.php");
    exit();
  }else{
-   $_SESSION['accept'] = "You have successfully applied for the job <br> please wait for the response";
-   header("Location: /Database-Project/layout/acceptance.php");
+   $_SESSION['company']=$company;
+   $_SESSION['department']=$department;
+   $_SESSION['title']=$title;
+   header("Location: /Database-Project/layout/Job Seeker/interviewQuestionsRedirection.php");
    exit();
+   /*$_SESSION['accept'] = "You have successfully applied for the job <br> please wait for the response";
+   header("Location: /Database-Project/layout/acceptance.php");
+   exit();*/
  }
 
 ?>

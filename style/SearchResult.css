@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("https://images.adsttc.com/media/images/5643/057f/e58e/ce94/e500/00d5/large_jpg/Edinburgh.jpg?1447232885");
+  background-image: url("/Database-Project/images/Edinburgh.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

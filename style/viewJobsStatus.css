@@ -1,0 +1,73 @@
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #d9d9d9;
+}
+
+.navbar .navbar-inner {
+  background-color: #1F273A;
+  background-image: none;
+}
+
+.navbar-inverse {
+  background-color: #404040;
+  border-color: #d9d9d9;
+}
+
+.BigImg .BigImg-wrapper {
+  text-align: left;
+}
+
+.BigImg {
+  background-image: url("/Database-Project/images/empty-cubicle.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.BigImg .BigImg-wrapper {
+  padding: 16% 5%;
+  background-color: rgba(0, 0, 0, 0.38);
+}
+.BigImg .BigImg-wrapper h1 {
+  font-weight: 200;
+  color: white;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
+
+}
+
+
+underlineImg {
+  padding-bottom: 5px;
+  border-bottom: 2px solid currentColor;
+}
+
+footer {
+  padding: 2rem;
+  background-color: #404040;
+  color: white;
+}
+
+#LinksInPageShortcuts {
+  font-size: 16px;
+}
+
+#ulLinkList li {
+  display: inline;
+  padding: 5px;
+}
+
+#FooterText {
+  display: inline;
+  font-size: 14px;
+}
+#stretch{
+  margin-bottom:  100px;
+}

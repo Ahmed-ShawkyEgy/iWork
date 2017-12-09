@@ -456,17 +456,22 @@ inner join Jobs j
 on j.department= d.code and j.company=c.email
 where c.name=@name_company and d.code=@name_departement and j.no_of_vacanies>0
 
-
 go
 alter proc Apply_Job
 @username varchar(255), @title varchar(255), @company varchar(255), @department varchar(255)
 as
 --
 if exists  (select j.job_Seekers from Job_Seeker_apply_Jobs j
-where j.company=@company and j.department=@department and j.job=@title and j.job_Seekers=@username and (j.hr_response <> 'Pending' or j.manager_response ='Pending'))
+where j.company=@company and j.department=@department and j.job=@title and j.job_Seekers=@username and (j.hr_response = 'Pending' or j.manager_response ='Pending'))
+begin
+declare @table4 table(tmp int)
+select * from @table4
+end
+if not exists(select * from Jobs j where j.title=@title and @company=j.company and @department=j.department)
 begin
 declare @table1 table(tmp int)
 select * from @table1
+return
 end
 --
 if not exists  (select j.job_Seekers from Job_Seeker_apply_Jobs j
@@ -496,3 +501,36 @@ declare @table3 table(tmp int)
 insert into @table3 values(2)
 select * from @table3
 end
+
+go
+alter proc View_Questions
+@username varchar(255),@title varchar(255), @departement varchar(255), @company varchar(255)
+as
+if exists (select * from Job_Seeker_apply_Jobs where @username=job_Seekers and @title=job and @company=company and @departement=department)
+begin
+select q.question, q.answer
+from Jobs_has_Questions j inner join Questions q
+on q.number = j.question
+where @title = j.job and @departement=j.department and @company=j.company
+end
+
+
+go
+alter proc View_Jobs_Status
+@username varchar(255)
+as
+select jsaj.job,jsaj.department,jsaj.company,jsaj.hr_response , jsaj.manager_response , jsaj.score
+from Job_Seeker_apply_Jobs jsaj inner join Job_Seekers js
+on jsaj.job_Seekers = js.username
+where @username = js.username
+
+
+
+go
+alter proc View_Jobs_Status_Accepted_Only
+@username varchar(255)
+as
+select  jsaj.job,jsaj.department,jsaj.company
+from Job_Seeker_apply_Jobs jsaj inner join Job_Seekers js
+on jsaj.job_Seekers = js.username
+where @username = js.username and hr_response='Accepted' and manager_response='Accepted'

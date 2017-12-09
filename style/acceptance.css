@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("https://media.cntraveler.com/photos/5970dfbc5613850539d634c3/master/pass/Maui-SecretBeach-4x3-GettyImages-127067237.jpg");
+  background-image: url("/Database-Project/images/Maui-SecretBeach-4x3-GettyImages-127067237.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

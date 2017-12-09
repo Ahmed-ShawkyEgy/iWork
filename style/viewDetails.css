@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("http://i.imgur.com/b0InxJ4.jpg");
+  background-image: url("/Database-Project/images/b0InxJ4.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
