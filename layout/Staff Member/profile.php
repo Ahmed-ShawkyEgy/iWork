@@ -59,10 +59,19 @@
       </a>
                                         <a href="send-email.php">
     <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Send Email</button>
-    </a>
+  </a>
+
                                         <a href='#'>
   <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Inbox</button>
   </a>
+
+<a href='/Database-Project/layout/profileinfo.php'>
+<button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
+</a>
+
+  <a href='/Database-Project/layout/editInfoRedirection.php'>
+<button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Edit Info</button>
+</a>
                                     </div>
                                 </div>
                             </div>

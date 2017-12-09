@@ -24,6 +24,28 @@ for($row = 0; $row < count($array);$row++){
 }
 
 
+
+function printTableDateTime($array){
+
+print("</br>");
+print("</br>");
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+      echo $key." : &nbsp;&nbsp;&nbsp;";
+      if(gettype($value)!='object'){
+      echo $value;
+    }else {
+      echo $value->format("Y-m-d");
+      }
+      print("</br>");
+  }
+  print("</br>");
+  print("</br>");
+ }
+}
+
+
+
 function printTableLinks($array){
 
 print("</br>");
