@@ -24,12 +24,7 @@
     <?php     
 // Staff Member view his/her requests
 // TODO create front-end display
-require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-if(session_status() == PHP_SESSION_NONE)
-    session_start();
-
-?>
+     require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");  require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php"); if(session_status() == PHP_SESSION_NONE) session_start(); ?>
 
     <br>
     <h1>Send Email</h1>
