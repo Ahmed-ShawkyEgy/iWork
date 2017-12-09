@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("http://neas-seminars.com/wp-content/uploads/2014/06/registration_form.jpg");
+  background-image: url("/Database-Project/images/registration_form.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

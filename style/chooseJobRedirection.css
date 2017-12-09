@@ -21,7 +21,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("http://office-breaks.com/wp-content/uploads/2014/01/office-Ben-Hussman.jpg");
+  background-image: url("/Database-Project/images/office-Ben-Hussman.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

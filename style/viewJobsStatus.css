@@ -22,7 +22,7 @@ body {
 }
 
 .BigImg {
-  background-image: url("http://staffingstream.wpengine.netdna-cdn.com/wp-content/uploads/2013/03/empty-cubicle.jpg");
+  background-image: url("/Database-Project/images/empty-cubicle.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
