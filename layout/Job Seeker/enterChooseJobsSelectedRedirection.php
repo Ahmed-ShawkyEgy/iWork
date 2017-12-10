@@ -47,7 +47,7 @@
              if(session_status() == PHP_SESSION_NONE)
               session_start();
              if (strpos($_SESSION['title'], 'Manager') !== false){
-               print ('Hello');
+               
                echo "<input  style='width: 400px;'  type='text' placeholder='Enter Type' name ='ManagerType' required>";
              }
              ?>

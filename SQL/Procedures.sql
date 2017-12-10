@@ -13,7 +13,7 @@ declare @dayoff varchar(255)
 select @dayoff=s.day_off
 from Users u inner join Staff_Members s on u.username=s.username
 where s.username=@username
-if exists (select * from Attendance_Records where date = CONVERT (date, CURRENT_TIMESTAMP) and staff = @username and start_time = CONVERT(VARCHAR(5), GETDATE(), 108)+':00'+' ' + RIGHT(CONVERT(VARCHAR(30), GETDATE(), 9),2))
+if exists (select * from Attendance_Records where date = CONVERT (date, CURRENT_TIMESTAMP) and staff = @username and start_time = CONVERT(VARCHAR(5), GETDATE(), 108)+':00' + RIGHT(CONVERT(VARCHAR(30), GETDATE(), 9),2))
 begin
 set @out = 0;
 return;
@@ -527,10 +527,57 @@ where @username = js.username
 
 
 go
-alter proc View_Jobs_Status_Accepted_Only
+create proc View_Jobs_Status_Accepted_Only
 @username varchar(255)
 as
 select  jsaj.job,jsaj.department,jsaj.company
 from Job_Seeker_apply_Jobs jsaj inner join Job_Seekers js
 on jsaj.job_Seekers = js.username
 where @username = js.username and hr_response='Accepted' and manager_response='Accepted'
+
+
+go
+alter proc Change_To_Fixed_Task
+@username varchar(255), @task varchar(255),@project varchar(255)
+as
+if exists (select * from Tasks where name=@task and @username=regular_employee and cast(CURRENT_TIMESTAMP as date) < cast(deadline as date) and @project=project)
+begin
+Update Tasks
+set status='Fixed'
+where name=@task and @username=regular_employee and cast(CURRENT_TIMESTAMP as date) < cast(deadline as date) and @project=project
+declare @table1 table(tmp int)
+insert into @table1 values(1)
+select *
+from @table1
+end
+if not exists (select * from Tasks where name=@task and @username=regular_employee and cast(CURRENT_TIMESTAMP as date) < cast(deadline as date) and @project=project)
+begin
+declare @table2 table(tmp int)
+select *
+from @table2
+end
+
+
+
+
+
+go
+alter proc Change_Status_To_Assigned_Again
+@username varchar(255), @task varchar(255),@project varchar(255)
+as
+if exists (select * from Tasks where name=@task and @username=regular_employee and cast(CURRENT_TIMESTAMP as date) < cast(deadline as date) and status = 'Fixed' and @project=project)
+begin
+Update Tasks
+set status='Assigned'
+where name=@task and @username=regular_employee and cast(CURRENT_TIMESTAMP as date) < cast(deadline as date) and status = 'Fixed' and @project=project
+declare @table1 table(tmp int)
+insert into @table1 values(1)
+select *
+from @table1
+end
+if not exists (select * from Tasks where name=@task and @username=regular_employee and cast(CURRENT_TIMESTAMP as date) < cast(deadline as date) and status = 'Fixed' and @project=project)
+begin
+declare @table2 table(tmp int)
+select *
+from @table2
+end

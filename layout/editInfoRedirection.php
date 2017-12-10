@@ -1,3 +1,5 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 
     <!-- Required meta tags always come first -->
@@ -10,53 +12,46 @@
     <link rel="stylesheet" href="css/custom.css">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/Database-Project/style/Profile.css">
+  <link rel="stylesheet" href="/Database-Project/style/editPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
+<script src="jquery-3.2.1.min.js"></script>
+<script src="script.js"></script>
 </head>
 
 <body>
-
-  <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
-  <div >
+  <div id = "mainPanel" class = "square">
+  <div id = "errorPanel" class = "square">
+  </div>
 <div id="Main" class="container-fluid">
 
   <div id="RowStarter" class="row">
-    <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
+      <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
     <div id="MainStartingImgBlock">
     <div id="MainStartingImg" class="BigImg">
       <div class="BigImg-wrapper" layout="row" layout-align="center center">
         <div id="FontAwesomeIconsTopImg">
-          <div  class="col-xs-12">
-            <div id='topButtons'>
-            <a href='/Database-Project/layout/Job Seeker/applyJobRedirection.php'>
-          <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Apply for a Job</button>
-          </a>
-          <a href='/Database-Project/php/Job-Seeker-Controller/viewJobsStatus.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Applications</button>
-        </a>
-        <a href='/Database-Project/layout/Job Seeker/deleteJobApplicationRedirectin.php'>
-      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Delete Application</button>
-      </a>
-          </div>
-          </div>
-          </br></br></br>
-  <img class="smaller-image thick-green-border" style="padding:20px"src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. ">
 
+  <a href="#"><img class="smaller-image thick-green-border" src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. "></a>
   </br>  </br>
-  <div id='bottomButtons'>
+  <form action="/Database-Project/php/editInfo.php" method="post">
+          <input  style="width: 400px;"  type="password" name="password" placeholder="Password">
+        </br>
+          <input  style="width: 400px;"  type="email" name="email" placeholder="Personal Email">
+          </br>
+          <input  style="width: 400px;"  type="date" name="birthDate" placeholder="Birth date">
+            </br>
+          <input  style="width: 400px;"  type="number" name="yearsOfExperince" placeholder="Years of experince">
+              </br>
+          <input  style="width: 400px;"  type="text" name="firstName" placeholder="First name">
+                </br>
+          <input  style="width: 400px;"  type="text" name="middleName" placeholder="Middle name">
+                  </br>
+          <input  style="width: 400px;"  type="text" name="lastName" placeholder="Last name">
+    </br>  </br>
         <div  class="col-xs-12">
-          <a href='/Database-Project/layout/Job Seeker/chooseJobRedirection.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Select Job</button>
-      </a>
-      <a href='/Database-Project/layout/profileinfo.php'>
-    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
-    </a>
-      <a href='/Database-Project/layout/editInfoRedirection.php'>
-    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Edit Info</button>
-    </a>
-  </div>
+        <input class="btn btn-primary "type="submit" name="login" style="width: 400px;" value = "Edit">
+        </form>
       </div>
           </div>
         </div>
@@ -82,3 +77,4 @@
 </div>
 </div>
 </body>
+</html>

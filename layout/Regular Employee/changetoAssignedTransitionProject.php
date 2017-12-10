@@ -1,3 +1,5 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
 
     <!-- Required meta tags always come first -->
@@ -10,53 +12,47 @@
     <link rel="stylesheet" href="css/custom.css">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../style/Profile.css">
+  <link rel="stylesheet" href="/Database-Project/style/projectInfo.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
+<script src="jquery-3.2.1.min.js"></script>
+<script src="script.js"></script>
 </head>
 
 <body>
-
-  <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
-  <div >
+  <div id = "mainPanel" class = "square">
+  <div id = "errorPanel" class = "square">
+  </div>
 <div id="Main" class="container-fluid">
 
   <div id="RowStarter" class="row">
-    <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
+      <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
     <div id="MainStartingImgBlock">
     <div id="MainStartingImg" class="BigImg">
       <div class="BigImg-wrapper" layout="row" layout-align="center center">
         <div id="FontAwesomeIconsTopImg">
-          <div  class="col-xs-12">
-            <div id='topButtons'>
-            <a href='/Database-Project/layout/editInfoRedirection.php'>
-          <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Edit Info</button>
-          </a>
-          <a href='/Database-Project/layout/profileinfo.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
-        </a>
-        <a href='#'>
-      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
-      </a>
-          </div>
-          </div>
-          </br></br></br>
-  <img class="smaller-image thick-green-border" style="padding:20px"src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. ">
 
+  <a href="#"><img class="smaller-image thick-green-border" src="http://sguru.org/wp-content/uploads/2017/06/cool-profile-pictures-8DtpgWJB_400x400.jpeg" alt="A cute orange cat lying on its back. "></a>
   </br>  </br>
-  <div id='bottomButtons'>
-        <div  class="col-xs-12">
-          <a href='#'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
-      </a>
-      <a href='#'>
-    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
-    </a>
-    <a href='#'>
-  <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
-  </a>
-  </div>
+
+
+
+    <div id="box1" class="box blurred-bg tinted">
+    <!--  <div class="content">-->
+        <?php
+        //View_Projects
+        require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+        if(session_status() == PHP_SESSION_NONE)
+        session_start();
+        $username=$_SESSION['userid'];
+        $result=sqlExec("Exec View_Projects @username='".$username."'");
+        $filepath='/Database-Project/layout/Regular Employee/changetoAssignedTransitionTask.php';
+        printTableProjects($result,$filepath);
+        ?>
+    	    <!--  </div>-->
+    </div>
+
+
       </div>
           </div>
         </div>
@@ -82,3 +78,4 @@
 </div>
 </div>
 </body>
+</html>
