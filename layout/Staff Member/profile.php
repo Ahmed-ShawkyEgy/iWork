@@ -45,7 +45,7 @@
       </a>
 
 
-                                        <a href="request.php">
+                                        <a href="/Database-Project/layout/Staff Member/leave.php">
       <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Apply for Leave Request</button>
       </a>
 
@@ -72,11 +72,11 @@
   <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Inbox</button>
   </a>
 
-<a href='/Database-Project/layout/profileinfo.php'>
+                                        <a href='/Database-Project/layout/profileinfo.php'>
 <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
 </a>
 
-  <a href='/Database-Project/layout/editInfoRedirection.php'>
+                                        <a href='/Database-Project/layout/editInfoRedirection.php'>
 <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Edit Info</button>
 </a>
                                     </div>

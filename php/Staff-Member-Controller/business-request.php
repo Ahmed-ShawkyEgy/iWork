@@ -31,5 +31,8 @@ if ($result == 1) {
     exit();
 } else {
     // Fail :(
-    echo "Fail";
+     $_SESSION['error'] = "Can't apply for this request<br>Please make sure that you didn't apply for a previous request that overlaps with this duration or that your annual leaves count is not enough";
+    header("Location: /Database-Project/layout/appology.php");
+    exit();
+    
 }
