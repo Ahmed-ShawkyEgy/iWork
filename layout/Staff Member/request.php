@@ -76,6 +76,8 @@
                         <button type="submit" class="btn btn-default">Submit</button>
                     </div>
                 </div>
+
+
             </form>
         </div>
 
@@ -93,9 +95,17 @@
 
 
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <label for="start_date">Start-date:</label>
+                    <input type="date" class="form-control" id="start_date" required="true" name="startDate">
                 </div>
+
+
+                <div class="form-group">
+                    <label for="end_date">End-date:</label>
+                    <input type="date" class="form-control" id="end_date" required="true" name="endDate">
+                </div>
+
+
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Example select</label>
                     <select class="form-control" id="exampleFormControlSelect1">
