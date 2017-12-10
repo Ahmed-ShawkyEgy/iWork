@@ -23,6 +23,39 @@ for($row = 0; $row < count($array);$row++){
  }
 }
 
+/*
+
+<select name="searchOption">
+   <option value="Name">Name</option>
+   <option value="Type">Type</option>
+   <option value="Address">Address</option>
+</select>
+
+
+*/
+
+
+function printTableProjects($array,$filepath){
+print("</br>");
+print("</br>");
+echo "<form action='".$filepath."' method='post'><select name='searchOption'>";
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+    if($key=='name'){
+    //  echo $key." : &nbsp;&nbsp;&nbsp;";
+
+      echo "<option value='".$value."'>".$value."</option>";
+
+    }
+
+  }
+
+ }
+ echo "</select><input class='btn btn-primary' type='submit' name='searchButton'  value = 'Search'></form>";
+ print("</br>");print("</br>");
+}
+
+
 
 
 function printTableDateTime($array){
