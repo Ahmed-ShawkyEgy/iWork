@@ -60,10 +60,10 @@
                                 <br>
                                 <div id='bottomButtons'>
                                     <div class="col-xs-12">
-                                        <a href="view-requests.php">
+                                        <a href="/Database-Project/layout/Staff Member/view-requests.php">
         <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View requests</button>
       </a>
-                                        <a href="send-email.php">
+                                        <a href="/Database-Project/layout/Staff Member/send-email.php">
     <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Send Email</button>
   </a>
 

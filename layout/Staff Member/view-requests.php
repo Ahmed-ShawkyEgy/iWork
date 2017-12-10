@@ -2,67 +2,79 @@
 <html>
 
 <head>
-    <title>View Requests</title>
+    <title>Requests</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Database-Project/style/Profile.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 </head>
 
-<body>
+<body style="text-align:center">
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
 
-    <?php     
-// Staff Member view his/her requests
-// TODO create front end form
-// TODO create front end display
-require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-session_start();
+    <h1 style="margin-top:100px;">Requests Status</h1>
+    <br><br>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
 
-    
-// TODO remove this line
-$_SESSION['userid'] = "Trissy";
-// TODO add Session auth ie if($session == null) etc
-//if($_SESSION==null or $_SESSION['type']!='staff member')
-//{
-//   header("Location: /layout/Appology/user-appology.html");
-//   exit();
-//}
+        <table class="table table-striped table-hover table-bordered col-md-6" style="width:  50% !important;  margin:auto; text-align:center">
+            <thead>
+                <tr>
+                    <th>Request Date</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>HR response</th>
+                    <th>Manager response</th>
+                    <th>HR employee</th>
+                    <th>Manager</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+                <?php
+// View my requests' status
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
 
 
 $result = (array)sqlExec("exec View_All_Status_Requests @username = ".$_SESSION['userid']."");
 
 
+$result = json_decode(json_encode($result), true);
 
-$array = json_decode(json_encode($result), true);
-
-if(isset($array))
-{
-    // Success !
-    echo 'Success!';
-    print_r($result);
-    
-    
-    print("</br>");
-    print("</br>");
-    for($row = 0; $row < count($array);$row++)
-    {
-        for ($array[$row] as )
-        {
-//            echo $key." : &nbsp;&nbsp;&nbsp;";
-//            echo $value;
-            echo $array[$row][$col] ."  ,  ";
-//            print("</br>");
-        }
-        print("</br>");
-        print("</br>");
+    for($i = 0 ; $i< sizeof($result);$i++) 
+    { 
+        echo '<tr>'. 
+            '<td>'.substr($result[$i][ 'request_date'][ 'date'] , 0 , 10).'</td>'.
+            '<td>'.substr($result[$i][ 'start_date']['date'] , 0,10).'</td>'.
+            '<td>'.substr($result[$i][ 'end_date']['date'],0,10) .'</td>'.
+            '<td>'.$result[$i][ 'hr_response'].'</td>'.
+            '<td>'.$result[$i][ 'manager_response'].'</td>'.
+            '<td>'.$result[$i][ 'hr_employee'].'</td>'.
+            '<td>'.$result[$i][ 'manager'].'</td>'.
+            '</tr>'; 
     }
-}
-    
-    
-else
-{
-    // Fail :(
-    echo 'fail';
-}
-
 ?>
 
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-3"></div>
 </body>
 
 </html>

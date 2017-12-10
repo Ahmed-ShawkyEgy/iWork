@@ -72,8 +72,10 @@ end catch
 end
 
 
+
+
 go
-alter proc Apply_Request
+alter proc Apply_Request 
 @username varchar(255),@start_date datetime,@end_date datetime,@type varchar(255)=null,@destination varchar(255)=null,@purpose varchar(255)= null,
 @usernameReplacement varchar(255) , @out int output
 as
@@ -86,6 +88,20 @@ from Staff_Members
 where @usernameReplacement=username
 declare @duration int=0
 declare @dateIncrementor datetime = @start_date
+
+
+
+if (@durationtmp < 0)
+begin
+set @out = 3;
+return;
+end
+
+if not exists ( select * from Staff_Members where username = @usernameReplacement)
+begin
+	set @out = 2;
+	return;
+end
 
 declare @offday varchar(255), @annual_leaves varchar(255)
 		select @offday=day_off, @annual_leaves=annual_leaves
@@ -106,6 +122,12 @@ select @usernameDepartment=department, @usernameCompany=company
 from Staff_Members
 where @username=username
 
+if (@usernameCompany <> @ReplacementCompany or @usernameDepartment <> @ReplacementDepartment)
+begin
+	set @out = 4;
+	return;
+end
+
 if not EXISTS(select * from Requests where  hr_response<>'Rejected' and manager_response<>'Rejected' and applicant = @username and (
 (@start_date>=Requests.start_date and @end_date<=Requests.end_date)or
 (@start_date>=Requests.start_date and @end_date>=Requests.end_date and @start_date<=Requests.end_date)or
@@ -122,7 +144,7 @@ if exists (select * from Requests where  hr_response<>'Rejected' and manager_res
 begin
 delete from Requests where (hr_response='Rejected' or manager_response='Rejected') and applicant = @username
 end
-select @annual_leave = annual_leaves
+select @annual_leave = annual_leaves 
 from Staff_Members
 where username = @username
 if((dbo.Type_Idenitifer(@username)=dbo.Type_Idenitifer(@usernameReplacement))and(@ReplacementDepartment=@usernameDepartment)and (@ReplacementCompany=@usernameCompany))
@@ -142,7 +164,7 @@ if(@annual_leave>0 and @annual_leave>=@duration)
 		begin
 			insert into Leave_Requests values(@start_date, @username, @type)
 		end
-	else
+	else 
 		if(@purpose is not null and @destination is not null)
 			begin
 			insert into Business_Trip_Requests values(@start_date, @username, @destination,@purpose)
@@ -163,8 +185,6 @@ if(@annual_leave>0 and @annual_leave>=@duration)
 	end
 	end
 	end
-
-
 
 
 go

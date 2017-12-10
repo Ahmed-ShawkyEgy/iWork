@@ -32,10 +32,26 @@ if ($result == 1) {
     $_SESSION['accept'] = "Request applied succesfully";
     header("Location: /Database-Project/layout/acceptance.php");
     exit();
-} else {
-    // Fail :(
-     $_SESSION['error'] = "Can't apply for this request<br>Please make sure that you didn't apply for a previous request that overlaps with this duration or that your annual leaves count is not enough";
+} else if($result == 2){
+     $_SESSION['error'] = "Failed to apply<br>Please make sure that your replacement's username is a valid one";
     header("Location: /Database-Project/layout/appology.php");
     exit();
     
+}
+else if($result == 3)
+{
+     $_SESSION['error'] = "Failed to apply<br>Please make sure that the duration is valid";
+    header("Location: /Database-Project/layout/appology.php");
+    exit();
+}
+else if($result == 4)
+{
+    $_SESSION['error'] = "Failed to apply<br>Please make sure that your replacement is from the same company and department";
+    header("Location: /Database-Project/layout/appology.php");
+    exit();
+}
+else{
+     $_SESSION['error'] = "Can't apply for this request<br>Please make sure that you didn't apply for a previous request that overlaps with this duration or that your annual leaves count is not enough";
+    header("Location: /Database-Project/layout/appology.php");
+    exit();
 }
