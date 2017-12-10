@@ -1,11 +1,10 @@
 <?php
 // Check-out for today
-require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-session_start();
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");
+if (session_status() == PHP_SESSION_NONE)
+    session_start();
 
-// TODO remove this line
-$_SESSION['userid'] = "Arth";
-// TODO add Session auth ie if($session == null) etc
 
 $result = (array)sqlExec("declare @o int
 exec Check_Out @username = ".$_SESSION['userid']." , @out = @o output
@@ -21,4 +20,8 @@ if($result != 1){
     header("Location: /Database-Project/layout/appology.php");
     exit();
 }else if($result == 1)
-  print_r("checked out successfully!");
+{
+    $_SESSION['accept'] = "Checked out successfully!";
+    header("Location: /Database-Project/layout/acceptance.php");
+    exit();
+}

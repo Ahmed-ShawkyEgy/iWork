@@ -1,14 +1,12 @@
 <?php
 // Check in for today
-require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-session_start();
-
-// TODO remove this line
-$_SESSION['userid'] = "Arth";
-// TODO add Session auth
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");
+if (session_status() == PHP_SESSION_NONE)
+    session_start();
 
 $result = (array)sqlExec("declare @output int
-	Exec Check_In @username= ".$_SESSION['userid']." , @out = @output output
+	Exec Check_In @username= '".$_SESSION['userid']."' , @out = @output output
 	select @output as 'out';");
 
 $result = json_decode(json_encode($result), true)[0]['out'];
@@ -19,4 +17,8 @@ if($result == 0 ){
     header("Location: /Database-Project/layout/appology.php");
     exit();
 }else
-  print_r("Checked in Successfully!");
+{
+    $_SESSION['accept'] = "Checked in Successfully!";
+    header("Location: /Database-Project/layout/acceptance.php");
+    exit();
+}

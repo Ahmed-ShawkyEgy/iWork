@@ -1,11 +1,10 @@
 <?php
 // Staff Member Apply for request
-require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-session_start();
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");
+if (session_status() == PHP_SESSION_NONE)
+    session_start();
 
-// TODO remove this line
-$_SESSION['userid'] = "Crash";
-// TODO add Session auth ie if($session == null) etc
 
 
 $start_date = $_POST['startDate'];

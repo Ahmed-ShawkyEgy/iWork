@@ -1,13 +1,9 @@
 <?php
 // Staff Member Apply for request
-// TODO create front end form
-// TODO create front end display
-require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-session_start();
-
-// TODO remove this line
-$_SESSION['userid'] = "Crash";
-// TODO add Session auth ie if($session == null) etc
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");
+if (session_status() == PHP_SESSION_NONE)
+    session_start();
 
 
 $start_date = $_POST['startDate'];

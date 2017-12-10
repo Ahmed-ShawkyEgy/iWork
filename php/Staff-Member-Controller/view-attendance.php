@@ -38,8 +38,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
         if (session_status() == PHP_SESSION_NONE)
             session_start();
 
-// TODO remove this line
-$_SESSION['userid'] = "Arth";
+        
 $start_date = $_POST['start_date'];
 $end_date = $_POST['end_date'];
 
