@@ -19,8 +19,13 @@ $result = json_decode(json_encode($result), true)[0]['out'];
 
 
 if($result == 0 ){
+    // Fail
     $_SESSION['error'] = "Can't send to this user";
     header("Location: /Database-Project/layout/appology.php");
     exit();
-}else
-  print_r("Email sent successfully!");
+}else{
+    // Sucess
+    $_SESSION['accept'] = "Email sent successfully!";
+    header("Location: /Database-Project/layout/acceptance.php");
+    exit();
+}

@@ -2,7 +2,7 @@
 if(session_status() == PHP_SESSION_NONE)
 session_start();
 //echo $_SESSION['userid'].""."1";
-if(!array_key_exists ('userid',$_SESSION)){
+if(!array_key_exists ('userid',$_SESSION) || $_SESSION['userid'] == null){
   //echo $_SESSION['userid'].""."if";
    header("Location: /Database-Project/layout/accesslayout.php");
     exit();

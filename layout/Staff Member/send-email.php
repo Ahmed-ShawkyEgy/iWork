@@ -23,30 +23,41 @@
 
     <?php     
 // Staff Member view his/her requests
-// TODO create front-end display
-     require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");  require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php"); if(session_status() == PHP_SESSION_NONE) session_start(); ?>
+     require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");  require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
 
-    <br>
-    <h1>Send Email</h1>
-    <form action="/./Database-Project/php/Staff-Member-Controller/send-email.php" method="post">
-        <label>To:</label>
-        <input name="recipient" type="text">
 
-        <br>
+    <div class="container " style="margin-top:100px; ">
 
-        <label>Subject:</label>
-        <input name="subject" type="text">
+        <h1 style="text-align: center;">Send Email</h1>
 
-        <br>
+        <div class="col-xs-2"></div>
 
-        <label>Body:</label>
-        <textarea name="body" rows="5" cols="50"></textarea>
+        <form class="form-horizontal col-xs-8" style="margin-top:50px;" action="/Database-Project/php/Staff-Member-Controller/send-email.php" method="post">
 
-        <br>
+            <div class="form-group">
+                <label>To:</label>
+                <input name="recipient" type="text" class="form-control">
+            </div>
 
-        <input type="submit">
-    </form>
+            <br>
 
+
+            <div class="form-group">
+                <label>Subject:</label>
+                <input name="subject" type="text" class="form-control">
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label>Body:</label>
+                <textarea name="body" rows="5" cols="50" class="form-control"></textarea>
+            </div>
+
+            <br>
+
+            <input type="submit">
+        </form>
+    </div>
 </body>
 
 </html>

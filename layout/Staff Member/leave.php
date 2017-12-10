@@ -33,8 +33,8 @@
 
         <!-- Form ----------------------------->
 
-        <div class="container " style="margin-top:100px; text-align: center;">
-            <h1>Apply for Leave Request</h1>
+        <div class="container " style="margin-top:100px; ;">
+            <h1 style="text-align: center">Apply for Leave Request</h1>
             <div class="col-xs-2"></div>
             <form class="form-horizontal col-xs-8" style="margin-top:50px;" action="/Database-Project/php/Staff-Member-Controller/leave-request.php" method="post">
 
