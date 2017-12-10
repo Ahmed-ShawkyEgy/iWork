@@ -22,7 +22,7 @@ else if(@username=@staff and @dayoff<> DATENAME(weekday, current_timestamp) and 
 begin
 
 begin try
-insert  into Attendance_Records (date, staff,start_time) values (CONVERT (date, CURRENT_TIMESTAMP),@username,CONVERT(VARCHAR(5), GETDATE(), 108)+':00'+' ' + RIGHT(CONVERT(VARCHAR(30), GETDATE(), 9),2))
+insert  into Attendance_Records (date, staff,start_time) values (CONVERT (date, CURRENT_TIMESTAMP),@username,CONVERT(VARCHAR(5), GETDATE(), 108)+':00' + RIGHT(CONVERT(VARCHAR(30), GETDATE(), 9),2))
 set @out = 1 end try
 begin catch
 set @out = 0;
