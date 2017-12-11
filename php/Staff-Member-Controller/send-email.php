@@ -11,7 +11,7 @@ $subject = $_POST['subject'];
 $body = $_POST['body'];
 
 $result = (array)sqlExec("declare @o int
-exec Send_Email @username='".$_SESSION['userid']."',@recipient='Trissy',@subject='".$subject."',@body='".$body."' , @out = @o output
+exec Send_Email @username='".$_SESSION['userid']."',@recipient='".$recipient."',@subject='".$subject."',@body='".$body."' , @out = @o output
 select @o as 'out';");
 
 $result = json_decode(json_encode($result), true)[0]['out'];
@@ -19,7 +19,7 @@ $result = json_decode(json_encode($result), true)[0]['out'];
 
 if($result == 0 ){
     // Fail
-    $_SESSION['error'] = "Can't send to this user";
+    $_SESSION['error'] = "Can't send to this user<br>";
     header("Location: /Database-Project/layout/appology.php");
     exit();
 }else{

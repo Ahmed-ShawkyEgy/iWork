@@ -67,7 +67,7 @@
     <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Send Email</button>
   </a>
 
-                                        <a href='#'>
+                                        <a href='/Database-Project/layout/Staff Member/inbox.php'>
   <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Inbox</button>
   </a>
 

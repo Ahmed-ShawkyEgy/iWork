@@ -271,6 +271,35 @@ end
 
 
 
+
+go
+alter proc View_Email
+@username varchar(255)
+as
+select e.serial_number, e.subject,e.date,sses.recipient,sses.sender,e.body
+from Emails e inner join Staff_send_Email_Staff sses on e.serial_number = sses.email_number
+where recipient = @username
+
+
+
+
+go
+alter proc Reply_Email
+@username varchar(255),@emailId int, @subject varchar(255),@body varchar(255) , @out int output
+as
+set @out = 0
+declare @sender varchar(255)
+if exists(select * from Staff_send_Email_Staff e where  @emailId = e.email_number and e.recipient =  @username)
+begin
+select @sender = sender
+from Staff_send_Email_Staff
+where recipient = @username and email_number = @emailId
+insert into Emails (subject,date,body) values(@subject,cast(CURRENT_TIMESTAMP as date),@body)
+insert into Staff_send_Email_Staff
+select IDENT_CURRENT('dbo.Emails') , @sender ,@username
+set @out = 1
+end
+
 -- ------------------------------------------------------------------------- Below is Morgan's code
 
 
