@@ -61,7 +61,7 @@
                                 <div id='bottomButtons'>
                                     <div class="col-xs-12">
                                         <a href="/Database-Project/layout/Staff Member/view-requests.php">
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View requests</button>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View/Delete requests</button>
       </a>
                                         <a href="/Database-Project/layout/Staff Member/send-email.php">
     <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Send Email</button>

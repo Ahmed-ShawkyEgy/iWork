@@ -17,6 +17,7 @@
 
 </head>
 
+
 <body style="text-align:center">
     <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
     <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
@@ -26,24 +27,26 @@
     <div class="row">
         <div class="col-md-3">
         </div>
+        <!-- Table inside form -->
+        <form action="/Database-Project/php/Staff-Member-Controller/delete-requests.php" method="post">
+            <table class="table table-striped table-hover table-bordered col-md-6" style="width:  50% !important;  margin:auto; text-align:center">
+                <thead>
+                    <tr>
+                        <th>Request Date</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>HR response</th>
+                        <th>Manager response</th>
+                        <th>HR employee</th>
+                        <th>Manager</th>
+                        <th>Delete Request</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <table class="table table-striped table-hover table-bordered col-md-6" style="width:  50% !important;  margin:auto; text-align:center">
-            <thead>
-                <tr>
-                    <th>Request Date</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>HR response</th>
-                    <th>Manager response</th>
-                    <th>HR employee</th>
-                    <th>Manager</th>
-                </tr>
-            </thead>
-            <tbody>
 
 
-
-                <?php
+                    <?php
 // View my requests' status
 require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
@@ -65,14 +68,21 @@ $result = json_decode(json_encode($result), true);
             '<td>'.$result[$i][ 'hr_response'].'</td>'.
             '<td>'.$result[$i][ 'manager_response'].'</td>'.
             '<td>'.$result[$i][ 'hr_employee'].'</td>'.
-            '<td>'.$result[$i][ 'manager'].'</td>'.
-            '</tr>'; 
+            '<td>'.$result[$i][ 'manager'].'</td>';
+        
+        if(!($result[$i]['hr_response']=='accepted' && $result[$i]['manager_response'] == 'accepted'))
+        {
+            echo '<td> <button type="submit" name="date" class="btn btn-warning" value="'.$result[$i]['start_date'][ 'date'].'">Delete</button></td>';
+           
+        }
+        else{ echo "<td>Can't delete accepted requests</td>";}
+        echo '</tr>';
     }
 ?>
 
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </form>
     </div>
     <div class="col-md-3"></div>
 </body>
