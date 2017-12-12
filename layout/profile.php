@@ -36,8 +36,8 @@
           <a href='/Database-Project/layout/profileinfo.php'>
         <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
         </a>
-        <a href='#'>
-      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Login</button>
+        <a href='/Database-Project/layout/Staff Member/profile.php'>
+      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">More Options</button>
       </a>
           </div>
           </div>

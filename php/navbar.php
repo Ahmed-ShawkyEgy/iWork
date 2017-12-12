@@ -9,8 +9,8 @@ echo '<div id="navigation" class="col-xs-12">
     <div class="container">
       <div id="ShortcutLinks">
         <a href="/Database-Project/layout/MainPage.php" class="navbar-brand">iWork</a>';
-        if ($_SESSION['userid'] == null) {
-            echo '<a href="/Database-Project/php/MainUserInterface.php" class="navbar-brand">Profile</a>';
+        if (!array_key_exists('userid', $_SESSION) || $_SESSION['userid'] == null) {
+            echo '<a href="/Database-Project/php/MainUserInterface.php" style="position: absolute;right: 0px;  z-index: 100;" class="navbar-brand">Login</a>';
         }
 if (array_key_exists('userid', $_SESSION) && $_SESSION['userid'] != null) {
     echo '<a href="/Database-Project/php/logout.php" class="navbar-brand" style="position: absolute;right: 0px;  z-index: 100;">Logout</a>';

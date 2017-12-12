@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Database-Project/style/Profile.css" />
+    <link rel="stylesheet" href="/Database-Project/style/staffMember.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
+  <link rel="stylesheet" href="/Database-Project/style/staffMember.css">
     <style>
         .panel {
             border: 3px solid;
@@ -23,6 +23,10 @@
 
         .announcements {
             margin: 10px;
+        }
+
+        body {
+          background-color: #555;
         }
 
     </style>
@@ -40,14 +44,14 @@
 
 
             <div class="panel col-md-8">
-                <h1>Inbox</h1>
+                <h1>Announcements</h1>
                 <?php
 
                     $result = (array)sqlExec("exec Check_Announcments @username = ".$_SESSION['userid']);
-                
+
                     $result = json_decode(json_encode($result), true);
-                
-                
+
+
                     for($i = 0; $i < sizeof($result);$i++)
                     {
                         echo '<hr><div class = "row announcements">
@@ -59,7 +63,7 @@
                         echo 'Description: '.$result[$i]['description'].'<br>';
                         echo '</div>
                             <div class = "col-md-3">
-                               
+
                             </div>
                         </div>
                     <br>

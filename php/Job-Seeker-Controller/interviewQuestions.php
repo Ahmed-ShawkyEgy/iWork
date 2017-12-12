@@ -23,11 +23,12 @@ if($modelAnswer[$row]==$searchQuery[$row]){
   $countT++;
 }
 }
+$countT=($countT/count($_SESSION['modelAnswer']))*100;
 //Save_Score
 
 $result = sqlExec("Exec Save_Score @username= '".$username."' , @title = '".$title."',  @company= '".$company."', @departement= '".$department."', @score= '".$countT."'");
 
-$_SESSION['accept'] = "You have successfully applied for the job <br> Your score is ".$countT."/".count($_SESSION['modelAnswer'])." <br> please wait for the response";
+$_SESSION['accept'] = "You have successfully applied for the job <br> Your score is ".$countT."%"." <br> please wait for the response";
 header("Location: /Database-Project/layout/acceptance.php");
 exit();
 

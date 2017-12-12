@@ -27,11 +27,11 @@ body {
   background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/Database-Project/images/workshopixel.jpg");
 }
 
-.boxed {
-  width: 300px;
-  height: 300px;
-  left: -webkit-calc( 50% - 250px );
-  top: 20%;
+.box {
+  width: 600px;
+  height: auto;
+  left: -webkit-calc( 30% - 0px );
+  top: auto;
   position: absolute;
   border-radius: 5px;
   -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
@@ -46,15 +46,10 @@ body {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
   display: flex;
   transition: box-shadow .3s ease;
-}
-.boxed:active {
-  cursor: move;
   -moz-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
   -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-}
-.boxed .content {
-  margin: auto;
+
 }
 
 h1, h2, a, p {
@@ -85,7 +80,6 @@ p.related a {
 p.related a:hover {
   text-decoration: underline;
 }
-
 
 
 
@@ -183,4 +177,7 @@ footer {
 #FooterText {
   display: inline;
   font-size: 14px;
+}
+#stretch{
+  margin-bottom:  500px;
 }

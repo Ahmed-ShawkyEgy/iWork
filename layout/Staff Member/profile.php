@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../../style/Profile.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
 </head>
 
 <body>
@@ -74,10 +73,6 @@
                                         <a href='/Database-Project/layout/Staff Member/announcements.php'>
   <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Announcements</button>
   </a>
-
-                                        <a href='/Database-Project/layout/profileinfo.php'>
-<button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
-</a>
 
                                         <a href='/Database-Project/layout/editInfoRedirection.php'>
 <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Edit Info</button>

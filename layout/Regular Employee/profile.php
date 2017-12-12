@@ -33,12 +33,12 @@
             <a href='/Database-Project/layout/profileinfo.php'>
           <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
           </a>
-          <a href='/Database-Project/layout/editInfoRedirection.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Edit Info</button>
-        </a>
         <a href='/Database-Project/layout/Regular Employee/projectInfo.php'>
       <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Project info</button>
       </a>
+      <a href='/Database-Project/layout/Regular Employee/viewTasksTransition.php'>
+    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Task</button>
+  </a>
           </div>
           </div>
           </br></br></br>
@@ -47,16 +47,15 @@
   </br>  </br>
   <div id='bottomButtons'>
         <div  class="col-xs-12">
-          <a href='/Database-Project/layout/Regular Employee/viewTasksTransition.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Task</button>
-      </a>
-
       <a href='/Database-Project/layout/Regular Employee/changetoFixedTransition.php'>
     <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Task Status Fixed</button>
     </a>
     <a href='/Database-Project/layout/Regular Employee/changetoAssignedTransitionProject.php'>
   <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Task Status Assigned</button>
   </a>
+  <a href='/Database-Project/layout/Staff Member/profile.php'>
+<button class="btn btn-primary "style="width: 200px; height:50px" type="submit">More Options</button>
+</a>
   </div>
       </div>
           </div>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Database-Project/style/Profile.css" />
+    <link rel="stylesheet" href="/Database-Project/style/staffMember.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
@@ -48,7 +48,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
         if (session_status() == PHP_SESSION_NONE)
             session_start();
 
-        
+
 $start_date = $_POST['start_date'];
 $end_date = $_POST['end_date'];
 
@@ -56,16 +56,16 @@ $result = (array)sqlExec("exec View_Attendance_Between_Certain_Period_Staff @SMu
 @start_date = '".$start_date."' , @end_date = '".$end_date."'");
 
 $result = json_decode(json_encode($result), true);
- 
-    for($i = 0 ; $i< sizeof($result);$i++) 
-    { 
-        echo '<tr>'. 
+
+    for($i = 0 ; $i< sizeof($result);$i++)
+    {
+        echo '<tr>'.
             '<td>'.substr($result[$i][ 'date'][ 'date'] , 0 , 10).'</td>'.
             '<td>'.substr($result[$i][ 'start_time']['date'] , 11,-10).'</td>'.
             '<td>'.substr($result[$i][ 'end_time']['date'],11,-10) .'</td>'.
             '<td>'.(int)substr($result[$i][ 'missing_hours']['date'] , 11,-13).'</td>'.
             '<td>'.substr($result[$i][ 'duration']['date'] , 11 , -10).'</td>'.
-            '</tr>'; 
+            '</tr>';
     }
 ?>
 
