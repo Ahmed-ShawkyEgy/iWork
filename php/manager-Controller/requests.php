@@ -37,10 +37,7 @@
 	 //'".$manager_id."'
      //echo gettype($resp);
      //ask about this part
-	 if($resp== "'Rejected'" and  $rs!="''"){
-     $_SESSION['error'] = "ERRor";
-     header("Location: /Database-Project/layout/appology.php");
-     exit();}
+
 
 	 if(empty($check_exists_requests) ){
    $_SESSION['error'] = "This Requests does not exists";
@@ -51,13 +48,13 @@
  }
 	 else
 	 {
-	 if($resp=='Rejected' ){
+	 if($resp=="'Rejected'" and  $rs=="''"){
    $_SESSION['error'] = "if you rejected then you should enter reason";
    header("Location: /Database-Project/layout/appology.php");
    exit();
  }
 
-	 if($resp=="Accepted"){
+	 if($resp=="'Accepted'"){
 	 $Accept_Reject_Request=sqlExec("exec Accept_Reject_Request_Manager @MHRusername='".$manager_id."',
 	 @response=$resp,@username=$sm, @start_date=$startDate ");
    $_SESSION['accept'] = "Succesfully Accepted this application";
@@ -66,10 +63,10 @@
 
  }
 
-	 if($resp=="Rejected" and $rs!=" " ){
+	 if($resp=="'Rejected'" and $rs!=" " ){
 	 $Accept_Reject_Request=sqlExec("exec Accept_Reject_Request_Manager @MHRusername='".$manager_id."',
 	 @response=$resp,@reason=$rs,@username=$sm, @start_date=$startDate ");
-   $_SESSION['accept'] = "Succesfully Accepted this application";
+   $_SESSION['accept'] = "Succesfully Rejected this application";
    header("Location: /Database-Project/layout/acceptance.php");
    exit();
 

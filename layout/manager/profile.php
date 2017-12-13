@@ -19,7 +19,11 @@
 
 <body>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
-  <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
+  <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
+  <div id="MainStartingImg" class="BigImg">
+    <div class="BigImg-wrapper" layout="row" layout-align="center center">
+
+</br></br></br></br></br>
 
        <div class="container" style="margin-top:100px">
            <div class="row">
@@ -34,7 +38,7 @@
         projectname: <input  type="text" name="projectName" placeholder="Project Name" required></br></br>
         startdate: <input type="date" name="startDate" placeholder="Start Date" required></br></br>
         enddate: <input  type="date" name="endDate" placeholder="End Date" required></br></br>
-        <input type="submit" name="login" value = "Create Project"> </br></br>
+        <input type="submit" class="btn btn-primary"  name="login" value = "Create Project"> </br></br>
    </form>
  </div>
 
@@ -49,7 +53,7 @@
  </div>
 
 </div>
-
+</div></div>
 </body>
 
 </html>

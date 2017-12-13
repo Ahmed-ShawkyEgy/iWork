@@ -43,6 +43,8 @@
         <input class="btn btn-primary "type="submit" name="login" style="width: 400px;" value = "Login">
         </form>
       </div>
+      <br><br>
+      <a href='/Database-Project/layout/Register.php'><h3>Are you not registered?</h3></a>
           </div>
         </div>
         </div>

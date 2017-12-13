@@ -17,6 +17,8 @@
 </head>
 
 <body>
+  <div id="MainStartingImg" class="BigImg">
+    <div class="BigImg-wrapper" layout="row" layout-align="center center">
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
 
@@ -67,7 +69,7 @@ else{
 ?>
 
 
-
+</div></div>
 </body>
 
 </html>

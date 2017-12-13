@@ -17,6 +17,8 @@
 </head>
 
 <body>
+  <div id="MainStartingImg" class="BigImg">
+    <div class="BigImg-wrapper" layout="row" layout-align="center center">
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
   </br></br></br></br></br>
@@ -61,7 +63,7 @@
         <option value="Assigned">Assigned</option>
         <option value="Fixed">Fixed</option>
         </select></br></br>
-		<input type="submit" name="login" value = "view"></br></br>
+		<input type="submit" class="btn btn-primary"  name="login" value = "view"></br></br>
    </form>
 
     </div>
@@ -122,7 +124,7 @@
         echo "</select>";
 		?>
 		<br></br>
-		<input type="submit" name="login" value = "submit"></br></br>
+		<input type="submit" class="btn btn-primary"  name="login" value = "submit"></br></br>
    </form>
 
     </div>
@@ -184,7 +186,7 @@
 		?>
 		<br></br>
         taskname: <input type="text" name="t3"  required></br></br>
-        <input type="submit" name="login" value = "Assign"></br></br>
+        <input type="submit" class="btn btn-primary"  name="login" value = "Assign"></br></br>
    </form>
 
     </div>
@@ -246,7 +248,7 @@
 		?>
 		<br></br>
         taskname: <input type="text" name="t4"  required></br></br>
-        <input type="submit" name="login" value = "Assign"></br></br>
+        <input type="submit" class="btn btn-primary"  name="login" value = "Assign"></br></br>
    </form>
 
     </div>
@@ -292,7 +294,7 @@
          <option value="Rejected">Rejected</option>
          </select></br></br>
 		Deadline: <input type="date" name="d5" ></br></br>
-	    <input type="submit" name="login" value = "Assign"></br></br>
+	    <input type="submit" class="btn btn-primary"  name="login" value = "Assign"></br></br>
 
    </form>
 
@@ -355,7 +357,7 @@
         echo "</select>";
 		?>
 		<br></br>
-	    <input type="submit" name="login" value = "Assign"></br></br>
+	    <input type="submit" class="btn btn-primary"  name="login" value = "Assign"></br></br>
 
    </form>
 
@@ -373,6 +375,8 @@
     </div>
 
 
+  </div>
+  </div>
   </div>
 
 </body>

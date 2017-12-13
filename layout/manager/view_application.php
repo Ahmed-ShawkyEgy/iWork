@@ -17,6 +17,8 @@
 </head>
 
 <body>
+  <div id="MainStartingImg" class="BigImg">
+    <div class="BigImg-wrapper" layout="row" layout-align="center center">
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
 
@@ -58,10 +60,9 @@
 	 ?>
 
 	 </br></br>
-	 <input type="submit" class="button" name="view_app" value="view applications needed to be handled"  />
+	 <input type="submit" class="btn btn-primary" name="view_app" value="view applications needed to be handled"  />
 
 	 </form>
-
  </div>
 
  </div>
@@ -130,7 +131,7 @@
 	 ?>
 	 	 <br></br>
 
-	 		<input type="submit" class="button" name="option" value="accept/reject" /></br></br>
+	 		<input type="submit" class="btn btn-primary"  name="option" value="accept/reject" /></br></br>
 
       </form></br>
 
@@ -145,6 +146,7 @@
        <div class="col-md-2"></div>
 
        </div>
+     </div></div>
 
 </div>
 </body>

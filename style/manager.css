@@ -1,8 +1,6 @@
 body {
-  /*background-color: #bababa;
-  background-image: url("/Database-Project/images/nier.jpg");
-  background-repeat: no-repeat;
-background-size: auto 1500px;*/
+  background-color: #bababa;
+
 }
 
 html {
@@ -25,7 +23,7 @@ html {
 }
 
 .BigImg {
-  background-image: url("/Database-Project/images/Hoia-Baciu-Forest-Circle-3.jpg");
+  background-image: url("/Database-Project/images/manager.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -35,19 +33,11 @@ html {
   padding: 16% 5%;
   background-color: rgba(0, 0, 0, 0.38);
 }
-.BigImg .BigImg-wrapper h1 {
-  font-weight: 300;
-  color: white;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
-  position: relative;
-  z-index: 1;
 
-}
 .panel {
     border: 3px solid;
     border-radius: 25px;
+    text-align: left;
 }
 
 .announcements {

@@ -19,6 +19,8 @@
 <body>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?>
+  <div id="MainStartingImg" class="BigImg">
+    <div class="BigImg-wrapper" layout="row" layout-align="center center">
 </br></br></br></br></br>
 <div class="container" style="margin-top:100px">
     <div class="row">
@@ -50,7 +52,7 @@
         taskname: <input type="text" name="taskname" placeholder="name of task" required></br></br>
         deadline: <input  type="date" name="deadline" placeholder="deadline of task" required></br></br>
 		description:</br><textarea rows="4" cols="50" name="description" form="createTask" style="margin: 0px; width: 611px; height: 122px;" required></textarea></br></br>
-        <input type="submit" name="login" value = "Create Task"></br></br>
+        <input type="submit" class="btn btn-primary"  name="login" value = "Create Task"></br></br>
    </form>
 
  </div>
@@ -68,7 +70,7 @@
  </div>
 
 
-
+</div></div>
 
 </body>
 

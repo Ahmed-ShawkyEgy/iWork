@@ -31,16 +31,16 @@
           <div  class="col-xs-12">
             <div id='topButtons'>
           <a href='/Database-Project/layout/profileinfo.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Profile Info</button>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >Profile Info</button>
         </a>
         <a href='/Database-Project/layout/manager/view_application.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Applicatons</button>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >View Applicatons</button>
         </a>
         <a href='/Database-Project/layout/manager/view_requests.php'>
-      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">View Request</button>
+      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >View Request</button>
       </a>
       <a href='/Database-Project/layout/manager/profile.php'>
-    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Create project</button></a>
+    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >Create project</button></a>
 
           </div>
           </div>
@@ -51,13 +51,11 @@
   <div id='bottomButtons'>
         <div  class="col-xs-12">
           <a href='/Database-Project/layout/manager/task.php'>
-        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Create task</button></a>
+        <button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >Create task</button></a>
         <a href='/Database-Project/layout/manager/taskextension.php'>
-      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Task extension</button></a>
-      <a href='/Database-Project/php/manager-Controller/trial.php'>
-    <button class="btn btn-primary "style="width: 200px; height:50px" type="submit">Print Table</button></a>
+      <button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >Task extension</button></a>
   <a href='/Database-Project/layout/Staff Member/profile.php'>
-<button class="btn btn-primary "style="width: 200px; height:50px" type="submit">More Options</button>
+<button class="btn btn-primary "style="width: 200px; height:50px" type="submit" class="btn btn-primary" >More Options</button>
 </a>
   </div>
       </div>
