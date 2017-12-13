@@ -8,7 +8,7 @@ if($_SESSION['userid'] == null){
   exit();
 }
 if($_SESSION['position']=='manager'){
-  header("Location: /Database-Project/layout/profile.php");
+  header("Location: /Database-Project/layout/manager/profileMain.php");
   exit();
 }
 if($_SESSION['position']=='regular_employee'){

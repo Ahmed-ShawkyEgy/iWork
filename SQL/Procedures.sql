@@ -75,7 +75,7 @@ end
 
 
 go
-alter proc Apply_Request 
+alter proc Apply_Request
 @username varchar(255),@start_date datetime,@end_date datetime,@type varchar(255)=null,@destination varchar(255)=null,@purpose varchar(255)= null,
 @usernameReplacement varchar(255) , @out int output
 as
@@ -144,7 +144,7 @@ if exists (select * from Requests where  hr_response<>'Rejected' and manager_res
 begin
 delete from Requests where (hr_response='Rejected' or manager_response='Rejected') and applicant = @username
 end
-select @annual_leave = annual_leaves 
+select @annual_leave = annual_leaves
 from Staff_Members
 where username = @username
 if((dbo.Type_Idenitifer(@username)=dbo.Type_Idenitifer(@usernameReplacement))and(@ReplacementDepartment=@usernameDepartment)and (@ReplacementCompany=@usernameCompany))
@@ -164,7 +164,7 @@ if(@annual_leave>0 and @annual_leave>=@duration)
 		begin
 			insert into Leave_Requests values(@start_date, @username, @type)
 		end
-	else 
+	else
 		if(@purpose is not null and @destination is not null)
 			begin
 			insert into Business_Trip_Requests values(@start_date, @username, @destination,@purpose)
@@ -630,3 +630,294 @@ declare @table2 table(tmp int)
 select *
 from @table2
 end
+
+
+
+
+----------Ahmed Sherif
+
+--------------9 in Managers
+--9 Assign one regular employee (from those already assigned to the project) to work on an already defined task by me in this project.
+go
+alter proc Assign_Regular_Task_Manager
+@MHRusername varchar(255), @regular_employee varchar(255),
+@project_name varchar(255),@taskName varchar(255)
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department
+from Staff_Members s inner join Managers m
+on s.username=m.username
+where s.username=@MHRusername
+if exists(select * from Managers_assign_Regular_Employees_Projects where @project_name=project_name
+and regular_employee=@regular_employee)
+begin
+update Tasks
+set regular_employee=@regular_employee, status='Assigned'
+where @MHRusername=manager and company=@MHRcompany and @project_name=project and @taskName=Tasks.name
+and	Tasks.status='Open'
+end
+
+
+
+
+
+
+--5 Create a new project in my department with all of its information
+go
+alter proc Create_New_Project
+@MHRusername varchar(255), @title varchar(255), @start_date datetime, @end_date date
+as
+declare @MHRcompany varchar(255)
+if exists (select m.username from Managers m where m.username=@MHRusername )
+begin
+select @MHRcompany=s.company
+from Staff_Members s where s.username=@MHRusername
+insert into Projects values(@title,@MHRcompany,@start_date,@end_date,@MHRusername)
+end
+
+---------
+
+
+
+---- 4 in manager
+go
+alter proc Manager_Accept_Reject_Applications_After_HR
+@MHRusername varchar(255), @response varchar(255), @username varchar(255), @Job varchar(255)
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department
+from Staff_Members s inner join Managers m
+on s.username=m.username
+where s.username=@MHRusername
+if exists(select *
+from Users u inner join Job_Seeker_apply_Jobs s
+on u.username=s.job_Seekers
+where s.department=@MHRdepartment and s.company=@MHRcompany and s.job_Seekers=@username)
+------ remove le users if u want
+begin
+
+if(@response='Accepted' or @response='Rejected')
+begin
+Update Job_Seeker_apply_Jobs
+set manager_response=@response
+where @username=job_Seekers and hr_response='Accepted' and company=@MHRcompany and department=@MHRdepartment and @Job=job
+end
+
+
+end
+---------------------
+
+
+---------- 3 in manager tmam
+go
+alter proc Manager_View_Applications_Before_HR
+@MHRusername varchar(255),@job varchar(255)
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department
+from Staff_Members s
+where s.username=@MHRusername
+
+select js.*, u.years_of_experinece,u.age,
+j.no_of_vacanies,j.short_description,j.detailed_description,j.min_experience
+from Job_Seeker_apply_Jobs js inner join Jobs j
+on js.job=j.title and js.department= j.department and j.company=js.company
+inner join Users u
+on js.job_Seekers=u.username
+where j.department=@MHRdepartment and js.company=@MHRcompany and hr_response='Accepted'
+
+
+----2 in manager tmam
+go
+alter proc Accept_Reject_Request_Manager
+@MHRusername varchar(255), @response varchar(255),@reason varchar(max)=null,
+@username varchar(255), @start_date date
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255),@type varchar(255)
+
+select @MHRcompany=s.company, @MHRdepartment=s.department, @type=m.type
+from Staff_Members s inner join Managers m on s.username=m.username
+where s.username=@MHRusername
+
+if exists(select * from Staff_Members s
+where s.department=@MHRdepartment and s.company=@MHRcompany and s.username=@username)
+begin
+
+if(@response='accepted' and @type='HR' )
+begin
+Update Requests
+set manager_response=@response, manager=@MHRusername, hr_response=@response
+where @username=applicant and @start_date=cast(start_date as date)  and hr_response ='Pending'
+end
+
+if(@response='rejected' and @type='HR' )
+begin
+Update Requests
+set manager_response=@response, manager=@MHRusername,hr_response=@response,manager_reason=@reason
+where @username=applicant and @start_date=cast(start_date as date) and hr_response ='Pending'
+and @reason is not null
+
+end
+
+if(@response='rejected' and @type<>'HR' )
+begin
+Update Requests
+set manager_response=@response, manager=@MHRusername, manager_reason=@reason
+where @username=applicant and @start_date=cast(start_date as date) and hr_response ='Pending'
+and @reason is not null
+end
+
+
+if(@response='Accepted' and @type<>'HR' )
+begin
+Update Requests
+set manager_response=@response, manager=@MHRusername
+where @username=applicant and @start_date=cast(start_date as date) and hr_response ='Pending'
+end
+
+end
+
+-----1 REAGAIN updated one in manager
+---------- created my own version
+go
+alter proc Final_Accept_Request
+@MHRusername varchar(255)
+
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255),@type varchar(255)
+if exists (select m.username from Managers m  where m.username=@MHRusername)
+begin
+
+select @MHRcompany=s.company, @MHRdepartment=s.department from  Staff_Members s
+where s.username=@MHRusername
+
+if (@type='HR')
+begin
+select r.* from Requests r inner join Staff_Members s
+on r.applicant = s.username where s.company=@MHRcompany and s.department=@MHRdepartment and
+r.hr_response='Pending'
+end
+
+else
+begin
+select r.* from Requests r inner join Staff_Members s
+on r.applicant = s.username where s.company=@MHRcompany and s.department=@MHRdepartment
+and not exists(select * from HR_Employees h where s.username=h.username) and r.hr_response='Pending'
+end
+
+end
+
+-----7 Remove regular employees assigned to a project as long as they don’t have tasks assigned to him/her in this project.
+go
+alter proc Remove_Regular_To_Project
+@MHRusername varchar(255), @titleOfProject varchar(255), @username varchar(255)
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department
+from Staff_Members s inner join Managers m
+on s.username=m.username
+where s.username=@MHRusername
+
+select project_name from Managers_assign_Regular_Employees_Projects
+where @username=regular_employee and @titleOfProject=project_name and company=@MHRcompany and
+not exists
+(select t.*
+from Tasks t inner join Projects p
+on t.project=p.name and t.company=p.company
+where p.name=@titleOfProject and t.regular_employee=@username)
+
+
+delete from Managers_assign_Regular_Employees_Projects
+where @username=regular_employee and @titleOfProject=project_name and company=@MHRcompany and
+not exists
+(select t.*
+from Tasks t inner join Projects p
+on t.project=p.name and t.company=p.company
+where p.name=@titleOfProject and t.regular_employee=@username)
+
+
+------------------created new procedure
+-------------------------------
+
+go
+create proc get_project_name
+@Manager varchar(255)
+as
+declare @dep varchar(255),@comp varchar(255)
+select @dep=s.department,@comp=s.company from Staff_Members s where s.username=@Manager
+select distinct p.name from Projects p inner join Staff_Members sm on p.manager=sm.username
+where  sm.department=@dep and sm.company=@comp
+
+--12 Review a task that I created in a certain project which has a state ‘Fixed’, and either accept or reject it. If I accept it, then its state would be ‘Closed’, otherwise it will be re-assigned to the same regular employee with state ‘Assigned’. The task should have now a new deadline.
+go
+alter proc Review_Assign_Regular_Task_Manager
+@MHRusername varchar(255),@project_name varchar(255),@taskName varchar(255),
+@response varchar(255), @deadline datetime=null
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department from Staff_Members s inner join Managers m
+on s.username=m.username where s.username=@MHRusername
+
+	if(@response='rejected' and @deadline is not null)
+	begin
+	    declare @start_date datetime, @end_date datetime
+	    select @start_date=start_date, @end_date=end_date from Projects p
+	    where p.name=@project_name and p.company=@MHRcompany
+		if(@start_date<=@deadline and @deadline<=@end_date)
+		begin
+		select t.name from Tasks t where t.company=@MHRcompany
+		and t.project=@project_name and t.manager=@MHRusername and t.name=@taskName
+		update Tasks
+		set  status='Assigned', deadline=@deadline
+		where @MHRusername=manager and company=@MHRcompany and @project_name=project and @taskName=Tasks.name and status='Fixed'
+		end
+    end
+	else
+    begin
+    if(@response='accepted')
+	begin
+
+	update Tasks
+	set  status='Closed'
+	where @MHRusername=manager and company=@MHRcompany and @project_name=project and @taskName=Tasks.name and status='Fixed'
+
+	end
+	end
+
+
+--6 Assign regular employees to work on any project in my department. Regular employees should be working in the same department. Make sure that the regular employee is not working on more than two projects at the same time.
+go
+alter proc Assign_Regular_To_Project
+@MHRusername varchar(255), @titleOfProject varchar(255), @username varchar(255)
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department
+from Staff_Members s inner join Managers m
+on s.username=m.username
+where s.username=@MHRusername
+
+declare @ProjectsCount int
+select @ProjectsCount=count(project_name)
+from Managers_assign_Regular_Employees_Projects a
+where a.company=@MHRcompany  and  a.regular_employee=@username
+if(@ProjectsCount<2)
+begin
+insert into Managers_assign_Regular_Employees_Projects values(@titleOfProject,@MHRcompany,@username,@MHRusername)
+end
+
+go
+alter proc Manager_View_Applications_Before_HR
+@MHRusername varchar(255),@job varchar(255)
+as
+declare @MHRcompany varchar(255), @MHRdepartment varchar(255)
+select @MHRcompany=s.company, @MHRdepartment=s.department
+from Staff_Members s
+where s.username=@MHRusername
+
+select js.*, u.years_of_experinece,u.age,
+j.no_of_vacanies,j.short_description,j.detailed_description,j.min_experience
+from Job_Seeker_apply_Jobs js inner join Jobs j
+on js.job=j.title and js.department= j.department and j.company=js.company
+inner join Users u
+on js.job_Seekers=u.username
+where j.department=@MHRdepartment and js.company=@MHRcompany and hr_response='Accepted' and js.job=@job

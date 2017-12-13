@@ -18,7 +18,11 @@ if ( preg_match('/\s/',$username) ) {
   header("Location: /Database-Project/layout/appology.php");
   exit();
 }
-
+if ( preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/',$username) ) {
+  $_SESSION['error'] = "No special characters are allowed";
+  header("Location: /Database-Project/layout/appology.php");
+  exit();
+}
 $result = sqlExec("Exec Register_User @username= '".$username."', @password= '".$password."',@personal_email= '".$personal_email."', @birth_date= '".$birth_date."',@years_of_experince= '".$years_of_experince."',@first_name= '".$first_name."',@middle_name= '".$middle_name."',@last_name= '".$last_name."'");
 
 //echo '2';

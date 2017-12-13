@@ -1,0 +1,144 @@
+/*
+$managersList=sqlExec("select username from Managers");
+//$_POST['Managers']
+echo "<select name='Managers'>";
+for($row = 0; $row < count($managersList); $row++){
+   foreach ($managersList[$row] as $key => $value){
+         echo "<option value='".$value."'>".$value."</option>";
+		 }
+	}
+echo "</select>";
+*/
+
+/*
+$dep=sqlExec("select m.department from Staff_Members m where m.username='Trissy' ");
+print_r($dep);
+$departmentNo = $dep[0] -> {'department'} ;
+echo $departmentNo;
+*/
+
+
+require($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+     if(session_status() == PHP_SESSION_NONE)
+     session_start();
+     $manager_id = $_SESSION['userid'];
+     //'".$manager_id."'
+	 
+	 
+	 
+select p.name from Projects p  inner join Staff_Members sm on sm.username=p.manager where p.name='' and p.company =''
+and sm.department=''
+	 
+	 
+	 
+	 
+$names_of_project=sqlExec("select p.name from Projects p  inner join Staff_Members sm on sm.username=p.manager where p.name='' and p.company =''
+and sm.department='' ");
+//$_POST['Managers']
+echo "<select name='projectname'>";
+for($row = 0; $row < count($names_of_project); $row++){
+   foreach ($names_of_project[$row] as $key => $value){
+         echo "<option value='".$value."'>".$value."</option>";
+		 }
+	}
+echo "</select>";	 
+	 
+Database-Project/php/manager-Controller/remove_regular_employee.php
+
+/*
+$managersList=sqlExec("select username from Managers");
+//$_POST['Managers']
+echo "<select name='Managers'>";
+for($row = 0; $row < count($managersList); $row++){
+   foreach ($managersList[$row] as $key => $value){
+         echo "<option value='".$value."'>".$value."</option>";
+		 }
+	}
+echo "</select>";
+*/
+
+/*
+$dep=sqlExec("select m.department from Staff_Members m where m.username='Trissy' ");
+print_r($dep);
+$departmentNo = $dep[0] -> {'department'} ;
+echo $departmentNo;
+*/
+	 
+   <?php
+		 
+         $manager_id = $_SESSION['userid'];
+         //'".$manager_id."'
+         $projectName = post('projectName');  
+         $regularemployee = post('regularemployee');	 
+	     $remove_employee=sqlExec("exec Remove_Regular_To_Project @MHRusername='".$manager_id."',@titleOfProject=$projectName,
+		 @username=$regularemployee ");
+		 if ( empty($remove_employee) ){
+		 echo "This employee has a task in this project ";
+		 }
+		 else{
+		 echo "removed succesfully" ;}
+         ?>	 
+	 
+	 
+$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
+     $company = "'".($comp[0] -> {'company'})."'" ;
+	 $dep=sqlExec("select department from Staff_Members where username='".$manager_id."'  ");
+     $department = "'".($dep[0] -> {'department'})."'" ;	 
+	 
+
+	 Regular_employee: 
+		<?php
+        $manager_id = $_SESSION['userid'];
+        //'".$manager_id."'	
+		$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
+        $company = "'".($comp[0] -> {'company'})."'" ;
+	    $dep=sqlExec("select department from Staff_Members where username='".$manager_id."'  ");
+        $department = "'".($dep[0] -> {'department'})."'" ;
+	    $reg_emp=sqlExec("select r.username from Regular_Employees r inner join Staff_Members sm on sm.username=r.username
+        where sm.department=$department and sm.company=$company  ");
+        
+		echo "<select name='regularemployee'>";
+		echo "<option value='default'>default</option>";
+        for($row = 0; $row < count($reg_emp); $row++){
+        foreach ($reg_emp[$row] as $key => $value){
+        echo "<option value='".$value."'>".$value."</option>";
+		}
+	    }
+        echo "</select>"; 
+		?>
+	 
+	 $projectName = post('projectName');
+	 
+	 
+	 <?php
+	/// we did call procudere tmam 
+	$manager_id = $_SESSION['userid'];
+	$p3 = post('p3');
+    $taskname = post('taskname');
+	$r3 = post('r3');
+	$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
+    $company = "'".($comp[0] -> {'company'})."'" ;
+	$taskname_exists=sqlExec("select t.name from tasks t where t.name=  $taskname and t.project=$p3 and t.company=$company  ");
+	$reg_exists_project=sqlExec("select * from Managers_assign_Regular_Employees_Projects where @project_name=$p3
+    and regular_employee=@r3 and company=$company ");
+	$statues=sqlExec("select t.status from Tasks t where t.name=$taskname and t.company=$company  and t.project=p3 ");
+	$cond = "'".($statues[0] -> {'status'})."'" ;
+	if (empty($taskname_exists)){
+	echo "this taskname doesnot exits";}
+	else{
+	if(empty($reg_exists_project)){
+	echo "this reqular employee is not assigned to the project" ;}
+	else{
+	     if (cond=='Open'){
+	     echo "assigned to task  succesfully" ;}
+	     else {
+	     echo "you cannot assign regular employee to task with an open status " ;}
+	    }
+	}
+    
+	?>
+	 
+	 
+	 
+	 
+	 

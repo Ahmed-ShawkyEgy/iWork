@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>view specific task</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="/Database-Project/style/manager.css">
+</head>
+
+<body>
+  <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
+
+		 <?php
+     require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
+     if(session_status() == PHP_SESSION_NONE)
+     session_start();
+         $manager_id = $_SESSION['userid'];
+         //'".$manager_id."'
+		 $p5 = post('p5');
+         $t5 = post('t5');
+		 $r5 = post('r5');
+		 $d5 = post('d5');
+		 $comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
+         $company = "'".($comp[0] -> {'company'})."'" ;
+         $task_exists_project=sqlExec("select name from Tasks where name=$t5 and project=$p5
+		 and company=$company and manager='".$manager_id."' and status='Fixed' ");
+
+		 if(empty($task_exists_project) ){
+		 echo "this task name doesnot exists in project or this Task name doesnot have Fixed status ";}
+		 else{
+		 if($r5=="'Rejected'" and $d5=="''"){
+		 echo "you should enter an deadline date";}
+
+		 if($r5=="'Rejected'" and $d5<>"''"){
+		 $assign_task=sqlExec("exec Review_Assign_Regular_Task_Manager
+         @MHRusername='".$manager_id."' ,@project_name=$p5,@taskName=$t5,
+         @response=$r5, @deadline=$d5 ");
+		 if(empty($assign_task) ){
+		 echo "you arenot to allowed enter deadline before startdate of project and after end date of project";}
+		 else{
+		 echo "Task status has changed to Assigned";}
+		 }
+
+         if($r5=="'Accepted'" ){
+		 $assign_task=sqlExec("exec Review_Assign_Regular_Task_Manager
+         @MHRusername='".$manager_id."' ,@project_name=$p5,@taskName=$t5,
+         @response=$r5");
+		 echo "Task status has changed to Closed"; }
+
+		 }
+
+         ?>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
