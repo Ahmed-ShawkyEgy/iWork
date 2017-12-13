@@ -33,10 +33,14 @@
 	     $remove_employee=sqlExec("exec Remove_Regular_To_Project @MHRusername='".$manager_id."',@titleOfProject=$p2,
 		 @username=$r2 ");
 		 if ( empty($remove_employee) ){
-		 echo "This employee has a task in this project or this employee is not assigned to this project";
+     $_SESSION['error'] = "This employee has a task in this project or this employee is not assigned to this project";
+     header("Location: /Database-Project/layout/appology.php");
+     exit();
 		 }
 		 else{
-		 echo "removed succesfully" ;}
+       $_SESSION['accept'] = "removed succesfully";
+       header("Location: /Database-Project/layout/acceptance.php");
+       exit();}
          ?>
 
 

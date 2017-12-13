@@ -20,31 +20,6 @@
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
 
-  <form action="/Database-Project/php/manager-Controller/createtask.php" method="post" >
-        <!--username: <input  type="text" name="username" placeholder="get up to date DB and delete" required></br></br> -->
-        projectname:
-	    <?php
-	     require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
-        if(session_status() == PHP_SESSION_NONE)
-        session_start();
-        $manager_id = $_SESSION['userid'];
-        //'".$manager_id."'
-	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
-        echo "<select name='projectName'>";
-		echo "<option value='default'>default</option>";
-        for($row = 0; $row < count($nameofproject); $row++){
-        foreach ($nameofproject[$row] as $key => $value){
-        echo "<option value='".$value."'>".$value."</option>";
-		}
-	    }
-        echo "</select>";
-        ?>
-        <br></br>
-        taskname: <input type="text" name="taskname" placeholder="name of task" required></br></br>
-        deadline: <input  type="date" name="deadline" placeholder="deadline of task" required></br></br>
-		description:</br><textarea rows="4" cols="50" name="description" form="createTask" style="margin: 0px; width: 611px; height: 122px;" required></textarea></br></br>
-        <input type="submit" name="login" value = "Create Task"></br></br>
-   </form>
 
  <?php
 
@@ -73,18 +48,25 @@ $check = sqlExec("select t.name from Tasks t
 where t.name=$taskname and t.project=$projectName and t.company=$company");
 
 if(empty($check)){
-    echo "you cannot insert deadline of task after project deadline or before project deadline";
-}
-else
-  echo "created Task succesfull";
+    $_SESSION['error'] = "you cannot insert deadline of task after project deadline or before project deadline";
+    header("Location: /Database-Project/layout/appology.php");
+    exit();
 }
 else{
-  echo "this taskname already exists and choose another one";
+  $_SESSION['accept'] = "created project succesful";
+  header("Location: /Database-Project/layout/acceptance.php");
+  exit();
+}
+}
+else{
+  $_SESSION['error'] = "this taskname already exists and choose another one";
+  header("Location: /Database-Project/layout/appology.php");
+  exit();
 }
 
 ?>
 
-  
+
 
 </body>
 

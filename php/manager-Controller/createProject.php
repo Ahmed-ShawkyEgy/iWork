@@ -47,7 +47,7 @@ if(empty($check)){
   exit();
 }
 else
-  $_SESSION['accept'] = "created project succesful";
+  $_SESSION['accept'] = "created project succesfully";
   header("Location: /Database-Project/layout/acceptance.php");
   exit();
 }

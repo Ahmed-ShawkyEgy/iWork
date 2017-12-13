@@ -37,15 +37,24 @@
     and regular_employee=$r4 and company=$company ");
 
 	if (empty($taskname_exists)){
-	echo "this taskname doesnot exits in this project or you cannot assign regular_employee into unless task Status is Assigned";}
+  $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee into unless task Status is Assigned";
+  header("Location: /Database-Project/layout/appology.php");
+  exit();
+}
 	else{
 	if(empty($reg_exists_project)){
-	echo "this reqular employee is not assigned to the project" ;}
+  $_SESSION['error'] = "this reqular employee is not assigned to the project";
+  header("Location: /Database-Project/layout/appology.php");
+  exit();
+
+}
 	else{
 	     $astm=sqlExec("exec Change_Regular_Task_Manager
          @MHRusername='".$manager_id."', @regular_employee=$r4,
          @project_name=$p4,@taskName=$t4 ");
-	     echo "assigned to task  succesfully" ;
+       $_SESSION['accept'] = "assigned to task succesfully";
+       header("Location: /Database-Project/layout/acceptance.php");
+       exit();
 
 	}
     }

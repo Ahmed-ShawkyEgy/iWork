@@ -20,11 +20,6 @@
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
 
-    <form action="/Database-Project/php/manager-Controller/trialcontinue.php" method="post" >
-        startdate: <input type="date" name="startDate" placeholder="Start Date"></br></br>
-        <input type="submit" name="login" value = "Create Project"></br></br>
-    </form>
-
    <?php
  require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
 if(session_status() == PHP_SESSION_NONE)
@@ -32,12 +27,17 @@ session_start();
 
 $startDate=post('startDate');
 
-if ($startDate=="''")
-echo "yes date is empty";
-else
-echo "not empty";
+if ($startDate=="''"){
+$_SESSION['error'] = "Date is empty";
+header("Location: /Database-Project/layout/appology.php");
+exit();
+}
 
-
+else{
+$_SESSION['accept'] = "not empty";
+header("Location: /Database-Project/layout/acceptance.php");
+exit();
+}
 
 
 

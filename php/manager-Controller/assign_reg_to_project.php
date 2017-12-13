@@ -34,9 +34,19 @@
          @MHRusername='".$manager_id."', @titleOfProject=$p6 , @username=$r6 ");
 
 		if(empty($reg_to_project)){
-		echo "you cannot insert same employee into more than 2 projects";}
+    $_SESSION['error'] = "you cannot insert same employee into more than 2 projects";
+    header("Location: /Database-Project/layout/appology.php");
+    exit();
+
+
+  }
 		else{
-		echo "Assigned to project succesful"; }
+    $_SESSION['accept'] = "Assigned to project succesful";
+    header("Location: /Database-Project/layout/acceptance.php");
+    exit();
+
+
+   }
 
 
      ?>

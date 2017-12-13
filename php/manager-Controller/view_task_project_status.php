@@ -19,7 +19,14 @@
 <body>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/axess.php"); ?>
   <?php require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/navbar.php"); ?></br></br></br></br></br>
+  <div class="container" style="margin-top:100px">
+      <div class="row">
+          <div class="col-md-2"></div>
 
+          <div class="panel col-md-8">
+             <h1> Create Task</h1>
+                 <hr><div class = "row announcements">
+                         <div class = "col-md-9">
   		 <?php
 
          require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
@@ -32,10 +39,30 @@
          $task_of_project=sqlExec("exec View_Tasks_Manager_With_Certain_Conditions @MHRusername='".$manager_id."',
 		 @project_name=$projectname1,@status=$status1 ");
          if(empty($task_of_project)){
-		 echo "no records to display";}
+           $_SESSION['error'] = "no records to display";
+           header("Location: /Database-Project/layout/appology.php");
+           exit();
+         }
          else {
          printTableDateTime($task_of_project);}
          ?>
+
+
+          </div>
+
+          </div>
+
+          <br>
+          </div>
+
+
+          <div class="col-md-2"></div>
+
+          </div>
+
+          </div>
+
+
 
 </body>
 
