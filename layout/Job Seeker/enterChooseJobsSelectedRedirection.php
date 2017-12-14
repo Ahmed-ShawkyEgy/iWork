@@ -47,7 +47,7 @@
              if(session_status() == PHP_SESSION_NONE)
               session_start();
              if (strpos($_SESSION['title'], 'Manager') !== false){
-               
+
                echo "<input  style='width: 400px;'  type='text' placeholder='Enter Type' name ='ManagerType' required>";
              }
              ?>
@@ -71,7 +71,7 @@
               </ul>
           </div>
 
-          <div id="FooterText"><ul id="ulLinkList"><li>Copyrights &copy; H. Morgan 2017. This page was created for educational purposes only as a project for GUC.</li></ul>
+          <div id="FooterText"><ul id="ulLinkList"><li>Copyrights &copy; Team XIII 2017. This page was created for educational purposes only as a project for GUC.</li></ul>
           </div>
         </footer>
       </div>

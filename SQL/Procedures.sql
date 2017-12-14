@@ -406,36 +406,6 @@ group by c.name
 order by avg(j.salary);
 
 
-
-go
-alter function Type_Idenitifer
-(@username varchar(255))
-returns varchar(255)
-as
-begin
-IF EXISTS (SELECT  u.username, m.username FROM Users u , Managers m WHERE u.username = m.username and u.username=@username)
-    BEGIN
-       return 'manager'
-    END
- IF EXISTS (SELECT  u.username, r.username FROM Users u , Regular_Employees r WHERE u.username = r.username and u.username=@username)
-    BEGIN
-      return 'regular_employee'
-    END
- IF EXISTS (SELECT  u.username, j.username FROM Users u , Job_Seekers j WHERE u.username = j.username and u.username=@username)
-    BEGIN
-       return 'job_seeker'
-    END
- IF EXISTS (SELECT  u.username, h.username FROM Users u , HR_Employees h WHERE u.username = h.username and u.username=@username)
-    BEGIN
-       return 'hr_employee'
-    END
-
-	return null
-end
-
-
-
-
 go
 create proc Find_Type
 @username varchar(255)
@@ -697,10 +667,9 @@ IF EXISTS (SELECT  u.username, m.username FROM Users u , Managers m WHERE u.user
     BEGIN
        return 'job_seeker'
     END
-
-
 	return null
 end
+
 
 go
 alter procedure companies_by_average_salary_order -- procedure views companies in the order of having the highest average salaris
