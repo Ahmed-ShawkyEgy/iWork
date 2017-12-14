@@ -38,7 +38,8 @@
 	    require_once("../../helper/sqlExec.php");
       if(session_status() == PHP_SESSION_NONE)
         session_start();
-	    $nameofproject=sqlExec("exec get_project_name @Manager='Trissy' ");
+      $username= $_SESSION['userid'];
+	    $nameofproject=sqlExec("exec get_project_name @Manager='".$username."' ");
         echo "<select name='projectName'>";
 		echo "<option value='default'>default</option>";
         for($row = 0; $row < count($nameofproject); $row++){
