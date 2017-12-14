@@ -658,7 +658,8 @@ insert into Users_Jobs
 select s.username, s.job
 from Staff_Members s
 where s.username=@username
-
+delete from Job_Seeker_apply_Jobs
+where job_Seekers=@username and @title=job and @departement=department and @company=company
 update Jobs
 set no_of_vacanies=no_of_vacanies-1
 where title=@title and department=@departement and company=@company
@@ -673,6 +674,34 @@ if(@title like 'Regular_Employee - %')
 insert into Regular_Employees values (@username)
 end
 end
+
+go
+alter function Type_Idenitifer -- function takes username as an input and returns the user type (HR ,manager , job seeker or regular employees)
+(@username varchar(255))
+returns varchar(255)
+as
+begin
+IF EXISTS (SELECT  u.username, m.username FROM Users u , Managers m WHERE u.username = m.username and u.username=@username)
+    BEGIN
+       return 'manager'
+    END
+ IF EXISTS (SELECT  u.username, r.username FROM Users u , Regular_Employees r WHERE u.username = r.username and u.username=@username)
+    BEGIN
+      return 'regular_employee'
+    END
+	IF EXISTS (SELECT  u.username, h.username FROM Users u , HR_Employees h WHERE u.username = h.username and u.username=@username)
+    BEGIN
+       return 'hr_employee'
+    END
+ IF EXISTS (SELECT  u.username, j.username FROM Users u , Job_Seekers j WHERE u.username = j.username and u.username=@username)
+    BEGIN
+       return 'job_seeker'
+    END
+
+
+	return null
+end
+
 
 
 ----------Ahmed Sherif
