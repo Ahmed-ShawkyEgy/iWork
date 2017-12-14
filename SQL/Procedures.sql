@@ -702,7 +702,16 @@ IF EXISTS (SELECT  u.username, m.username FROM Users u , Managers m WHERE u.user
 	return null
 end
 
-
+go
+alter procedure companies_by_average_salary_order -- procedure views companies in the order of having the highest average salaris
+as
+select c.name,avg(j.salary) as 'Salary'
+from Companies c inner join Departments d
+on d.company=c.email
+inner join Jobs j
+on j.department= d.code and j.company=c.email
+group by c.name
+order by avg(j.salary) desc;
 
 ----------Ahmed Sherif
 

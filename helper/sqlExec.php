@@ -89,8 +89,17 @@ for($row = 0; $row < count($array);$row++){
     //  echo $key." : &nbsp;&nbsp;&nbsp;";
       echo "<form action='/Database-Project/php/viewDetails.php' method='post'>";
       echo $key.":"."<input type='submit' style='background: rgba(54, 25, 25, 0);' name= 'selectedCompany' value= '".$value."'>";
-      echo "</form>";
+
+      echo "&nbsp;&nbsp;&nbsp;";
+    }
+    else {
+      if($key == 'Salary'){
+      $pos = strrpos($value, ".");
+      echo "<span style ='border-style: inset;'>".substr($value, 0, $pos)."</span>";
+
       print("</br>");print("</br>");
+            echo "</form>";
+    }
     }
 
   }
