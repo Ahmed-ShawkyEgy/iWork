@@ -34,6 +34,12 @@ $projectName = post('projectName');
 $taskname = post('taskname');
 $deadline = post('deadline');
 $description = post('description');
+		 
+		 if ($projectName=="'chooseproject'"){
+		 $_SESSION['error'] = "you need to choose a Project or in case you didnot find Projectname then there is no created projects in your department to display ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
 
 $comp=sqlExec("select company from Staff_Members where username='".$manager_id."' ");
 //print_r($dep);

@@ -28,6 +28,16 @@
 	$p4 = post('p4');
     $t4 = post('t4');
 	$r4 = post('r4');
+	if ($p4=="'chooseproject'"){
+		 $_SESSION['error'] = "you need to choose a Project or in case you didnot find Projectname then there is no created projects in your department to display ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
+	if ($r4=="'chooseregular'"){
+		 $_SESSION['error'] = "you need to choose a Regular employee or in case you didnot find Regular employee then your Department doesnot have regular employee ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
 	$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
     $company = "'".($comp[0] -> {'company'})."'" ;
 	$taskname_exists=sqlExec("select t.name from tasks t where t.name=$t4 and t.project=$p4
@@ -37,7 +47,7 @@
     and regular_employee=$r4 and company=$company ");
 
 	if (empty($taskname_exists)){
-  $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee unless task Status is Assogned or this task was not created by You ";
+  $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee unless task Status is Assigned or this task was not created by You ";
   header("Location: /Database-Project/layout/appology.php");
   exit();
 }

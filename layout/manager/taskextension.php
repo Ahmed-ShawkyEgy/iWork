@@ -47,7 +47,7 @@
         //'".$manager_id."'
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
         echo "<select name='projectname1'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -95,6 +95,7 @@
         //'".$manager_id."'
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
         echo "<select name='p2'>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -115,8 +116,8 @@
         where sm.department=$department and sm.company=$company  ");
 
 		echo "<select name='r2'>";
-		echo "<option value='default'>default</option>";
-        for($row = 0; $row < count($reg_emp); $row++){
+		echo "<option value='chooseregular'>choose regular employee</option>";
+		for($row = 0; $row < count($reg_emp); $row++){
         foreach ($reg_emp[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
 		}
@@ -155,7 +156,7 @@
         //'".$manager_id."'
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
         echo "<select name='p3'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -176,7 +177,7 @@
         where sm.department=$department and sm.company=$company  ");
 
 		echo "<select name='r3'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseregular'>choose regular employee</option>";
         for($row = 0; $row < count($reg_emp); $row++){
         foreach ($reg_emp[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -217,7 +218,7 @@
         //'".$manager_id."'
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
         echo "<select name='p4'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -238,7 +239,7 @@
         where sm.department=$department and sm.company=$company  ");
 
 		echo "<select name='r4'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseregular'>choose regular employee</option>";
         for($row = 0; $row < count($reg_emp); $row++){
         foreach ($reg_emp[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -279,7 +280,7 @@
         //'".$manager_id."'
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
         echo "<select name='p5'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -327,7 +328,7 @@
         //'".$manager_id."'
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
         echo "<select name='p6'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
@@ -348,7 +349,7 @@
         where sm.department=$department and sm.company=$company  ");
 
 		echo "<select name='r6'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseregular'>choose regular employee</option>";
         for($row = 0; $row < count($reg_emp); $row++){
         foreach ($reg_emp[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";

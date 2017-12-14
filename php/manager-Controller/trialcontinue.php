@@ -25,16 +25,16 @@
 if(session_status() == PHP_SESSION_NONE)
 session_start();
 
-$startDate=post('startDate');
+$p2=post('p2');
 
-if ($startDate=="''"){
-$_SESSION['error'] = "Date is empty";
+if ($r2=="'chooseregular'"){
+$_SESSION['error'] = "you need to choose a Regular employee or in case you didnot find Regular employee then your Department doesnot have regular employee ";
 header("Location: /Database-Project/layout/appology.php");
 exit();
 }
 
 else{
-$_SESSION['accept'] = "not empty";
+$_SESSION['accept'] = "tmam kda ";
 header("Location: /Database-Project/layout/acceptance.php");
 exit();
 }

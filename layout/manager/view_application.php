@@ -43,11 +43,11 @@
      $company = "'".($comp[0] -> {'company'})."'" ;
 	 $dep=sqlExec("select department from Staff_Members where username='".$manager_id."'  ");
      $department = "'".($dep[0] -> {'department'})."'" ;
-	 $job=sqlExec("select js.job from Job_Seeker_apply_Jobs js where js.department=$department and js.company=$company ");
+	 $job=sqlExec("select distinct js.job from Job_Seeker_apply_Jobs js where js.department=$department and js.company=$company ");
      //$_POST['Managers']
 
 	 echo "<select name='title'>";
-	 echo "<option value='default'>default</option>";
+	 echo "<option value='choosejob'>choose Job</option>";
      for($row = 0; $row < count($job); $row++)
 	 {
      foreach ($job[$row] as $key => $value){
@@ -97,9 +97,9 @@
 	 $job=sqlExec("select distinct js.job from Job_Seeker_apply_Jobs js
 	 where js.company=$company and js.department=$department and js.hr_response='Accepted' ");
         echo "<select name='job'>";
-		echo "<option value='default'>default</option>";
-        for($row = 0; $row < count($job_seekers); $row++){
-        foreach ($job_seekers[$row] as $key => $value){
+		echo "<option value='choosejob'>choose Job</option>";
+        for($row = 0; $row < count($job); $row++){
+        foreach ($job[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
 		}
 	    }
@@ -121,7 +121,7 @@
 	 $job_seekers=sqlExec("select distinct js.job_Seekers  from Job_Seeker_apply_Jobs js
 	 where js.company=$company and js.department=$department and js.hr_response='Accepted' ");
         echo "<select name='usn'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseusn'>choose any job_seeker</option>";
         for($row = 0; $row < count($job_seekers); $row++){
         foreach ($job_seekers[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";

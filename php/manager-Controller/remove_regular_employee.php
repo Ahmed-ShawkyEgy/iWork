@@ -30,17 +30,31 @@
          //'".$manager_id."'
          $p2 = post('p2');
          $r2 = post('r2');
-	     $remove_employee=sqlExec("exec Remove_Regular_To_Project @MHRusername='".$manager_id."',@titleOfProject=$p2,
+	     if ($p2=="'chooseproject'"){
+		 $_SESSION['error'] = "you need to choose a Project or in case you didnot find Projectname then there is no created projects in your department to display ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
+		 if ($r2=="'chooseregular'"){
+		 $_SESSION['error'] = "you need to choose a Regular employee or in case you didnot find Regular employee then your Department doesnot have regular employee ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
+		 
+		 
+		 
+		 
+		 $remove_employee=sqlExec("exec Remove_Regular_To_Project @MHRusername='".$manager_id."',@titleOfProject=$p2,
 		 @username=$r2 ");
 		 if ( empty($remove_employee) ){
-     $_SESSION['error'] = "This employee has a task in this project or this employee is not assigned to this project";
-     header("Location: /Database-Project/layout/appology.php");
-     exit();
+		$_SESSION['error'] = "This employee has a task in this project or this employee is not assigned to this project";
+		header("Location: /Database-Project/layout/appology.php");
+		exit();
 		 }
 		 else{
-       $_SESSION['accept'] = "removed succesfully";
-       header("Location: /Database-Project/layout/acceptance.php");
-       exit();}
+		$_SESSION['accept'] = "removed succesfully";
+		header("Location: /Database-Project/layout/acceptance.php");
+		exit();}
          ?>
 
 

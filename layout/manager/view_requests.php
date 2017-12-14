@@ -29,7 +29,7 @@
           <div class="col-md-2"></div>
 
           <div class="panel col-md-8">
-             <h1> Applications</h1>
+             <h1> Requests</h1>
                  <hr><div class = "row announcements">
                          <div class = "col-md-9">
       <?php
@@ -63,7 +63,7 @@
      <div class="col-md-2"></div>
 
      <div class="panel col-md-8">
-        <h1> Accept or Reject Response</h1>
+        <h1> Accept or Reject Requests</h1>
             <hr><div class = "row announcements">
                     <div class = "col-md-9">
 	 <form action="\Database-Project\php\manager-Controller\requests.php" method="post" id="reason"  >
@@ -81,11 +81,13 @@
 	    $comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
         $company = "'".($comp[0] -> {'company'})."'" ;
 	    $dep=sqlExec("select department from Staff_Members where username='".$manager_id."'  ");
-        $department = "'".($dep[0] -> {'department'})."'" ;
+        $department = "'".($dep[0] -> {'department'})."'" ;		
 		$username_of_staffmemebers=sqlExec("select distinct r.applicant from Requests r inner join Staff_Members sm on sm.username=r.applicant
-        where sm.company=$company and sm.department=$department and r.applicant<>'".$manager_id."' ");
+        where sm.company=$company and sm.department=$department and r.applicant<>'".$manager_id."' 
+		and not exists (select m.username from Managers m where m.username=r.applicant) ");
+		
         echo "<select name='sm'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='choosestaff'>choose Staff member</option>";
         for($row = 0; $row < count($username_of_staffmemebers); $row++){
         foreach ($username_of_staffmemebers[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";

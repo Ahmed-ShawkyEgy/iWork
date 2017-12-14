@@ -29,7 +29,17 @@
          //'".$manager_id."'
 		 $p6 = post('p6');
 		 $r6 = post('r6');
-      
+         
+		 if ($p6=="'chooseproject'"){
+		 $_SESSION['error'] = "you need to choose a Project or in case you didnot find Projectname then there is no created projects in your department to display ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
+		 if ($r6=="'chooseregular'"){
+		 $_SESSION['error'] = "you need to choose a Regular employee or in case you didnot find Regular employee then your Department doesnot have regular employee ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
 		 $comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
          $company = "'".($comp[0] -> {'company'})."'" ;
 		 

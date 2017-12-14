@@ -38,21 +38,16 @@
      if(session_status() == PHP_SESSION_NONE)
      session_start();
 	$manager_id = $_SESSION['userid'];
-	//'".$manager_id."'
-	$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
-	$company = "'".($comp[0] -> {'company'})."'" ;
-	$dep=sqlExec("select department from Staff_Members where username='".$manager_id."'  ");
-	$department = "'".($dep[0] -> {'department'})."'" ;
-	$job=sqlExec("select js.job from Job_Seeker_apply_Jobs js where js.department=$department and js.company=$company ");
-	if(empty($job)){
-    $_SESSION['error'] = "no records to display";
-    header("Location: /Database-Project/layout/appology.php");
-    exit();
-	}
-	else {
 	$title = post('title');
+	//'".$manager_id."' 
+	if ($title=="'choosejob'"){
+	$_SESSION['error'] = "you need to choose Job tilte or in case you didnot find job titles then no one apply for job in your Department ";
+	header("Location: /Database-Project/layout/appology.php");
+	exit();
+	}
+	
 	$application=sqlExec("exec Manager_View_Applications_Before_HR @MHRusername='".$manager_id."',@job=$title  ");
-  if(empty($application)){
+    if(empty($application)){
     $_SESSION['error'] = "no records to display";
     header("Location: /Database-Project/layout/appology.php");
     exit();
@@ -60,7 +55,8 @@
   else{
 	printTableDateTime($application);
   }
-}
+	
+	
     ?>
 
 

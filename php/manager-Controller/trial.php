@@ -33,27 +33,37 @@
                  <hr><div class = "row announcements">
                          <div class = "col-md-9">
     <form action="/Database-Project/php/manager-Controller/trialcontinue.php" method="post" >
-        startdate: <input type="date" name="startDate" placeholder="Start Date"></br></br>
+        <!-- startdate: <input type="date" name="startDate" placeholder="Start Date"></br></br> -->
         <?php
 		 require_once($_SERVER['DOCUMENT_ROOT']."/Database-Project/helper/sqlExec.php");
         if(session_status() == PHP_SESSION_NONE)
         session_start();
         $manager_id = $_SESSION['userid'];
         //'".$manager_id."'
-	    $nameofproject=sqlExec("exec get_project_name @Manager='".$manager_id."' ");
+	    $nameofproject=sqlExec("exec get_project_name @Manager='Trissy' ");
         echo "<select name='p2'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
 		}
 	    }
         echo "</select>";
+		
+		//echo "<option value='chooseregular'>choose regular employee</option>";
+
 		?>
 		<input type="submit" class="btn btn-primary"  name="login" value = "Create Project"></br></br>
     </form>
 
   </div>
+  
+  
+  
+  
+  
+  
+
 
   </div>
 

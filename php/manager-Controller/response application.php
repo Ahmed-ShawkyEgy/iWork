@@ -32,7 +32,17 @@
 	 $job = post('job');
 	 $resp = post('resp');
 	 $usn = post('usn');
-
+     if ($job=="'choosejob'"){
+	 $_SESSION['error'] = "you need to choose Job tilte or in case you didnot find job titles then no one apply for job in your Department ";
+	 header("Location: /Database-Project/layout/appology.php");
+	 exit();
+	 }
+	 //chooseusn
+	 if ($usn=="'chooseusn'"){
+	 $_SESSION['error'] = "you need to choose job_seeker or in case you didnot find job_seekers then no one apply for job in y0ur department ";
+	 header("Location: /Database-Project/layout/appology.php");
+	 exit();
+	 }
 	 $comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
      $company = "'".($comp[0] -> {'company'})."'" ;
 	 $dep=sqlExec("select department from Staff_Members where username='".$manager_id."'  ");

@@ -38,9 +38,17 @@
          //'".$manager_id."'
 		 $projectname1 = post('projectname1');
          $status1 = post('status1');
+		 if ($projectname1=="'chooseproject'"){
+		 $_SESSION['error'] = "you need to choose a Project or in case you didnot find Projectname then there is no created projects in your department to display ";
+		 header("Location: /Database-Project/layout/appology.php");
+		 exit();
+		 }
 
          $task_of_project=sqlExec("exec View_Tasks_Manager_With_Certain_Conditions @MHRusername='".$manager_id."',
 		 @project_name=$projectname1,@status=$status1 ");
+		 
+		 
+
          if(empty($task_of_project)){
            $_SESSION['error'] = "no records to display";
            header("Location: /Database-Project/layout/appology.php");

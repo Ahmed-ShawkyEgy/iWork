@@ -41,7 +41,7 @@
       $username= $_SESSION['userid'];
 	    $nameofproject=sqlExec("exec get_project_name @Manager='".$username."' ");
         echo "<select name='projectName'>";
-		echo "<option value='default'>default</option>";
+		echo "<option value='chooseproject'>choose project</option>";
         for($row = 0; $row < count($nameofproject); $row++){
         foreach ($nameofproject[$row] as $key => $value){
         echo "<option value='".$value."'>".$value."</option>";
