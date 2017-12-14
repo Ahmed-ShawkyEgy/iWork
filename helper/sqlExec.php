@@ -118,11 +118,19 @@ for($row = 0; $row < count($array);$row++){
     //  echo $key." : &nbsp;&nbsp;&nbsp;";
       echo "<form action='/Database-Project/php/viewDetails.php' method='post'>";
       echo $key.":"."<input type='submit' style='background: rgba(54, 25, 25, 0);' name= 'selectedCompany' value= '".$value."'>";
-  print("</br>");print("</br>");print("</br>");
+  echo "&nbsp;&nbsp;&nbsp;";
     }
+    else {
+      if ($key=='type'){
+      echo "<span style ='border-style: inset;'>".$value."</span>";
+
+      print("</br>");print("</br>");
+            echo "</form>";
+}
   }
 
  }
+}
 }
 
 
