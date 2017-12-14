@@ -26,7 +26,7 @@
           <div class="col-md-2"></div>
 
           <div class="panel col-md-8">
-             <h1> Create Task</h1>
+             <h1> List of tasks</h1>
                  <hr><div class = "row announcements">
                          <div class = "col-md-9">
   		 <?php
@@ -38,6 +38,7 @@
          //'".$manager_id."'
 		 $projectname1 = post('projectname1');
          $status1 = post('status1');
+
          $task_of_project=sqlExec("exec View_Tasks_Manager_With_Certain_Conditions @MHRusername='".$manager_id."',
 		 @project_name=$projectname1,@status=$status1 ");
          if(empty($task_of_project)){

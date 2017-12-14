@@ -19,7 +19,9 @@ body {
 .BigImg .BigImg-wrapper {
   text-align: center;
 }
-
+.form-group {
+    margin-bottom: 0px;
+}
 .BigImg {
   background-image: url("/Database-Project/images/registration_form.jpg");
   background-attachment: fixed;

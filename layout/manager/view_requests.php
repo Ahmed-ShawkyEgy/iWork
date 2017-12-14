@@ -47,12 +47,6 @@
      printTableDateTime($table_of_requests);}
      ?>
 
-	 <?php
-	 $manager_id = $_SESSION['userid'];
-     //'".$manager_id."'
-
-
-	 ?>
  </div>
 
  </div>

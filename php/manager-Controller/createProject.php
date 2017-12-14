@@ -35,24 +35,26 @@ $projectName = post('projectName');
 $startDate = post('startDate');
 $endDate = post('endDate');
 
+$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
+$company = "'".($comp[0] -> {'company'})."'" ;
 
-$checkForExistance = sqlExec("select * from Projects where name = $projectName");
+$checkForExistance = sqlExec("select * from Projects where name = $projectName and company=$company ");
 if(empty($checkForExistance)){
-$result = sqlExec("exec Create_New_Project @MHRusername= '".$manager_id."' , @title=$projectName,@start_date=$startDate,@end_date=$endDate");
-$check = sqlExec("select * from Projects where name = $projectName");
 
-if(empty($check)){
-  $_SESSION['error'] = "Failed to create project";
-  header("Location: /Database-Project/layout/appology.php");
-  exit();
-}
-else
-  $_SESSION['accept'] = "created project succesfully";
-  header("Location: /Database-Project/layout/acceptance.php");
-  exit();
-}
+	if($startDate>=$endDate){
+	$_SESSION['error'] = "You cannot create project that start date is greater than or equal to endate";
+	header("Location: /Database-Project/layout/appology.php");
+	exit();}
+	
+	else{
+	$result = sqlExec("exec Create_New_Project @MHRusername= '".$manager_id."' , @title=$projectName,@start_date=$startDate,@end_date=$endDate");
+	$_SESSION['accept'] = "created project succesfully";
+	header("Location: /Database-Project/layout/acceptance.php");
+	exit();}  
+} 
+
 else{
-  $_SESSION['error'] = "Project already created with same name";
+  $_SESSION['error'] = "There is an existing project with same name you chosen";
   header("Location: /Database-Project/layout/appology.php");
   exit();
 }

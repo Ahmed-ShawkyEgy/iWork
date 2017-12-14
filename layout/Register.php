@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="css/custom.css">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../style/Register.css">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <script src="jquery-3.2.1.min.js"></script>
 <script src="script.js"></script>
+<link rel="stylesheet" href="/Database-Project/style/Register.css">
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
   <a href="#"><img class="smaller-image thick-green-border" src="http://www.electriccompanyreno.com/wp-content/uploads/2014/01/placeholder.png" alt="A cute orange cat lying on its back. "></a>
   </br>  </br>
-  <form action="/Database-Project/php/register.php" method="post">
+  <form action="/Database-Project/php/register.php" method="post" id='registerForm'>
         <input  style="width: 400px;"  type="text" name="username" placeholder="Username" required>
       </br>
           <input  style="width: 400px;"  type="password" name="password" placeholder="Password" required>
@@ -51,10 +52,12 @@
                   </br>
           <input  style="width: 400px;"  type="text" name="lastName" placeholder="Last name" required>
     </br>  </br>
-        <div  class="col-xs-12">
+        <div  class="col-xs-12" id="button">
         <input class="btn btn-primary "type="submit" name="login" style="width: 400px;" value = "Register">
+              </div>
         </form>
-      </div>
+        <br><br>
+<button class="btn btn-primary col-xs-offset-4" onclick="fun()">Add Previous Job</button>
           </div>
         </div>
         </div>
@@ -79,4 +82,27 @@
 </div>
 </div>
 </body>
+
+<script>
+    var cntr = 0;
+
+    function fun() {
+
+      var submit = document.getElementById("button");
+      var form = document.getElementById("registerForm");
+      var div = document.createElement("div");
+    //  div.className += "";
+    //value = "Register"
+      var child = document.createElement("input");
+      child.setAttribute("name", "addJob" + cntr++);
+      child.setAttribute("placeholder", "previous job");
+      child.setAttribute("style", "width: 400px;");
+      div.appendChild(child);
+      form.removeChild(submit);
+      form.appendChild(div);
+      form.appendChild(submit);
+    }
+</script>
+
+
 </html>

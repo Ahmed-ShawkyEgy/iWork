@@ -10,7 +10,12 @@ $years_of_experince = $_POST['yearsOfExperince'];
 $first_name = $_POST['firstName'];
 $middle_name = $_POST['middleName'];
 $last_name = $_POST['lastName'];
-
+/*foreach ($_POST as $name => $value) {
+   echo $name;
+    print ('//');
+   echo $value;
+   print ('<br>');
+}*/
 //$result = sqlExec("Exec login_user @username= $username , @password = $password");
 
 if ( preg_match('/\s/',$username) ) {
@@ -24,9 +29,13 @@ if ( preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/',$use
   exit();
 }
 $result = sqlExec("Exec Register_User @username= '".$username."', @password= '".$password."',@personal_email= '".$personal_email."', @birth_date= '".$birth_date."',@years_of_experince= '".$years_of_experince."',@first_name= '".$first_name."',@middle_name= '".$middle_name."',@last_name= '".$last_name."'");
-
-//echo '2';
-
+for($row = 0; ;$row++){
+  if(!(isset($_POST["addJob".$row]))){
+    break;}
+  if($_POST["addJob".$row] != ''){
+    $tmpAddJob=post("addJob".$row);
+  sqlExec("Exec Insert_Previous_Job @username='".$username."', @previousJobs= $tmpAddJob ");}
+}
 
  if(empty($result)){
    $_SESSION['error'] = "This username already exits";

@@ -30,54 +30,51 @@
          $t5 = post('t5');
 		 $r5 = post('r5');
 		 $d5 = post('d5');
+		 
 		 $comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
          $company = "'".($comp[0] -> {'company'})."'" ;
-         $task_exists_project=sqlExec("select name from Tasks where name=$t5 and project=$p5
+         
+		 $task_exists_project=sqlExec("select name from Tasks where name=$t5 and project=$p5
 		 and company=$company and manager='".$manager_id."' and status='Fixed' ");
 
 		 if(empty($task_exists_project) ){
-     $_SESSION['error'] = "this task name doesnot exists in project or this Task name doesnot have Fixed status";
+     $_SESSION['error'] = "this task name doesnot exists in project or this Task name doesnot have Fixed status or this taskname is not created by you ";
      header("Location: /Database-Project/layout/appology.php");
      exit();
  }
 		 else{
-		 if($r5=="'Rejected'" and $d5=="''"){
-     $_SESSION['error'] = "you should enter an deadline date";
-     header("Location: /Database-Project/layout/appology.php");
-     exit();
-   }
-
-		 if($r5=="'Rejected'" and $d5<>"''"){
-		 $assign_task=sqlExec("exec Review_Assign_Regular_Task_Manager
-         @MHRusername='".$manager_id."' ,@project_name=$p5,@taskName=$t5,
-         @response=$r5, @deadline=$d5 ");
-		 if(empty($assign_task) ){
-     $_SESSION['error'] = "you arenot to allowed enter deadline before startdate of project and after end date of project";
-     header("Location: /Database-Project/layout/appology.php");
-     exit();
-
-
-   }
-		 else{
-     $_SESSION['accept'] = "Task status has changed to Assigned";
-     header("Location: /Database-Project/layout/acceptance.php");
-     exit();
-
-   }
-		 }
-
-         if($r5=="'Accepted'" ){
-		 $assign_task=sqlExec("exec Review_Assign_Regular_Task_Manager
-         @MHRusername='".$manager_id."' ,@project_name=$p5,@taskName=$t5,
-         @response=$r5");
-     $_SESSION['accept'] = "Task status has changed to Closed";
-     header("Location: /Database-Project/layout/acceptance.php");
-     exit();
-
-
-   }
-
-		 }
+		    if($r5=="'Rejected'" and $d5=="''"){
+                 $_SESSION['error'] = "you should enter an deadline date";
+                 header("Location: /Database-Project/layout/appology.php");
+                 exit();}
+   
+		    if($r5=="'Rejected'" and $d5<>"''"){
+		         $check_deadline=sqlExec(" select t.name from Tasks t inner join Projects p on p.company=t.company and p.name=t.project
+                 where t.name=$t5 and t.company=$company and t.project=$p5 and p.start_date<=$d5 and $d5<=p.end_date ");
+			     if( empty($check_deadline) ){
+				    $_SESSION['error'] = "you are not to allowed enter deadline before startdate of project and after end date of project";
+                    header("Location: /Database-Project/layout/appology.php");
+                    exit();
+			     }
+				 else{
+				 $assign_task=sqlExec("exec Review_Assign_Regular_Task_Manager
+                 @MHRusername='".$manager_id."' ,@project_name=$p5,@taskName=$t5,
+                 @response=$r5, @deadline=$d5 ");
+				 $_SESSION['accept'] = "Task status has changed to Assigned";
+                 header("Location: /Database-Project/layout/acceptance.php");
+                 exit();}
+			
+			    }
+			
+			if($r5=="'Accepted'" ){
+		         $assign_task=sqlExec("exec Review_Assign_Regular_Task_Manager
+                 @MHRusername='".$manager_id."' ,@project_name=$p5,@taskName=$t5,
+                 @response=$r5");
+                 $_SESSION['accept'] = "Task status has changed to Closed";
+                 header("Location: /Database-Project/layout/acceptance.php");
+                 exit();}
+            
+			}
 
          ?>
 

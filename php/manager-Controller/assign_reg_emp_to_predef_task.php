@@ -31,12 +31,13 @@
 	$r3 = post('r3');
 	$comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
     $company = "'".($comp[0] -> {'company'})."'" ;
+	
 	$taskname_exists=sqlExec("select t.name from tasks t where t.name=$t3 and t.project=$p3 and t.company=$company and
     t.manager='".$manager_id."' and t.status='Open'	");
 	$reg_exists_project=sqlExec("select * from Managers_assign_Regular_Employees_Projects where project_name=$p3
     and regular_employee=$r3 and company=$company ");
 	if (empty($taskname_exists)){
-    $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee into unless task Status is Open";
+    $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee unless task Status is Open or this task was not created by You ";
     header("Location: /Database-Project/layout/appology.php");
     exit();}
 	else{

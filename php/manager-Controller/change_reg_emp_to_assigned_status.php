@@ -37,7 +37,7 @@
     and regular_employee=$r4 and company=$company ");
 
 	if (empty($taskname_exists)){
-  $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee into unless task Status is Assigned";
+  $_SESSION['error'] = "this taskname doesnot exits in this project or you cannot assign regular_employee unless task Status is Assogned or this task was not created by You ";
   header("Location: /Database-Project/layout/appology.php");
   exit();
 }

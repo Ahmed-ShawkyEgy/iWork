@@ -65,8 +65,8 @@
 
       </br>
         <a href="https://www.facebook.com/IWork-2022971287842490/" class="fa fa-facebook" title="Facebook"></a>
-        <a href="https://www.twitter.com/" class="fa fa-twitter" title="Twitter"></a>
-         <a href="https://mail.google.com/" class="fa fa-envelope" title="Email"></a>
+        <a href="https://twitter.com/iWorkTeamXIII" class="fa fa-twitter" title="Twitter"></a>
+         <a href="mailto:databaseoneproject@gmail.com" class="fa fa-envelope" title="Email"></a>
           </div>
         </div>
         </div>

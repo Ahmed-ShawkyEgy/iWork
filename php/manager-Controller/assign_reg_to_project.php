@@ -29,25 +29,34 @@
          //'".$manager_id."'
 		 $p6 = post('p6');
 		 $r6 = post('r6');
-
-         $reg_to_project=sqlExec("exec Assign_Regular_To_Project
-         @MHRusername='".$manager_id."', @titleOfProject=$p6 , @username=$r6 ");
-
+      
+		 $comp=sqlExec("select company from Staff_Members where username='".$manager_id."'  ");
+         $company = "'".($comp[0] -> {'company'})."'" ;
+		 
+		 $check_for_existance=sqlExec("select mare.regular_employee from Managers_assign_Regular_Employees_Projects mare where mare.company=$company and 
+         mare.project_name=$p6 and mare.regular_employee=$r6 ");
+         
+ 
+		 if($check_for_existance){
+		 $_SESSION['error'] = "This Reqular employee is already assigned to this project";
+         header("Location: /Database-Project/layout/appology.php");
+         exit();}
+		  
+		else
+		{ 
+        $reg_to_project=sqlExec("exec Assign_Regular_To_Project
+         @MHRusername='".$manager_id."', @titleOfProject=$p6 , @username=$r6 ");		
+		
 		if(empty($reg_to_project)){
-    $_SESSION['error'] = "you cannot insert same employee into more than 2 projects";
-    header("Location: /Database-Project/layout/appology.php");
-    exit();
-
-
-  }
+        $_SESSION['error'] = "you cannot insert same employee into more than 2 projects";
+        header("Location: /Database-Project/layout/appology.php");
+        exit();}
+		
 		else{
-    $_SESSION['accept'] = "Assigned to project succesful";
-    header("Location: /Database-Project/layout/acceptance.php");
-    exit();
-
-
-   }
-
+        $_SESSION['accept'] = "Assigned to project succesful";
+        header("Location: /Database-Project/layout/acceptance.php");
+        exit();}
+        }
 
      ?>
 

@@ -41,25 +41,22 @@ $company = "'".($comp[0] -> {'company'})."'" ;
 $checkForExistance = sqlExec("select t.name from Tasks t where t.name=$taskname and t.project=$projectName and t.company=$company");
 
 if(empty($checkForExistance)){
-$result = sqlExec(" exec Create_Task_Manager
-@MHRusername='".$manager_id."', @taskName=$taskname,@project_name=$projectName,
-@deadline=$deadline, @status='Open',
-@description=$description" );
+	$result = sqlExec(" exec Create_Task_Manager
+	@MHRusername='".$manager_id."', @taskName=$taskname,@project_name=$projectName,
+	@deadline=$deadline, @status='Open',
+	@description=$description" );
 
-$check = sqlExec("select t.name from Tasks t
-where t.name=$taskname and t.project=$projectName and t.company=$company");
+	if(empty($result)){
+	$_SESSION['error'] = "you cannot insert deadline of task after project deadline or before project deadline";
+	header("Location: /Database-Project/layout/appology.php");
+	exit();}
 
-if(empty($check)){
-    $_SESSION['error'] = "you cannot insert deadline of task after project deadline or before project deadline";
-    header("Location: /Database-Project/layout/appology.php");
-    exit();
+	else{
+	$_SESSION['accept'] = "created task succesful";
+	header("Location: /Database-Project/layout/acceptance.php");
+	exit();}
 }
-else{
-  $_SESSION['accept'] = "created project succesful";
-  header("Location: /Database-Project/layout/acceptance.php");
-  exit();
-}
-}
+
 else{
   $_SESSION['error'] = "this taskname already exists and choose another one";
   header("Location: /Database-Project/layout/appology.php");

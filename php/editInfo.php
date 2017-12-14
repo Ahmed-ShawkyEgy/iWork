@@ -17,6 +17,15 @@ foreach ($_POST as $name => $value) {
    echo $value;
    print ('<br>');
 }*/
+
+
+for($row = 0; ;$row++){
+  if(!(isset($_POST["addJob".$row]))){
+    break;}
+  if($_POST["addJob".$row] != ''){
+    $tmpAddJob=post("addJob".$row);
+  sqlExec("Exec Insert_Previous_Job @username='".$username."', @previousJobs= $tmpAddJob ");}
+}
 if($password!= '')
  sqlExec("Exec edit_user_info @username='".$username."', @password='".$password."'");
  if($email!= '')
