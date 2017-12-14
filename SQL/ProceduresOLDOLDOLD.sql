@@ -2123,7 +2123,7 @@ where p.name=@titleOfProject and t.regular_employee=@username)
 -------------------------------
 
 go
-create proc get_project_name
+alter proc get_project_name
 @Manager varchar(255)
 as
 declare @dep varchar(255),@comp varchar(255)
@@ -2235,4 +2235,3 @@ end
 
 
 ---this is the end
---vFinal

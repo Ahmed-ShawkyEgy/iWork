@@ -15,12 +15,13 @@ if($_SESSION['position']=='regular_employee'){
 header("Location: /Database-Project/layout/Regular Employee/profile.php");
 exit();
 }
+if($_SESSION['position']=='hr_employee'){
+  header("Location: /Database-Project/layout/HR Employee/profile.php");
+  exit();
+}
 if($_SESSION['position']=='job_seeker'){
 header("Location: /Database-Project/layout/Job Seeker/profile.php");
 exit();
 }
-if($_SESSION['position']=='hr_employee'){
-  header("Location: /Database-Project/layout/profile.php");
-  exit();
-}
+
 ?>
