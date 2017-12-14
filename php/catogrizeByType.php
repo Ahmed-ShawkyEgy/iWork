@@ -40,7 +40,7 @@
             header("Location: /Database-Project/layout/appology.php");
             exit();
           }else
-             printTableLinks( $_SESSION['result']);
+             printTableLinksType( $_SESSION['result']);
              //print_r($result);
 
             ?></h1>

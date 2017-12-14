@@ -89,7 +89,6 @@ for($row = 0; $row < count($array);$row++){
     //  echo $key." : &nbsp;&nbsp;&nbsp;";
       echo "<form action='/Database-Project/php/viewDetails.php' method='post'>";
       echo $key.":"."<input type='submit' style='background: rgba(54, 25, 25, 0);' name= 'selectedCompany' value= '".$value."'>";
-
       echo "&nbsp;&nbsp;&nbsp;";
     }
     else {
@@ -106,6 +105,26 @@ for($row = 0; $row < count($array);$row++){
 
  }
 }
+
+
+
+function printTableLinksType($array){
+
+print("</br>");
+print("</br>");
+for($row = 0; $row < count($array);$row++){
+  foreach ($array[$row] as $key => $value){
+    if($key=='name'){
+    //  echo $key." : &nbsp;&nbsp;&nbsp;";
+      echo "<form action='/Database-Project/php/viewDetails.php' method='post'>";
+      echo $key.":"."<input type='submit' style='background: rgba(54, 25, 25, 0);' name= 'selectedCompany' value= '".$value."'>";
+  print("</br>");print("</br>");print("</br>");
+    }
+  }
+
+ }
+}
+
 
 
 function printTableQuestions($array){

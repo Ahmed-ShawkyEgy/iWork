@@ -6,6 +6,42 @@ body {
   background-color: #d9d9d9;
 }
 
+
+.box {
+  width: 800px;
+  height: 450px;
+  left: -webkit-calc( 25% - 0px );
+  top: auto;
+  position: absolute;
+  border-radius: 5px;
+  -moz-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  margin : auto;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  transition: box-shadow .3s ease;
+  -moz-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+
+}
+
+
+#boxContent{
+  position:absolute;
+  left: 0;
+  right: 0;
+}
+
+
+
+
 .navbar .navbar-inner {
   background-color: #1F273A;
   background-image: none;
@@ -80,4 +116,7 @@ footer {
 #FooterText {
   display: inline;
   font-size: 14px;
+}
+#stretch{
+  margin-bottom:  500px;
 }

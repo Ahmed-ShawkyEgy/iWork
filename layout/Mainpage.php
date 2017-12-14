@@ -24,11 +24,16 @@
     <div id="MainStartingImg" class="BigImg">
       <div class="BigImg-wrapper" layout="row" layout-align="center center">
         <div layout="column">
+          <!--add box-->
+          <div id="box1" class="box blurred-bg tinted">
+            <div class="content">
+              <div id='boxContent'>
           <h1 class="md-display-2"><underlineImg>iWork</underlineImg></h1>
-          </div>
+
         </br>
         <div id="FontAwesomeIconsTopImg">
         <!--put new command here-->
+
         <?php require($_SERVER['DOCUMENT_ROOT']."/Database-Project/php/loginAndRegister.php"); ?>
         </br></br>
 
@@ -67,12 +72,17 @@
         <a href="https://www.facebook.com/IWork-2022971287842490/" class="fa fa-facebook" title="Facebook"></a>
         <a href="https://twitter.com/iWorkTeamXIII" class="fa fa-twitter" title="Twitter"></a>
          <a href="mailto:databaseoneproject@gmail.com" class="fa fa-envelope" title="Email"></a>
-          </div>
+       </div></div></div></div>
+         <!--End Here-->
+
+       </div>
+<div id='stretch'></div>
         </div>
         </div>
        </div>
        </div>
     </div>
+
     <div id="footer" >
       <footer class="col-md-12">
         <div id="LinksInPageShortcuts">
