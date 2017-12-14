@@ -10,7 +10,9 @@ body {
 .box {
   width: 800px;
   height: 450px;
-  left: -webkit-calc( 25% - 0px );
+  margin:auto;
+  left:0;
+  right:0;
   top: auto;
   position: absolute;
   border-radius: 5px;
