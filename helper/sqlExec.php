@@ -23,6 +23,43 @@ for($row = 0; $row < count($array);$row++){
  }
 }
 
+
+function echoTable($array,$option){
+//if($option == "ar")
+ // echo "<form action='javascript:void(0);' id='ARForm'>";
+   echo "<table id='resultTable'>";
+   echo "<tr>";
+  foreach ($array[0] as $key => $value){
+      echo "<th>".$key."</th>";
+   }
+   if($option == "ar"){
+	 echo "<th>Acceptance</th>";
+	 echo "<th>Rejection</th>";
+   }
+   echo "</tr>";
+ for($row = 0; $row < count($array);$row++){
+	 echo "<tr>";
+  foreach ($array[$row] as $key => $value){
+	  if(gettype($value)!='object'){
+        echo "<td>".$value."</td>";
+      }else if($key == "working_hours" || strpos($key, "time") == true) {
+        echo "<td>".($value->format("H:i:s"))."</td>";
+      }else{
+		  echo "<td>".($value->format("Y-m-d"))."</td>";
+	  }
+   }
+ }
+ if($option == "ar"){
+	 echo "<td><input type='submit' value='Accept' id='acceptAppButton' class='formButton , ARButton'></td>";
+	 echo "<td><input type='submit' value='Reject' id='rejectAppButton' class='formButton , ARButton'></td>";
+ }
+ echo "</tr>";
+ echo "</table>";
+//if($option == "ar")
+   // echo "</form>";
+}
+
+
 /*
 
 <select name="searchOption">
