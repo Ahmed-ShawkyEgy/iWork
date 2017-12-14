@@ -631,7 +631,48 @@ select *
 from @table2
 end
 
+go
+alter proc Select_Job
+@username varchar(255),@title varchar(255), @departement varchar(255), @company varchar(255), @dayoff varchar(255), @managerType varchar(255)=null
+as
+declare @hr_response varchar(255), @manager_response varchar(255)
+select @hr_response = hr_response , @manager_response = manager_response
+from Job_Seeker_apply_Jobs
+where job_Seekers = @username and company = @company and job = @title and department = @departement
+if((@hr_response='Accepted' and @manager_response='Accepted' ))
+begin
+if((@title like 'Manager - %' and @managerType is not null) or(@title like 'HR_Employee - %')or (@title like 'Regular_Employee - %'))
+begin
+insert into Staff_Members (username, job, department, company)
+select u.username, j.job,j.department,j.company
+from Job_Seeker_apply_Jobs j inner join Users u
+on j.job_Seekers= u.username
+where hr_response='Accepted' and manager_response='Accepted' and @username=u.username and j.company=@company and j.job=@title
+and j.department=@departement
+Update Staff_Members
+set annual_leaves=30,  company_email= (@username+''+c.domain), day_off=@dayoff, salary=j.salary
+from Companies c, Jobs j inner join Job_Seeker_apply_Jobs js
+on j.title=js.job
+where c.email=@company and @dayoff <> 'Friday' and @dayoff <> 'friday' and j.title=@title and @username=username
+insert into Users_Jobs
+select s.username, s.job
+from Staff_Members s
+where s.username=@username
 
+update Jobs
+set no_of_vacanies=no_of_vacanies-1
+where title=@title and department=@departement and company=@company
+
+if(@title like 'Manager - %' and @managerType is not null)
+insert into Managers values (@username,@managerType)
+
+if(@title like 'HR_Employee - %')
+insert into HR_Employees values(@username)
+
+if(@title like 'Regular_Employee - %')
+insert into Regular_Employees values (@username)
+end
+end
 
 
 ----------Ahmed Sherif
